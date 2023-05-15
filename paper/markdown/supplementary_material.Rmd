@@ -1,0 +1,319 @@
+---
+title: "Persistent low-grade inflammation, SARS-CoV-2 infection and mental health deterioration signs impact on systemic levels of aminoacid neurotransmitter precursors"
+subtitle: "Supplementary Material"
+author: "PSY Team"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+
+output: 
+  bookdown::word_document2:   
+    reference_docx: ms_template.docx
+    
+bibliography: infl_biblio.bib
+csl: frontiers-in-immunology.csl
+header-includes:
+  \usepackage{longtable}
+  \usepackage{tabu}
+  \usepackage{caption}
+  \usepackage{makecell}
+  \usepackage{pdflscape}
+  \usepackage{array}
+  \usepackage{booktabs}
+  \usepackage{threeparttable}
+  \usepackage{threeparttablex}
+  \usepackage{wrapfig}
+  \usepackage{multirow}
+  \usepackage[normalem]{ulem}
+  \usepackage{colortbl}
+  \usepackage{xcolor}
+  \usepackage{float} \floatplacement{figure}{H} \floatplacement{table}{H}
+  \newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\thetable}{S\arabic{table}}       \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
+---
+
+```{r, setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, 
+                      dev = "png", dpi = 600, 
+                      tab.cap.pre = 'Supplementary Table ', tab.cap.sep = " ", 
+                      tab.cap.style = 'Table Heading')
+
+set_flextable_defaults(font.family = 'Cambria', font.size = 10)
+
+
+```
+
+\newpage
+
+# Supplementary Methods
+
+## Software
+
+Proteome and metabolome data were analyzed with R version 4.2.0. 
+General data transformation tasks were accomplished with the _tidyverse_ package bundle [@Wickham2019], _rlang_ [@Henry2022] and the development package _trafo_ (https://github.com/PiotrTymoszuk/trafo). 
+Statistical data testing was done with the packages _rstatix_ [@Kassambara2021], _ggpubr_ [@Kassambara2020] along with the development package _ExDA_ (https://github.com/PiotrTymoszuk/ExDA). 
+In linear modeling, base R functions, the development packages _lmqc_ (https://github.com/PiotrTymoszuk/lmqc) and _caretExtra_ (https://github.com/PiotrTymoszuk/caretExtra), and the package _caret_ [@Kuhn2008] were utilized.
+
+Results were visualized with tools provided by the packages _ggplot2_ [@Wickham2016], _cowplot_ [@Wilke2019] and _ExDA_. 
+Manuscript and supplementary tables were created with _flextable_ [@Gohel2022]. 
+Supplementary Material file was written in the _rmarkdown_ environment [@Allaire2022] and rendered with the _knitr_ [@Xie2022] and _bookdown_ [@Xie2016] packages.
+
+
+\newpage
+
+# Supplementary Tables
+
+```{r tab-study-vars, tab.cap = 'Study variables in the SIMMUN cohort.'}
+
+flextable::flextable(suppl_tabs$study_vars) %>% 
+  width(1, width = 3, unit = 'cm') %>% 
+  width(2, width = 3, unit = 'cm') %>% 
+  width(3, width = 2.7, unit = 'cm') %>% 
+  width(4, width = 2.5, unit = 'cm') %>% 
+  width(5, width = 2.5, unit = 'cm') %>% 
+  width(6, width = 3.3, unit = 'cm') %>% 
+  merge_v(1) %>% 
+  footnote(1, 2, 
+           value = as_paragraph('TRP: tryptophan; KYN: kynurenine; PHE: phenylalanine; TYR: tyrosine; KYN/TRP: kynurenine - tryptophan ratio; PHE/TYR: phenylalanine/tyrosine ratio; HADS: hospital anxiety and depression score; PSS-4: perceived stress scale, 4 item; NEO: neopterin; NLR: neutrophil - lymphocyte ratio; anti-RBD IgG: anti-receptor-binding domain S1/S2 immunoglobulin.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>% 
+  footnote(12, 2, 
+           value = as_paragraph('normal: body mass index (BMI) < 25 kg/m\u00B2, overweight: BMI 25 - 30 kg/m\u00B2, obesity: BMI > 30 kg/m\u00B2.'), 
+           part = 'body', 
+           ref_symbols = 'a') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-excluded, tab.cap = 'Significant differences between participant of the SIMMUN study included in the analysis and SIMMUN participants excluded due to data missingness. Numeric variables are presented as medians with interquartile ranges (IQR) and ranges. Categorical variables are presented as percentages and counts within the complete observation set.'}
+
+flextable::flextable(suppl_tabs$excluded) %>% 
+  width(1, width = 4, unit = 'cm') %>% 
+  width(2:3, width = 3.9, unit = 'cm') %>% 
+  width(4, width = 2, unit = 'cm') %>% 
+  width(5, width = 2.8, unit = 'cm') %>% 
+  width(6, width = 2.6, unit = 'cm') %>% 
+  footnote(1, 1, 
+           value = as_paragraph('HADS: hospital anxiety and depression scale; PSS-4: perceived stress scale, 4 item.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>% 
+  footnote(1, 5, 
+           value = as_paragraph('Corrected for multiple testing with the false discovery rate method.'), 
+           part = 'header', 
+           ref_symbols = 'b') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-incov-study-vars, tab.cap = 'Study variables in the INCOV cohort.'}
+
+flextable::flextable(suppl_tabs$incov_study_vars) %>% 
+  width(1, width = 3, unit = 'cm') %>% 
+  width(2, width = 3, unit = 'cm') %>% 
+  width(3, width = 6, unit = 'cm') %>% 
+  merge_v(1) %>% 
+  footnote(1, 2, 
+           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinate; PHE: phenylalanine; 5-HT: serotonin; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-samples, tab.cap = 'Number of available samples and sampling timepoints in the INCOV cohort.'}
+
+flextable::flextable(suppl_tabs$samples) %>% 
+  width(1:3, width = 3.5, unit = 'cm') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-modeling-simmun, tab.cap = 'Results of multi-parameter linear modeling of serum concentrations of tryptophan, kynurenine, tyrosine, and kynurenine - tryptophan, and phenylalanine - tyrosine ratios in the SIMMUN cohort.'}
+
+flextable::flextable(suppl_tabs$modeling_simmun) %>% 
+  width(1, width = 2, unit = 'cm') %>% 
+  width(2, width = 3, unit = 'cm') %>% 
+  width(3, width = 2.7, unit = 'cm') %>% 
+  width(4, width = 2.7, unit = 'cm') %>% 
+  width(5, width = 3.9, unit = 'cm') %>% 
+  width(6, width = 2.7, unit = 'cm') %>% 
+  merge_v(1) %>% 
+  footnote(1, 1, 
+           value = as_paragraph('TRP: tryptophan; KYN: kynurenine; KYN/TRP: kynurenine - tryptophan ratio; TYR: tyrosine; PHE/TYR: phenylalanine - tyrosine ratio.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>%
+  footnote(1, 2, 
+           value = as_paragraph('NEO: neopterin; HADS: hospital anxiety and depression scale; NLR: neutrophil - lymphocyte ratio; PSS-4: perceived stress scale, 4 item.'), 
+           part = 'header', 
+           ref_symbols = 'b') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-univariate-correlation, tab.cap = "Correlation of age, stress scoring blood neopterin levels and neutrophils - leukocyte ratio with serum metabolite levels in the SIMMUN cohort investigated by Pearson's test."}
+
+flextable::flextable(suppl_tabs$univariate_correlation) %>% 
+  width(1, width = 3.7, unit = 'cm') %>% 
+  width(2, width = 3.7, unit = 'cm') %>% 
+  width(3, width = 2, unit = 'cm') %>% 
+  width(4, width = 3.5, unit = 'cm') %>% 
+  width(5, width = 2.8, unit = 'cm') %>% 
+  footnote(1, 1, 
+           value = as_paragraph('TRP: tryptophan; KYN: kynurenine; KYN/TRP: kynurenine - tryptophanm ratio; PHE: phenylalanine; TYR: tyrosine; PHE/TYR: phenylalanine - tyrosine ratio.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>%
+  footnote(1, 2, 
+           value = as_paragraph('PSS-4: perceived stress scale, 4 item; NEO: neopterin; NLR: neutrophil - lymphocyte ratio.'), 
+           part = 'header', 
+           ref_symbols = 'b') %>% 
+  footnote(1, 5, 
+           value = as_paragraph('Corrected for multiple testing with the false discovery rate method.'), 
+           part = 'header', 
+           ref_symbols = 'c') %>% 
+  theme_vanilla
+  
+
+```
+
+\newpage
+
+```{r tab-univariate-complarison, tab.cap = "Comparison of serum metabolite levels in SIMMUN study participants stratified by depression signs and SARS-CoV-2 infection status with two-tailed T test and Cohen's d effect size statistic."}
+
+flextable::flextable(suppl_tabs$univariate_complarison) %>% 
+  width(1, width = 2.6, unit = 'cm') %>% 
+  width(2, width = 3.7, unit = 'cm') %>% 
+  width(3, width = 3, unit = 'cm') %>% 
+  width(4, width = 2.7, unit = 'cm') %>% 
+  width(5, width = 3.7, unit = 'cm') %>% 
+  width(6, width = 2.7, unit = 'cm') %>% 
+  width(7, width = 2.6, unit = 'cm') %>% 
+  footnote(1, 1, 
+           value = as_paragraph('TRP: tryptophan; KYN: kynurenine; KYN/TRP: kynurenine - tryptophan ratio; PHE: phenylalanine; TYR: tyrosine; PHE/TYR: phenylalanine - tyrosine ratio.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>% 
+  footnote(1, 2, 
+           value = as_paragraph('HADS: hospital anxiety and depression scale.'), 
+           part = 'header', 
+           ref_symbols = 'b') %>% 
+  footnote(1, 3, 
+           value = as_paragraph('Median with interquartile range (IQR) and range.'), 
+           part = 'header', 
+           ref_symbols = 'c') %>% 
+  footnote(1, 5, 
+           value = as_paragraph('Corrected for multiple testing with the false discovery rate method.'), 
+           part = 'header', 
+           ref_symbols = 'd') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-modeling-incov, tab.cap = 'Results of multi-parameter robust linear modeling of serum concentrations of serotonin, and dopamine sulfate in the INCOV cohort.'}
+
+flextable::flextable(suppl_tabs$modeling_incov) %>% 
+  width(1, width = 3, unit = 'cm') %>% 
+  width(2, width = 3.3, unit = 'cm') %>% 
+  width(3, width = 3, unit = 'cm') %>% 
+  width(4, width = 2.7, unit = 'cm') %>% 
+  width(5, width = 3.7, unit = 'cm') %>% 
+  width(6, width = 2.7, unit = 'cm') %>% 
+  merge_v(1) %>% 
+  footnote(1, 1, 
+           value = as_paragraph('5-HT: 5-hydroxy tryptophan/serotonine; DA sulfate: dopamine 3-O-sulfate.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>%
+  footnote(1, 2, 
+           value = as_paragraph('TRP: tryptophan; KYN: kynuernine; QUIN: quinolinate; IL6: interleukin-6, IL10: interleukin-10; TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; PHE: phenylalanine; TYR: tyrosine.'), 
+           part = 'header', 
+           ref_symbols = 'b') %>% 
+  theme_vanilla
+
+```
+
+\newpage
+
+```{r tab-time-modeling, tab.cap = 'Results of robust linear modeling of serum levels of inflammatory cytokines, tryptophan, tyrosine and their metabolites as a function of SARS-CoV-2 infection status in the INCOV cohort.'}
+
+flextable::flextable(suppl_tabs$time_modeling) %>% 
+  width(1, width = 3, unit = 'cm') %>% 
+  width(2, width = 3.7, unit = 'cm') %>% 
+  width(3, width = 3.7, unit = 'cm') %>% 
+  width(4, width = 2.9, unit = 'cm') %>% 
+  merge_v(1) %>% 
+  footnote(1, 1, 
+           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinate; PHE: phenylalanine; 5-HT: serotonin; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>% 
+  footnote(1, 4, 
+           value = as_paragraph('Corrected for multiple testing with the false discovery rate method.'), 
+           part = 'header', 
+           ref_symbols = 'b') %>% 
+  theme_vanilla
+  
+
+```
+
+\newpage
+
+# Supplementary Figures
+
+```{r fig-consistency, fig.width = figur::convert(suppl$consistency, to = 'in')$w, fig.height = figur::convert(suppl$consistency, to = 'in')$h, fig.cap = 'Consistency of the PSS4 stress HADS depression and HADS anxiety psychometric tools in the SIMMUN cohort.'}
+
+suppl$consistency$plot
+
+```
+
+__Figure \@ref(fig:fig-consistency). Consistency of the PSS4 stress HADS depression and HADS anxiety psychometric tools in the SIMMUN cohort.__ 
+
+_(A) Assessment of tau-equivalence of the HADS (hospital anxiety and depression scale) depression and anxiety tool by three-dimensional factor analysis. Loadings for the first two major factors are presented. Each point represents a single HADS item. Percentages of total dataset variance associated with the factors are indicated in the plot axes. Note: tau equivalence implicates equal loadings of each HADS items for all factors. In case of tau equivalence, proximity of the items to the diagonal of the plot (orange dashed line) is expected._
+
+_(B) Consistency of the HADS depression, HADS anxiety and PSS-4 (perceived stress scale, 4 item) psychometric tools determined by McDonald's $\omega$ metric._
+
+\newpage
+
+```{r fig-fit-stats, fig.width = figur::convert(suppl$fit_stats, to = 'in')$w, fig.height = figur::convert(suppl$fit_stats, to = 'in')$h, fig.cap = 'Root mean square error and R-squared statistics for multi-parameter linear models of tryptophan, tyrosine and their metabolites in the SIMMUN cohort.'}
+
+suppl$fit_stats$plot
+
+```
+
+__Figure \@ref(fig:fig-fit-stats). Root mean square error and R-squared statistics for multi-parameter linear models of tryptophan, tyrosine and their metabolites in the SIMMUN cohort.__ 
+
+_Multi-parameter linear regression models of serum levels of tryptophan (TRP), kynurenine (KYN), kynurenine/tryptophan ratio (KYN/TRP), phenylalanine (PHE), tyrosine (TYR) and phenylalanine/tyrosine ratio (PHE/TRP) in the SIMMUN models were optimized by backwards elimination and their reproducibility was tested by repeated cross-validation (CV, 10 folds). Values of root mean square error (RMSE, A) and $R^2$ (B) in the training data set and CV are plotted._
+
+\newpage
+
+```{r fig-corr-trp, fig.width = figur::convert(suppl$corr_trp, to = 'in')$w, fig.height = figur::convert(suppl$corr_trp, to = 'in')$h, fig.cap = 'Correlation of tryptophan and its metabolites with age, serum levels of neopterin, neutrophil - lymphocyte ratio, and mental stress scoring in the SIMMUN cohort.'}
+
+suppl$corr_trp$plot
+
+```
+
+__Figure \@ref(fig:fig-corr-trp). Correlation of tryptophan and its metabolites with age, serum levels of neopterin, neutrophil - lymphocyte ratio, and mental stress scoring in the SIMMUN cohort.__ 
+
+_Correlation of age (A), the inflammatory marker neutrophil-leukocyte ratio (B, NLR), and stress scoring (C, perceived stress scale, 4-item [PSS-4]) with serum concentrations of tryptophan (TRP), kynurenine (KYN) and kynurenine - tryptophan ratio (KYN/TRP) was assessed by Pearson's test corrected for multiple testing with the false discovery rate method (n = `r nrow(stigma$analysis_tbl)`. Single observations are depicted as points, fitted linear trends with 95% confidence intervals are visualized as blue lines with gray ribbons. Values of correlation coefficients (r) with 95% confidence intervals and p values are displayed in the plot captions._
+
+\newpage
+
+```{r fig-corr-tyr, fig.width = figur::convert(suppl$corr_tyr, to = 'in')$w, fig.height = figur::convert(suppl$corr_tyr, to = 'in')$h, fig.cap = 'Correlation of phenylalanine and tyrosine with serum levels of neopterin in the SIMMUN cohort.'}
+
+suppl$corr_tyr$plot
+
+```
+
+__Figure \@ref(fig:fig-corr-tyr). Correlation of phenylalanine and tyrosine with serum levels of neopterin in the SIMMUN cohort.__ 
+
+_Correlation of the inflammatory marker neopterin (NEO) with serum concentrations of phenylalanine (PHE), tyrosine (TYR) and phenylalanine - tyrosine ratio (PHE/TYR) was was assessed by Pearson's test corrected for multiple testing with the false discovery rate method (n = `r nrow(stigma$analysis_tbl)`. Single observations are depicted as points, fitted linear trends with 95% confidence intervals are visualized as blue lines with gray ribbons. Values of correlation coefficients (r) with 95% confidence intervals and p values are displayed in the plot captions._
+
+\newpage
+
+# References
