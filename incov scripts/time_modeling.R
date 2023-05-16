@@ -73,6 +73,7 @@
                        formula = .x,
                        mod_fun = rlm,
                        family = NULL,
+                       method = 'MM',
                        psi = psi.huber)))
 
 # Inference --------

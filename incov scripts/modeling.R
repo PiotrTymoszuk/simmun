@@ -70,7 +70,18 @@
                  formula = .x,
                  mod_fun = rlm,
                  family = NULL,
+                 method = 'MM',
                  psi = psi.huber))
+
+# Custom model list for caret -------
+
+  insert_msg('A custom list for caret')
+
+  ## merely a copy-paste from the output of getModelInfo('rlm')
+  ## but specifying the method "MM" explicitly
+
+  incov_mod$caret_list <-
+
 
 # cross-validation via caret ------
 
@@ -85,7 +96,7 @@
                data = incov_mod$analysis_tbl %>%
                  mutate(timepoint = car::recode(timepoint,
                                                 "'sub-acute' = 'sub'")),
-               method = 'rlm',
+               method = mm_rlm,
                metric = 'RMSE',
                trControl = trainControl(method = 'repeatedcv',
                                         number = 10,

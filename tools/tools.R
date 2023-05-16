@@ -749,4 +749,53 @@
 
   }
 
+# custom caret method for MM robust linear regression -----
+
+  mm_rlm <-
+    list(label = 'MM robust linear regression',
+         library = 'MASS',
+         type = 'Regression',
+         parameters = data.frame(parameter = c('intercept', 'psi'),
+                                 class = c('logical', 'character'),
+                                 label = c('intercept', 'psi')),
+         grid = function(x, y, search = "grid") {
+
+           expand.grid(intercept = c(TRUE, FALSE), psi = c("psi.huber",
+                                                           "psi.hampel", "psi.bisquare"))
+
+         },
+         fit = function (x, y, wts, param, lev, last, classProbs, ...) {
+           dat <- if (is.data.frame(x))
+             x
+           else as.data.frame(x, stringsAsFactors = TRUE)
+           dat$.outcome <- y
+           psi <- MASS::psi.huber
+           if (param$psi == "psi.bisquare")
+             psi <- MASS::psi.bisquare
+           else if (param$psi == "psi.hampel")
+             psi <- MASS::psi.hampel
+           if (!is.null(wts)) {
+             if (param$intercept)
+               out <- MASS::rlm(.outcome ~ ., data = dat, weights = wts,
+                                psi = psi, method = 'MM', ...)
+             else out <- MASS::rlm(.outcome ~ 0 + ., data = dat, weights = wts,
+                                   psi = psi, method = 'MM', ...)
+           }
+           else {
+             if (param$intercept)
+               out <- MASS::rlm(.outcome ~ ., data = dat, psi = psi,
+                                ...)
+             else out <- MASS::rlm(.outcome ~ 0 + ., data = dat, psi = psi,
+                                   ...)
+           }
+           out
+         },
+         predict = function (modelFit, newdata, submodels = NULL) {
+           if (!is.data.frame(newdata))
+             newdata <- as.data.frame(newdata, stringsAsFactors = TRUE)
+           predict(modelFit, newdata)
+         },
+         prob = NULL,
+         sor = function(x) x)
+
 # END ------

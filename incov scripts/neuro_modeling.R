@@ -74,9 +74,10 @@
                  formula = .x,
                  mod_fun = rlm,
                  family = NULL,
-                 psi = psi.huber))
+                 psi = psi.huber,
+                 method = 'MM'))
 
-  # cross-validation via caret ------
+# cross-validation via caret ------
 
   insert_msg('Cross-validation via caret')
 
@@ -89,7 +90,7 @@
                data = incov_neuro$analysis_tbl %>%
                  mutate(timepoint = car::recode(timepoint,
                                                 "'sub-acute' = 'sub'")),
-               method = 'rlm',
+               method = mm_rlm,
                metric = 'RMSE',
                trControl = trainControl(method = 'repeatedcv',
                                         number = 10,
