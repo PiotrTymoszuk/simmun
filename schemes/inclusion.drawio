@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-05-15T08:37:58.731Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="DFizwkTfx6-RI4GojvLp" version="21.2.8" type="device">
+<mxfile host="Electron" modified="2023-05-17T08:32:38.664Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="vmqyr2b7agn4Wi-tCoIq" version="21.2.8" type="device">
   <diagram name="Page-1" id="yGozCTqb1JnejrZYd856">
     <mxGraphModel dx="810" dy="473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="690" pageHeight="980" math="0" shadow="0">
       <root>
@@ -8,16 +8,16 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rKHckfa7pBqVRsVSqDrz-1" value="SIMMUN&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;enrolled: n = 215&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="160" y="10" width="120" height="30" as="geometry" />
+          <mxGeometry x="159" y="10" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="rKHckfa7pBqVRsVSqDrz-7" value="excluded due to study variable missingness&lt;br&gt;n = 50" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
-          <mxGeometry x="10" y="220" width="100" height="40" as="geometry" />
+          <mxGeometry y="220" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-2" target="1Nu3ONZQS2WqPKR9Fhh7-4" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="217" y="250" />
-              <mxPoint x="217" y="250" />
+              <mxPoint x="216" y="260" />
+              <mxPoint x="216" y="260" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -29,40 +29,40 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-2" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Outcomes:&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;serum concentration of TRP, KYN, PHE, TYR, ratios of KYN/TRP and PHE/TYR&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Explanatory variables:&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/b&gt;demographic and clinical variables (age, sex, body mass), smoking, alcohol, co-morbidity&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;serum markers of inflammation&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;SARS-CoV-2 infection status and anti-SARS-CoV-2 Ab titer&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;psychometry (stress, depression, anxiety)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="110" y="60" width="215" height="150" as="geometry" />
+          <mxGeometry x="109" y="70" width="215" height="150" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-4" target="1Nu3ONZQS2WqPKR9Fhh7-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-4" value="SIMMUN&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;analysis dataset: n = 165&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="157.5" y="260" width="120" height="30" as="geometry" />
+          <mxGeometry x="156.5" y="260" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-7" target="1Nu3ONZQS2WqPKR9Fhh7-8" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-7" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;Identification of demographic, clinical, inflammatory, SARS-CoV-related and mental health factors that influence the serum metabolite levels&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="110" y="310" width="215" height="50" as="geometry" />
+          <mxGeometry x="109" y="320" width="215" height="50" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-8" target="1Nu3ONZQS2WqPKR9Fhh7-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-8" value="Multi-parameter linear modeling (backward elimitation)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
-          <mxGeometry x="147.5" y="380" width="140" height="40" as="geometry" />
+          <mxGeometry x="146.5" y="390" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-9" value="Univariable analysis (correlation, statistical hypothesis testing) of explanatory factors idenftified by linear modeling" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
-          <mxGeometry x="150" y="440" width="140" height="50" as="geometry" />
+          <mxGeometry x="149" y="450" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-14" target="1Nu3ONZQS2WqPKR9Fhh7-16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-14" value="INCOV&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;enrolled: n = 645&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="515" y="10" width="120" height="30" as="geometry" />
+        <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-14" value="INCOV&lt;br&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;enrolled participants: n = 645, samples: n = 1783&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="514" y="10" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-15" target="1Nu3ONZQS2WqPKR9Fhh7-19" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-15" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;Impact of SARS-CoV-2 infection, systemic inflammation, precursos and competitor pathway metabolite levels on the serum levels of 5-HT and DA sulfate&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="467.5" y="310" width="215" height="50" as="geometry" />
+          <mxGeometry x="466.5" y="320" width="215" height="50" as="geometry" />
         </mxCell>
         <mxCell id="g2LCM1nM8IFRirEf6F6N-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-16" target="g2LCM1nM8IFRirEf6F6N-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -71,25 +71,25 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-16" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Outcomes:&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;serum levels of 5-HT and DA sulfate&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Explanatory variables:&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/b&gt;SARS-CoV-2 infection status and time post infection&lt;br&gt;serum inflammatory cytokines (IL6, IL10, TNF and IFNG)&lt;br&gt;serum levels&amp;nbsp; of 5-HT and DA precursors and competiror partway products (TRP, KYN, QUIN, PHE, TYR)&lt;br&gt;age&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="467.5" y="60" width="215" height="150" as="geometry" />
+          <mxGeometry x="466.5" y="70" width="215" height="150" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="1Nu3ONZQS2WqPKR9Fhh7-19" target="1Nu3ONZQS2WqPKR9Fhh7-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-19" value="Multi-parameter robust linear modeling" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
-          <mxGeometry x="505" y="380" width="140" height="40" as="geometry" />
+          <mxGeometry x="504" y="390" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="1Nu3ONZQS2WqPKR9Fhh7-20" value="Time course robust linear modeling and correlation analysis of metabolites and inflammatory cytokines" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
-          <mxGeometry x="505" y="440" width="140" height="50" as="geometry" />
+          <mxGeometry x="504" y="450" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="g2LCM1nM8IFRirEf6F6N-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="g2LCM1nM8IFRirEf6F6N-1" target="1Nu3ONZQS2WqPKR9Fhh7-15" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g2LCM1nM8IFRirEf6F6N-1" value="INCOV&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;analysis dataset: n =&amp;nbsp; 354&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="515" y="260" width="120" height="30" as="geometry" />
+        <mxCell id="g2LCM1nM8IFRirEf6F6N-1" value="INCOV&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;analyzed patients: n = 167&amp;nbsp;&lt;br&gt;samples:&amp;nbsp; n =&amp;nbsp; 354&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=8;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="514" y="260" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="g2LCM1nM8IFRirEf6F6N-2" value="excluded due to study variable missingness&lt;br&gt;n = 291" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
-          <mxGeometry x="360" y="220" width="100" height="40" as="geometry" />
+          <mxGeometry x="359" y="220" width="100" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -57,55 +57,119 @@
               w = 180,
               h = 110)
 
-# Figure S3: scatter plots for TRP, KYN and KYN/TRP -----
+# Figure S3: univariate analysis for TRP/KYN ------
 
-  insert_msg('Figure S3: scatter plots for TRP, KYN and KYN/TRP')
+  insert_msg('Figure S3: Univariate analysis for TRP/KYN')
 
-  suppl$corr_trp <-
-    tst_trp$correlation$plots[c("age|trp", "age|log_kyn", "age|log_kyn_trp",
-                                "log_nlr|trp", "log_nlr|log_kyn",
-                                "log_nlr|log_kyn_trp", "pss_stress_score|trp",
-                                "pss_stress_score|log_kyn",
-                                "pss_stress_score|log_kyn_trp")] %>%
+  ## upper panel: correlogram
+
+  suppl$uni_trp$upper <-
+    plot_grid(tst_trp$correlation$correlogram +
+                theme(plot.subtitle = element_text(size = 7.4),
+                      legend.position = 'none') +
+                labs(subtitle = paste('Pearson correlation, n =',
+                                      nrow(stigma$analysis_tbl))),
+              get_legend(tst_trp$correlation$correlogram),
+              ncol = 2,
+              rel_widths = c(0.65, 0.35),
+              align = 'hv',
+              axis = 'tblr')
+
+  ## middle panel: correlations for neopterin
+
+  suppl$uni_trp$middle <-
+    tst_trp$correlation$plots[c("log_neo|trp",
+                                "log_neo|log_kyn",
+                                "log_neo|log_kyn_trp")] %>%
     map(~.x + theme(plot.subtitle = element_text(size = 7.4))) %>%
     plot_grid(plotlist = .,
               ncol = 3,
               align = 'hv',
-              axis = 'tblr',
-              labels = c('A', '', '',
-                         'B', '', '',
-                         'C', '', ''),
-              label_size = 10) %>%
-    as_figure(label = 'figure_s3_trp_system_correlation',
-              ref_name = 'corr_trp',
-              caption = paste('Correlation of tryptophan and',
-                              'its metabolites with age, serum levels',
-                              'of neopterin, neutrophil - lymphocyte ratio,',
-                              'and mental stress scoring in the SIMMUN',
-                              'cohort.'),
+              axis = 'tblr')
+
+  ## bottom panel: comparisons
+
+  suppl$uni_trp$bottom <- tst_trp$comparison$plots %>%
+    map(~.x + theme(plot.subtitle = element_text(size = 7))) %>%
+    plot_grid(plotlist = .,
+              ncol = 3,
+              align = 'hv',
+              axis = 'tblr')
+
+  suppl$uni_trp <- plot_grid(suppl$uni_trp$upper,
+                            suppl$uni_trp$middle,
+                            suppl$uni_trp$bottom,
+                            nrow = 3,
+                            rel_heights = c(0.75, 1, 2),
+                            labels = LETTERS,
+                            label_size = 10) %>%
+    as_figure(label = 'figure_s3_univariate_analysis_trp',
+              ref_name = 'uni_trp',
+              caption = paste('Effects of age, serum inflammatory markers',
+                              'neopterin and neutrophil-lymphocyte ratio,',
+                              'stress, depreression and SARS-CoV-2 infection',
+                              'on tryptophan, kynurenine',
+                              'and kynurenine/tryptophan ratio',
+                              'in the SIMMUN cohort.'),
+              w = 180,
+              h = 230)
+
+# Figure S4: univariate analysis for the TYR subsystem -----
+
+  insert_msg('Figure S4: univariate analysis for TYR')
+
+  ## upper panel: correlogram
+
+  suppl$uni_tyr$upper <-
+    plot_grid(tst_tyr$correlation$correlogram +
+                theme(plot.subtitle = element_text(size = 7.4),
+                      legend.position = 'none') +
+                labs(subtitle = paste('Pearson correlation, n =',
+                                      nrow(stigma$analysis_tbl))),
+              get_legend(tst_tyr$correlation$correlogram),
+              ncol = 2,
+              rel_widths = c(0.55, 0.45),
+              align = 'hv',
+              axis = 'tblr')
+
+  ## middle panel, correlations for age
+
+  suppl$uni_tyr$middle <-
+    tst_tyr$correlation$plots[c("age|log_phe",
+                                "age|log_tyr",
+                                "age|sqrt_phe_tyr")] %>%
+    map(~.x +
+          theme(plot.subtitle = element_text(size = 7.4))) %>%
+    plot_grid(plotlist = .,
+              ncol = 3,
+              align = 'hv',
+              axis = 'tblr')
+
+  ## bottom panel
+
+  suppl$uni_tyr$bottom <- tst_tyr$comparison$plots %>%
+    map(~.x + theme(plot.subtitle = element_text(size = 7.4))) %>%
+    plot_grid(plotlist = .,
+              ncol = 3,
+              align = 'hv',
+              axis = 'tblr')
+
+  suppl$uni_tyr <- plot_grid(suppl$uni_tyr$upper,
+                            suppl$uni_tyr$middle,
+                            suppl$uni_tyr$bottom,
+                            nrow = 3,
+                            rel_heights = c(0.75, 1, 1),
+                            labels = LETTERS,
+                            label_size = 10) %>%
+    as_figure(label = 'figure_s4_univariate_analysis_tyr',
+              ref_name = 'uni_tyr',
+              caption = paste('Effects of age, serum inflammatory marker',
+                              'neopterin and SARS-CoV-2 infection',
+                              'on phenylalanine, tyrosine',
+                              'and phenylalanine/tyrosine ratio',
+                              'in the SIMMUN cohort.'),
               w = 180,
               h = 180)
-
-# Figure S4: scatter plots for PHE and TYR -----
-
-  insert_msg('Figure S4: scatter plots for phe and tyr')
-
-  suppl$corr_tyr <-
-    tst_tyr$correlation$plots[c("log_neo|log_phe",
-                                "log_neo|log_tyr",
-                                "log_neo|sqrt_phe_tyr")] %>%
-    map(~.x + theme(plot.subtitle = element_text(size = 7.4))) %>%
-    plot_grid(plotlist = .,
-              ncol = 3,
-              align = 'hv',
-              axis = 'tblr') %>%
-    as_figure(label = 'figure_S4_tyr_system_correlation',
-              ref_name = 'corr_tyr',
-              caption = paste('Correlation of phenylalanine',
-                              'and tyrosine with serum levels',
-                              'of neopterin in the SIMMUN cohort.'),
-              w = 180,
-              h = 70)
 
 # Saving on the disc -----
 

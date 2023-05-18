@@ -140,9 +140,22 @@
             caption = paste('Number of available samples and sampling',
                             'timepoints in the INCOV cohort.'))
 
-# Table S5: modeling, SIMMUN ------
+# Table S5: comparison of the cohorts -------
 
-  insert_msg('Table S5: modeling SIMMUN')
+  insert_msg('Table S5: comparison of the cohorts')
+
+  suppl_tabs$cohort_comp <- comp$result_tbl %>%
+    mdtable(label = 'table_s5_cohort_comparison',
+            ref_name = 'cohort_comp',
+            caption = paste('Comparison of the SIMMUN and INCOV cohorts.',
+                            'Numeric variables are presented as medians with',
+                            'interquartile ranges (IQR) and ranges.',
+                            'Categorical variables are presented as percentages',
+                            'and counts within the complete observation set.'))
+
+# Table S6: modeling, SIMMUN ------
+
+  insert_msg('Table S6: modeling SIMMUN')
 
   suppl_tabs$modeling_simmun <- mod_eli$inference %>%
     map_dfr(transmute,
@@ -167,15 +180,15 @@
                             'and phenylalanine - tyrosine ratios in the',
                             'SIMMUN cohort.'))
 
-# Table S6 - S7: univariate analysis ------
+# Table S7 - S8: univariate analysis ------
 
-  insert_msg('Tables S6 - S7, univariable analysis')
+  insert_msg('Tables S7 - S8, univariable analysis')
 
   suppl_tabs[c('univariate_correlation',
                'univariate_complarison')] <-
     list(x = tst_results,
-         label = c('table_s6_uni_correlation',
-                   'table_s7_uni_comparison'),
+         label = c('table_s7_uni_correlation',
+                   'table_s8_uni_comparison'),
          ref_name = c('univariate_correlation',
                       'univariate_complarison'),
          caption = c(paste('Correlation of age, stress scoring',
@@ -188,9 +201,9 @@
                            'and SARS-CoV-2 infection status.'))) %>%
     pmap(mdtable)
 
-# Table S8: modeling, INCOV ------
+# Table S9: modeling, INCOV ------
 
-  insert_msg('Table S8: robust linear modeling in the INCOV cohort')
+  insert_msg('Table S9: robust linear modeling in the INCOV cohort')
 
   suppl_tabs$modeling_incov <- incov_neuro$inference %>%
     map_dfr(transmute,
@@ -208,25 +221,38 @@
             Significance = ifelse(p_value >= 0.05,
                                   paste0('ns (', signif(p_value, 2), ')'),
                                   paste('p =', signif(p_value, 2)))) %>%
-    mdtable(label = 'table_s8_modeling_simmun',
+    mdtable(label = 'table_s9_modeling_simmun',
             ref_name = 'modeling_incov',
             caption = paste('Results of multi-paramater robust linear modeling',
                             'of serum concentrations of serotonin,',
                             'and dopamine sulfate in the',
                             'INCOV cohort.'))
 
-# Table S9: time-course modeling -----
+# Table S10 - S11: time-course modeling -----
 
-  insert_msg('Table S9: time course modeling')
+  insert_msg('Table S10 - S11: time course modeling')
 
-  suppl_tabs$time_modeling <- time_rlm$result_tbl %>%
-    mdtable(label = 'table_s9_time_course_modeling',
-            ref_name = 'time_modeling',
-            caption = paste('Results of robust linear modeling',
-                            'of serum levels of inflammatory',
-                            'cytokines, tryptophan, tyrosine and',
-                            'their metabolites as a function of',
-                            'SARS-CoV-2 infection status in the INCOV cohort.'))
+  suppl_tabs[c('time_uninfected',
+               'time_acute')] <-
+    list(x = time_rlm$result_tbl,
+         label = c('table_s11_time_modeling_incov_uninfected',
+                   'table_s12_time_modeling_incov_acute'),
+         ref_name = c('time_uninfected',
+                      'time_acute'),
+         caption = c(paste('Results of robust linear modeling',
+                           'of serum levels of inflammatory',
+                           'cytokines, tryptophan, tyrosine and',
+                           'their metabolites as a function of',
+                           'SARS-CoV-2 infection status in the INCOV cohort.',
+                           'The uninfected subset served as a baseline.'),
+                     paste('Results of robust linear modeling',
+                           'of serum levels of inflammatory',
+                           'cytokines, tryptophan, tyrosine and',
+                           'their metabolites as a function of',
+                           'SARS-CoV-2 infection status in the INCOV cohort.',
+                           'The acute SARS-CoV-2 infection subset',
+                           'served as a baseline.'))) %>%
+    pmap(mdtable)
 
 # END ------
 

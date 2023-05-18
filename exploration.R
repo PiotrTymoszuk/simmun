@@ -30,6 +30,7 @@
   insert_msg('Analysis scripts')
 
   c('./exploration scripts/cohort.R',
+    './exploration scripts/cohort_comparison.R',
     './exploration scripts/distribution.R',
     './exploration scripts/excluded.R',
     './exploration scripts/consistency.R',

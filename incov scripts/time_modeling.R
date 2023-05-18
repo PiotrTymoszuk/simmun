@@ -161,42 +161,60 @@
   insert_msg('Forest plots')
 
   time_rlm$forest_plots <-
-    list(vars = list(inflammatory = c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF'),
-                     trp = c('tryptophan', 'kynurenine', 'quinolinate', 'serotonin'),
-                     tyr = c('phenylalanine', 'tyrosine', 'dopamine.3.O.sulfate')),
-         plot_title = paste(c('Inflammatory cytokines',
-                              'TRP decay and 5-HT',
-                              'PHE/TYR and DA'))) %>%
-    pmap(plot_tc_beta,
-         data = time_rlm$inference$uninfected,
-         plot_subtitle = 'Robust linear modeling',
-         hide_baseline = FALSE,
-         show_connector = FALSE) %>%
-    map2(., time_rlm$plot_colors ,
-         ~.x +
-           scale_color_manual(values = .y,
-                              labels = function(x) exchange(x, dict = time_rlm$lexicon)) +
-           scale_fill_manual(values = .y,
-                             labels = function(x) exchange(x, dict = time_rlm$lexicon)))
+    list(x = time_rlm$inference,
+         y = paste('Robust linear modeling,',
+                   c('uninfected', 'acute')),
+         z = c('uninfected', 'acute')) %>%
+    pmap(function(x, y, z) list(vars = list(inflammatory = c('IL6_INF',
+                                                             'IL10_INF',
+                                                             'TNF_INF',
+                                                             'IFNG_INF'),
+                                            trp = c('tryptophan',
+                                                    'kynurenine',
+                                                    'quinolinate',
+                                                    'serotonin'),
+                                            tyr = c('phenylalanine',
+                                                    'tyrosine',
+                                                    'dopamine.3.O.sulfate')),
+                                plot_title = paste(c('Inflammatory cytokines',
+                                                     'TRP decay and 5-HT',
+                                                     'PHE/TYR and DA'))) %>%
+           pmap(plot_tc_beta,
+                data = x,
+                plot_subtitle = y,
+                baseline_lab = z,
+                hide_baseline = FALSE,
+                show_connector = FALSE) %>%
+           map2(., time_rlm$plot_colors,
+                ~.x +
+                  scale_color_manual(values = .y,
+                                     labels = function(x) exchange(x,
+                                                                   dict = time_rlm$lexicon)) +
+                  scale_fill_manual(values = .y,
+                                    labels = function(x) exchange(x,
+                                                                  dict = time_rlm$lexicon))))
 
-# Table with the modeling results ------
 
-  insert_msg('Table with the modeling results')
+# Tables with the modeling results ------
 
-  time_rlm$result_tbl <- time_rlm$inference$uninfected %>%
-    map(~mutate(.x,
-                n = ifelse(!is.na(n),
-                           n = .x$n_complete[[1]] - sum(n, na.rm = TRUE),
-                           n))) %>%
-    compress(names_to = 'response') %>%
-    transmute(Response = exchange(response, dict = time_rlm$lexicon),
-              Timepoint = ifelse(level == 'baseline',
-                                 'uninfected: baseline',
-                                 level),
-              `Estimate, 95% CI` = paste0(signif(estimate, 2), ' [',
-                                          signif(lower_ci, 2), ' - ',
-                                          signif(upper_ci, 2), ']'),
-              Significance = significance)
+  insert_msg('Tables with the inference results')
+
+  time_rlm$result_tbl <- time_rlm$inference %>%
+    map(~map(.x,
+             ~mutate(.x,
+                     n = ifelse(!is.na(n),
+                                n = .x$n_complete[[1]] - sum(n, na.rm = TRUE),
+                                n))) %>%
+          compress(names_to = 'response') %>%
+          transmute(Response = exchange(response, dict = time_rlm$lexicon),
+                    Timepoint = level,
+                    `Estimate, 95% CI` = paste0(signif(estimate, 2), ' [',
+                                                signif(lower_ci, 2), ' - ',
+                                                signif(upper_ci, 2), ']'),
+                    Significance = significance)) %>%
+    map2(., c('uninfected', 'acute'),
+         ~mutate(.x, Baseline = .y)) %>%
+    map(relocate, Baseline)
 
 # END ------
 
