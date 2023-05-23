@@ -117,7 +117,7 @@
 
   insert_msg('Bubble plots')
 
-  cyt_corr$bubbles <-
+  corr$bubbles <-
     list(data = corr$test %>%
            map(mutate,
                variable1 = variable2,

@@ -11,12 +11,16 @@
   insert_msg('Figure S1: consistency of psychometric tools')
 
   suppl$consistency <- cons$fa_loading_plots %>%
-    map(~.x + theme(plot.tag = element_blank())) %>%
+    map(~.x +
+          labs(title = paste0(.x$labels$title, ', SIMMUN')) +
+          theme(plot.tag = element_blank())) %>%
     plot_grid(plotlist = .,
               ncol = 2,
               align = 'hv',
               axis = 'tblr') %>%
-    plot_grid(plot_grid(cons$omega_plot,
+    plot_grid(plot_grid(cons$omega_plot +
+                          labs(title = paste0(cons$omega_plot$labels$title,
+                                              ', SIMMUN')),
                         ncol = 2),
               nrow = 2,
               rel_heights = c(1, 0.7),
@@ -68,7 +72,9 @@
                 theme(plot.subtitle = element_text(size = 7.4),
                       legend.position = 'none') +
                 labs(subtitle = paste('Pearson correlation, n =',
-                                      nrow(stigma$analysis_tbl))),
+                                      nrow(stigma$analysis_tbl)),
+                     title = paste0(tst_trp$correlation$correlogram$labels$title,
+                                    ', SIMMUN')),
               get_legend(tst_trp$correlation$correlogram),
               ncol = 2,
               rel_widths = c(0.65, 0.35),
@@ -81,7 +87,10 @@
     tst_trp$correlation$plots[c("log_neo|trp",
                                 "log_neo|log_kyn",
                                 "log_neo|log_kyn_trp")] %>%
-    map(~.x + theme(plot.subtitle = element_text(size = 7.4))) %>%
+    map(~.x +
+          labs(title = paste0(.x$labels$title,
+                              ', SIMMUN')) +
+          theme(plot.subtitle = element_text(size = 7.4))) %>%
     plot_grid(plotlist = .,
               ncol = 3,
               align = 'hv',
@@ -90,7 +99,9 @@
   ## bottom panel: comparisons
 
   suppl$uni_trp$bottom <- tst_trp$comparison$plots %>%
-    map(~.x + theme(plot.subtitle = element_text(size = 7))) %>%
+    map(~.x +
+          labs(title = paste0(.x$labels$title, ', SIMMUN')) +
+          theme(plot.subtitle = element_text(size = 7))) %>%
     plot_grid(plotlist = .,
               ncol = 3,
               align = 'hv',
@@ -125,7 +136,9 @@
                 theme(plot.subtitle = element_text(size = 7.4),
                       legend.position = 'none') +
                 labs(subtitle = paste('Pearson correlation, n =',
-                                      nrow(stigma$analysis_tbl))),
+                                      nrow(stigma$analysis_tbl)),
+                     title = paste0(tst_tyr$correlation$correlogram$labels$title,
+                                    ', SIMMUN')),
               get_legend(tst_tyr$correlation$correlogram),
               ncol = 2,
               rel_widths = c(0.55, 0.45),
@@ -139,6 +152,7 @@
                                 "age|log_tyr",
                                 "age|sqrt_phe_tyr")] %>%
     map(~.x +
+          labs(title = paste0(.x$labels$title, ', SIMMUN')) +
           theme(plot.subtitle = element_text(size = 7.4))) %>%
     plot_grid(plotlist = .,
               ncol = 3,
@@ -148,7 +162,9 @@
   ## bottom panel
 
   suppl$uni_tyr$bottom <- tst_tyr$comparison$plots %>%
-    map(~.x + theme(plot.subtitle = element_text(size = 7.4))) %>%
+    map(~.x +
+          labs(title = paste0(.x$labels$title, ', SIMMUN')) +
+          theme(plot.subtitle = element_text(size = 7.4))) %>%
     plot_grid(plotlist = .,
               ncol = 3,
               align = 'hv',
@@ -168,6 +184,26 @@
                               'on phenylalanine, tyrosine',
                               'and phenylalanine/tyrosine ratio',
                               'in the SIMMUN cohort.'),
+              w = 180,
+              h = 180)
+
+# Figure S5: INCOV, correlograms -----
+
+  insert_msg('Figure S5: correlograms')
+
+  suppl$corr_incov <- cyt_corr$bubbles %>%
+    map(~.x + theme(legend.position = 'none')) %>%
+    plot_grid(plotlist = .,
+              ncol = 2,
+              align = 'hv',
+              axis = 'tblr') %>%
+    plot_grid(get_legend(cyt_corr$bubbles[[1]]),
+              ncol = 2,
+              rel_widths = c(0.9, 0.1)) %>%
+    as_figure(label = 'figure_s5_incov_correlations',
+              ref_name = 'corr_invcov',
+              caption = paste('Correlation of metabolites with inflammatory',
+                              'cytokine markers in the INCOV cohort.'),
               w = 180,
               h = 180)
 

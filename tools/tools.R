@@ -8,6 +8,10 @@
   library(stringi)
   library(trafo)
   library(sciplot)
+  library(rmarkdown)
+  library(knitr)
+  library(bookdown)
+  library(clipr)
 
 # Descriptive stats -----
 
@@ -797,5 +801,98 @@
          },
          prob = NULL,
          sor = function(x) x)
+
+# markdown -----
+
+  my_word <- function(...) {
+
+    form <- word_document2(number_sections = FALSE,
+                           reference_docx = 'ms_template.docx')
+
+    form$pandoc$lua_filters <- c(form$pandoc$lua_filters,
+                                 'scholarly-metadata.lua',
+                                 'author-info-blocks.lua')
+
+    form
+
+  }
+
+  insert_issue <- function(text = NULL) {
+
+    if(!is.null(text)) {
+
+      text <- paste0("<span custom-style = 'reviewer'>", text, "</span>")
+
+    } else {
+
+      text <- paste0("<span custom-style = 'reviewer'></span>")
+
+    }
+
+    write_clip(content = text,
+               object_type = "character",
+               breaks = "\n")
+
+    return(text)
+
+  }
+
+  my_percent <- function(data,
+                         variable,
+                         return_n = FALSE,
+                         signif_digits = 2) {
+
+    ## percentages or count for categories of a qualitative variable
+
+    counts <- table(data[[variable]])
+
+    if(return_n) return(counts)
+
+    complete <- sum(table(data[[variable]]))
+
+    signif(counts/complete * 100,
+           signif_digits)
+
+  }
+
+  my_beta <- function(data,
+                      variables,
+                      levels = NULL,
+                      signif_digits = 2) {
+
+    ## extracts beta with 95% confidence interval from an inference summary
+
+    beta_dat <- data %>%
+      filter(.data[['variable']] %in% variables)
+
+    if(!is.null(levels)) {
+
+      beta_dat <- beta_dat %>%
+        filter(.data[['level']] == levels)
+
+    }
+
+    beta_dat %>%
+      mutate(txt_lab = paste0(signif(estimate, signif_digits),
+                              ' [95% CI: ', signif(lower_ci, signif_digits),
+                              ' - ', signif(upper_ci, signif_digits), ']')) %>%
+      .$txt_lab
+
+  }
+
+  my_rho <- function(data,
+                     variables_x,
+                     variables_y,
+                     signif_digits = 2) {
+
+    ## computes pair-wise Spearman's correlation coefficients
+
+    cor_mtx <- data[, c(variables_x, variables_y)] %>%
+      cor(method = 'spearman')
+
+    cor_mtx[variables_x, variables_y] %>%
+      signif(signif_digits)
+
+  }
 
 # END ------

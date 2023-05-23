@@ -21,13 +21,13 @@
   ## variable pairs
 
   cyt_corr$pairs <- globals$incov_proteins %>%
-    map(function(prot) globals$incov_metabolites[!globals$incov_metabolites %in% c('serotonin', 'dopamine 3-O-sulfate')] %>%
+    map(function(prot) globals$incov_metabolites %>%
           map(~c(prot, .x))) %>%
     unlist(recursive = FALSE)
 
-# cyt_correlation analysis ------
+# Correlation analysis ------
 
-  insert_msg('correlation')
+  insert_msg('Correlation')
 
   cyt_corr$test <- cyt_corr$analysis_tbl %>%
     map(function(dat) cyt_corr$pairs %>%
@@ -59,7 +59,21 @@
   insert_msg('Bubble plots')
 
   cyt_corr$bubbles <-
-    list(data = cyt_corr$test,
+    list(data = cyt_corr$test %>%
+           map(mutate,
+               variable2 = factor(variable2,
+                                  c('phenylalanine',
+                                    'tyrosine',
+                                    'dopamine 3-O-sulfate',
+                                    'quinolinate',
+                                    'kynurenine',
+                                    'tryptophan',
+                                    'serotonin')),
+               variable1 = factor(variable1,
+                                  c('IL6_INF',
+                                    'IL10_INF',
+                                    'TNF_INF',
+                                    'IFNG_INF'))),
          plot_title =  c('uninfected, INCOV',
                          'acute CoV, INCOV',
                          'sub-acute CoV, INCOV',
@@ -68,24 +82,27 @@
          signif_only = FALSE,
          rotate_x_labs = FALSE)
 
-  ## extra adjustment of scales
+
+  ## faceting for easier interpretation
+
+  for(i in names(cyt_corr$bubbles)) {
+
+    cyt_corr$bubbles[[i]]$data <-
+      cyt_corr$bubbles[[i]]$data %>%
+      mutate(pathway = ifelse(variable2 %in% c('tryptophan',
+                                               'kynurenine',
+                                               'quinolinate',
+                                               'serotonin'),
+                              'serotonin', 'dopamine'),
+             pathway = factor(pathway, c('serotonin', 'dopamine')))
+
+  }
 
   cyt_corr$bubbles <- cyt_corr$bubbles %>%
     map(~.x +
-          scale_y_discrete(limits = c('phenylalanine',
-                                      'tyrosine',
-                                      'tryptophan',
-                                      'kynurenine',
-                                      'quinolinate'),
-                           labels = set_names(globals$incov_lexicon$label,
-                                              globals$incov_lexicon$variable)) +
-          scale_x_discrete(limits = c('IL6_INF',
-                                      'IL10_INF',
-                                      'TNF_INF',
-                                      'IFNG_INF'),
-                           labels = set_names(globals$incov_lexicon$label,
-                                              globals$incov_lexicon$variable)))
-
+          facet_grid(pathway ~ ., space = 'free', scales = 'free') +
+          scale_y_discrete(labels = function(x) exchange(x, dict = globals$incov_lexicon)) +
+          scale_x_discrete(labels = function(x) exchange(x, dict = globals$incov_lexicon)))
 # Classical correlation plots -------
 
   insert_msg('Classical correlation plots')

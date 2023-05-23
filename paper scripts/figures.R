@@ -18,7 +18,7 @@
               caption = paste('Inclusion scheme for the SIMMUN',
                               'and INCOV cohorts, and analysis strategy.'),
               w = 180,
-              h = 180 * 2946/4098)
+              h = 180 * 3426/4098)
 
 # Figure 2: linear modeling -----
 
@@ -119,6 +119,7 @@
 
   figs$incov_neuro$bottom <- figs$incov_neuro$bottom %>%
     map(~.x +
+          labs(title = paste0(.x$labels$title, ', INCOV'))  +
           expand_limits(x = -0.5) +
           expand_limits(x = 1.11) +
           facet_grid(subset ~ .,

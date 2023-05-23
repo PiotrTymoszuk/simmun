@@ -18,8 +18,8 @@
       bmi = 'BMI, kg/m\u00B2',
       bmi_class = 'Body mass class',
       ethnics = 'Ethnics',
-      somatic_comorb = 'Somatic comorbidity',
-      psych_comorb = 'Psychiatric comorbidity',
+      somatic_comorb = 'Physical disorder',
+      psych_comorb = 'Psychiatric disorder',
       hads_anx_score = 'HADS anxiety score',
       hads_dpr_score = 'HADS depression score',
       hads_signs = 'Depression or anxiety signs, HADS \u2265 8',
@@ -184,9 +184,9 @@
     summarize(median = median(time_po),
               lower_q = quantile(time_po, 0.25, na.rm = TRUE),
               upper_q = quantile(time_po, 0.75, na.rm = TRUE)) %>%
-    mutate(days_pi = paste0(signif(median, 2),
-                            ' [', signif(lower_q, 2),
-                            ' - ', signif(upper_q, 2),
+    mutate(days_pi = paste0(round(median),
+                            ' [', round(lower_q),
+                            ' - ', round(upper_q),
                             ']'),
            days_pi = ifelse(timepoint == 'healthy', NA, days_pi))
 

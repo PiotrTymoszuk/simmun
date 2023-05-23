@@ -86,8 +86,8 @@
       'hads_anx_score' = 'Anxiety, HADS',
       'hads_dpr_score' = 'Depression, HADS',
       ## comorbidity, medical history
-      'psych_comorb' = 'Mental illness',
-      'somatic_comorb' = 'Somatic illness',
+      'psych_comorb' = 'Psychiatric disorder',
+      'somatic_comorb' = 'Physical disorder',
       'bmi_class' = 'BMI',
       'smoking' = 'Smoking',
       'alcohol' = 'Alcohol') %>%
