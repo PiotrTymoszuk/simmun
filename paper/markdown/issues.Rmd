@@ -1,0 +1,184 @@
+---
+title: "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, kynurenine and catecholamine pathway activity"
+subtitle: "Issues"
+author: "PSY Team"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+
+output: 
+  bookdown::word_document2:   
+    reference_docx: ms_template.docx
+    
+bibliography: infl_biblio.bib
+csl: frontiers-in-immunology.csl
+header-includes:
+  \usepackage{longtable}
+  \usepackage{tabu}
+  \usepackage{caption}
+  \usepackage{makecell}
+  \usepackage{pdflscape}
+  \usepackage{array}
+  \usepackage{booktabs}
+  \usepackage{threeparttable}
+  \usepackage{threeparttablex}
+  \usepackage{wrapfig}
+  \usepackage{multirow}
+  \usepackage[normalem]{ulem}
+  \usepackage{colortbl}
+  \usepackage{xcolor}
+  \usepackage{float} \floatplacement{figure}{H} \floatplacement{table}{H}
+  \newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\thetable}{S\arabic{table}}       \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
+---
+
+```{r, setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, 
+                      dev = "png", dpi = 600, 
+                      tab.cap.pre = 'Supplementary Table ', tab.cap.sep = " ", 
+                      tab.cap.style = 'Table Heading')
+
+set_flextable_defaults(font.family = 'Cambria', font.size = 10)
+
+
+```
+
+\newpage
+
+# General
+
+* Title page of the main manuscript: you will have to add the address and phone number per hand for re-submission. The header of the markdown manuscript document with this info gets lost during rendering to docx.
+
+* I suggest sticking to three commonly used terms 'serotonin pathway' (TRP -> 5HTRP -> serotonin -> 5HIAA and other breakdown products), 'kynurenine pathway' (TRP -> KYN -> ... -> QUIN and other breakdown products) and 'catecholamine pathway' (PHE -> TYR -> DOPA -> DA -> ... -> DA sulfate and other DA breakdown products) when referring to metabolic processes, metabolites and activity markers in our manuscript. Terms like 'neurotransmitter precursor' or 'pathway leading to reduced TRP availability' are misleading. This nomenclature is used in prominent reviews [@Badawy2017; @Lukic2022; @Meiser2013].
+
+* Similarly, I suggest sticking to the terms 'systemic serotonin availability' or 'systemic serotonin levels' and 'systemic dopamine availability' or 'systemic dopamine levels' when referring to neurotransmitters of interest.
+
+* I'm spelling out 'kynurenine', when referencing the 'kynurenine pathway'. The abbreviated KYN form is used to reference the metabolite.
+
+* I think (and my Open AI as well:) that the term 'status post SARS-CoV-2 infection' may pertain to a kind of illness, persistent symptoms or disability (details below). In addition, it suggests that there a difference between SARS-CoV-2-positive participants of the SIMMUN ('status post SARS-CoV-2 infection') and INCOV study ('SARS-CoV-2-positive' or 'infected'). Hence I'm using consistently the terms 'SARS-CoV-2-positive', 'SARS-CoV-2-infected' and 'SARS-CoV-2' infection in the text.
+
+* Title changed to "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, kynurenine and catecholamine pathway activity". I think event if this title does not sound too attractive, is describes quite precisely the matter of our research without extrapolating it to neuro- or immunology.
+
+* Modeling in the INCOV cohort. I've included age, sex and BMI class in the models as well, as suggested, details below.
+
+* As [required by the journal](https://www.elsevier.com/wps/find/journaldescription.cws_home/473?generatepdf=true), the manuscript must have < 6000 words (Introduction, Materials and Methods, Results and Discussion/Limitations/Conclusion as I suppose), the Introduction part must be max. 1000 words and Discussion max. 2000 words long. I've tried to observe these limits quite strictly and shortened the text. I reduced also the number of subheadings in Discussion (details below).
+
+* We are allowed to have a total of 6 Figures and Tables (together!) in the main manuscript text. For this reason, I moved to the study inclusion diagram to Supplementary Material. I'm not sure, we need a scheme of the serotonin, kynurenine and catecholamine pathways in the manuscript. There are plenty of them in review papers we cite anyway. I don't think, our hypothesis is particularly complex or particularly novel, so that need to help the reader understand it.
+
+* They recommend as well up to 50 references, at the moment we have approximately 70, which should be OK.
+
+* Marked changes in the text. As I wrote in Rebuttal Letter, I'd simply highlight parts of the text, which we he most profoundly altered. These were Abstract, Results (without characteristic of the study cohorts) and Discussion. Methods are more or less the the same.
+
+# Highlights
+
+* Please refer to the file in the docx folder of the repository. You will find there also Word files with your feedback.
+
+* Per point 85 characters are allowed!
+
+# Rebuttal Letter
+
+* Please note the updated Figure and Supplementary Figure order.
+
+* Reviewer 1 and the controversial role of peripheral neurotransmitters for mental health. Like Reviewer 1 I am not so convinced that biochemical changes in periphery are really key players of mental health :) To me, the clinical evidence is simply correlative and most studies include biased or 'impure' patient collectives (i.e. patients with and without medication with SSRI, comorbidities that affect serotonin levels like stroke, vascular diseases, CKD or cancers that employ the kynurenine pathway to trick T cell immunity, different mental diseases thrown into one category etc.), don't correct for demographic confounders (I was not able to find any consistent info on serotonin concentrations in the genders!), social confounders, diet, expected disease outcome (e.g. palliative vs curative). We can write a critical methodological review on that (seriously!). I'm not sure if we have place to discuss that in the manuscript, so I'd suppress that a bit and cite balanced [@Brown2021] and critical papers on that [@Moncrieff2022; @Goldstein1999]. As a machine learning fan, I'd say, there is also another factor that makes me skeptical about systemic biochemical mechanisms of mental disorders - complexity. Beginning from say 100 neurons or lets say 1000 random trees in silico and a nice training dataset, the algorithm is not deterministic any more and less and less sensitive to changes in its parameters like learning rate (neurons) or splitting rule (trees). I.e. it starts to adapt, like a human brain. If you translate that to network of few billions of neurons: you may have less serotonin at the beginning, but the brain will cope anyway with tasks and challenges:)
+
+# Supplementary Material
+
+* Please note the updated Supplementary Figure order.
+
+# Manuscript
+
+## Abstract
+
+* I've tried to include your Abstract issues but I'd recommend sticking to the 250 Word limit. I'd avoid abbreviations. Importantly, the comparison of dopamine 3-O-sulfate and serotonin for COVID-19 time course were done with uninfected or acute SARS-CoV-2 infection as baselines but not versus sub-acute infection - the effects were significant primarily for the acute - recovery comparison. Yes the n number for the ICOV cohort is different - now I refer to the number of patients instead of samples; note, that most of the patients were measured more than once. I also stick to the results of linear modeling for the main readouts: KYN/TRP, PHE/TYR, serotonin and dopamine 3-O-sulfate and omit correlation results in Abstract to spare words. For the same reason I would not show R^2^ but just beta coefficients.
+
+## Keywords
+
+* I'd replace the wording 'neurotransmitter precursor amino acids', since we work also with other metabolites. I'd put 'mental health' instead of 'mental stress', I suppose our text will be easier to find. The Keyword section need to be placed below Abstract.
+
+## Introduction
+
+* This section must be < 1000 words according to the journal's guidelines. A above I've tried to include your comments in succinct form, we have now approx. 780 words.
+
+* 'interact': means that something happens in a two-way manner, i.e. two things influence each other - the first sentence of Introduction was shortened.
+
+* 'interferon treatment' is not a physical condition. This setting was used in the past to treat some types of cancer and MS and was linked to kynurenine and depression. I would keep it under malignancy and autoimmunity.
+
+* Figures: we can have [up to 6 combined figures and tables](https://www.elsevier.com/wps/find/journaldescription.cws_home/473?generatepdf=true) - so there's definitively no room for a scheme. The pathways of interest are excellently investigated and we cite really nice reviews on them. I think the reader can follow our story without a scheme. Because of the figure/table number limit, I've moved Figure 1 with the inclusion and analysis scheme to Supplementary Material (Supplementary Figure S1).
+
+* The journal wants approx. 50 references and, possibly, more after revision. Because of the citation style, they take 2 - 4 words per reference and cause hence problems with the word limit. I've tried to stay at 70 references in the current version and removed some less important ones, which we do not discuss later on.
+
+* 'Alternatively TRP can be metabolized along the kynurenine pathway': suggests erroneously that the kynurenine is a minor metabolic pathway of TRP breakdown: in fact it catabolizes 99% of TRP in the body. I've used another wording.
+
+* Knox 1951 is actually the sole experimental evidence for glucocorticoids and TDO activity. I'd remove the thread if we have problems with the word limit.
+
+* I've tried to organize Introduction as follows: (A) physical - mental health, (B) serotonin and kynurenine pathway, (C) catecholamine pathway, (D) the serotonin, kynurenine, catecholamine pathways and COVID-19, (E) literature gap and research aims.
+
+* I would not introduce the ROS/microglia story in too much details in Introduction. We are aiming anyway at suppressing the PHE/TYR story a bit. I feel short description of the catecholamine pathway and the role of BH4 is important here.
+
+* I'm starting the COVID-19 paragraph explaining that there's indeed a huge psychiatric burden of COVID-19. In turn, I'd remove the sentence on blood brain permeability and the reference with the cytokine storm (which affects virtually only the hospitalized patients). In mild cases of COVID-19 I can't believe that there's a BBB breach or the virus in the brain. 
+
+* The last paragraph of Introduction. I'm describing what our explanatory variables and responses were without listing them in detail. Such details are described anyway in Methods and Results. Frankly speaking, markers of systemic serotonin, kynurenine and catecholamine pathways are exactly the our readouts. The rest i.e. what happens to serotonin, dopamine and mental health is a matter of discussion.
+
+## Materials and Methods
+
+* Definition of complete cases: explanatory and response variables presented in Supplementary Figure S1, and Supplementary Tables S1 and S3.
+
+* NEO is routinely determined in ZIMCL by [ELISA](https://zimcl.tirol-kliniken.at/page.cfm?vpath=parameterdetails&genericpageid=648)
+
+* Instead of Swan 1976, who does not tackle DF sulfate at all, I'm referencing a newer paper of [Suominen at al.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0068007)
+
+* Alcohol and smoking: you have to talk to Sophia. I've extracted the information from two variables 'Nikotin' and 'Alkohol' in the SPSS file.
+
+* Materials and Methods were shortened considerably to stay within the word limit.
+
+## Results
+
+* As far as I can tell, there are no 'old' manuscript parts in Results.
+
+* I'd stick to the wording 'infected' or 'SARS-CoV-2-positive' instead of 'status post-SARS-CoV-2 infection'. I'm not sure if the reader gets it correctly. GPT-4 says that it 'refers to the condition of a person who has recovered from COVID-19' but then elaborates on PASC. Google returns only pages on 'post-COVID-19 condition' and something like 'health/functional status post-SARS-CoV-2 infection'. This may suggest a kind of illness, persistent disability or persistent symptoms. Another question which may come to Reviewer's mind: why are SARS-CoV-2-positive participants in the SIMMUN study are called 'with status post-SARS-CoV-2 infection' and why are the INCOV study participants are called 'SARS-CoV-2-positive'? What is the difference? To my opinion it's enough to provide the median time interval between the PCR and survey and stress it again in Discussion. In fact, we used the "SARS-CoV-2-positive" and "-negative" wording in our Frontiers 2022 paper in cohorts with even longer observation times and the reviewers were happy:)
+
+* Percentage of SARS-CoV-2+ SIMMUN participants corrected, thanks!
+
+* Information on hospitalization was added to Table 2 (footnote).
+
+* There was a typo in the R code returning the initial number of participants and samples in the INCOV study in the manuscript text. Now the figures are correct (text and Supplementary Figure S1).
+
+* Please note the new numbering of Figures and Supplementary Figures, since the study inclusion and analysis schemes were moved to Supplementary Material.
+
+* I would leave the network analysis figure, i.e. Figure 4 as it is. Event though this is a quite shallow network analysis (we can consider e.g. checking which of the metabolites/cytokines is the most important for the process/connectivity or try to define so called cliques), I would let it stay in the manuscript for re-submission and await the Reviewers' response. In my recent cancer paper the reviewers really liked the networks:)
+
+* INCOV analyses: I've modified the initial paragraph, since it may sound that serotonin is a readout the kynurenine pathway activity, which was criticized by one of the reviewers.
+
+* Generally, I've get rid of most references in Results, in particular, purely technical ones (e.g. Ripley 2022 referring to an R package).
+
+* Referring to the difference between the SIMMUN and INCOV models. In the SIMMUN cohort, I use ordinal least square regression, which allows to 'optimize' a multi-parameter model by dropping non-significant terms if the model with the term removed is not substantially worse than the initial model (measured by BIC) - this is the so called 'backward elimination'. So, in an optimal case, I'll end up with a model with all terms significant (Figure 2). In the INCOV cohort, I'm constructing robust multi-parameter models which, instead of squares, minimize a special psi function (e.g. Huber's psi) which assigns weights for each observation (outliers have lower weights, nicely fitting observations are weighted higher). Those weights vary from model to model, hence if I skip a non-significant variable in a robust model, there's no way to check if this worsened the model fit. The full model and the model with the variable skipped have namely different weights assigned to the same observations so I can't compare them:) For this reason, I have to leave all variables, also non-significant ones in the robust model (Figure 3).
+
+* Back to the INCOV models. Following your suggestion, I've included gender and BMI in the models as well. Pertaining to the previous issue, because we leave all variables in the final robust model, it's prone to overfitting. So my initial idea was to include in the robust models only those explanatory factors, which proved significant in the SIMMUN analysis (age and BMI was not significant). The robust models with gender and BMI are still acceptable, but there are already sings of overfitting, if you compare R^2^ between the training and CV datasets (Figure 3)- R^2 is namely more sensitive to overfitting than the model error/RMSE because it takes a square error to calculate it: $R^2 \approx 1 - \frac{RMSE^2}{Variance}$. I'd leave the model as they are for re-submission, but I'm quite sure, that Reviewer 1, who seems to be a psych-statistic aficionado will spot it.
+
+* Correlation analysis in the INCOV cohort: all correlation coefficients with their significance are presented in Supplementary Figure S6, so I'm not including a table. I prefer the bubble plot representation to a table, which needs to huge with 112 cells.
+
+* Correlations in the SIMMUN cohort. I see, this may be a bit uncomfortable to have less figures with the 'own' dataset than with an external one. I have personally no problem with that, and it is actually a standard in most oncology papers nowadays, where you end up with lets say 2 - 20 published validation cohorts for a single 'own' collective (see: [Pichler et al 2023](https://www.frontiersin.org/articles/10.3389/fimmu.2023.1095195/full) for an extreme example - one single panel of a figure with 6 own patients; 800 external cases). Unfortunately, almost all effects investigated by univariable analysis (Figures S4 - S5) in the SIMMUN cohort were not significant and I'm not inclined to expose them and discuss too much.
+
+* Effect size descriptions were added to the correlation analysis results in the INCOV cohort. I'm also elaborating on effect sizes of the R^2^ of our models.
+
+* The Result section has now approx. 1800 Words.
+
+# Discussion
+
+* As above I've tried to accommodate all issues, but we are limited by the hard 2000 word limit according to the [journal's guidelines](https://www.elsevier.com/wps/find/journaldescription.cws_home/473?generatepdf=true). Please note that references cost 2 - 4 words per citation, I shorted chained citations as well.
+
+* For this reason I'm not so sure if subheadings in Discussion are a good idea. I'm providing provisional subheadings (yellow), which I'd remove prior to re-submission.
+
+* The opening sentence: "We investigated the bidirectional relationship between the mental and physical health in individuals infected with SARS-CoV-2 and uninfected controls in two separate cohorts" - I fear the Reviewers won't be happy to see that, we actually had a look at activity of metabolic pathways which regulate systemic neurotransmitter availability and MAY have an effect on mental health. It suggest that psychometric measures were analyzed as independent variables as well, which was not the case. Our model was: demography + clinical history + inflammation + infection + SARS-CoV-2 immunity + psychometry -> metabolic pathway activity.
+
+* My idea for the first section was to provide a short summary which unites the results from the SIMMUN and INCOV cohort, i.e. to provide a bigger picture without referencing single effects which are anyway presented in Results. I feel this may convince Reviewer 2, who claimed our data is complex. I would point out only the most relevant explanatory factors and mechanisms there and go into details later on in Discussion. I would also keep two-three sentences in this initial paragraph which discuss the major discrepancies of out data.
+
+* The following sections discuss roles of inflammation, infection and infection-independent factors in the serotonin, kynurenine and catecholamine pathway activity.
+
+* The final section tackles the effects and controversies over serotonin, kynurenine and catecholamine metabolism and mental health. I decided not to go too much into the mental stress thread of Discussion because of the word limit. In our SIMMUN cohort, likely due to a lot of psychiatric patients there's a huge overlap between stress, depression and anxiety (rho > 0.65). I have somehow a feeling that this purely random, which of them associate with KYN or KYN/TRP.
+
+* I'm keeping the sentence stating that > 90% TRP is catabolized by IDO/TDO, this was a thread proposed by Reviewer 1.
+
+* I'd omit the study of Hamilton 2021, with pre-pandemic inflammation. It has actually nothing to do with COVID-19, but says that people with inflammation for whatever reasons were mentally hit by the pandemic, irrespectively of the infection. It's obvious since people with chronic inflammation were canonical COVID-19 risk groups (multi-morbidity, frailty) and hence subject to particularly harsh containment measures like quarantine, social distancing. They do not control for that at all!
+
+* I'm not referencing Alzahrani 2021. This paper tackles severe COVID-19, which, like sepsis (I used to work with sepsis for years in mice and men), is characterized by a dramatic corticosteroid release (you may see it as a way to harness cytokine storm during COVID-19) or, in some patients, by no release at all (you may see it as a multi-organ failure). If somebody experiences one of those is happy if survived and mental stress is probably just a minor problem.
+
+# References

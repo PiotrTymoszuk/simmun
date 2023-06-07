@@ -6,23 +6,9 @@
 
   figs <- list()
 
-# Figure 1: CONSORT -----
+# Figure 1: linear modeling -----
 
-  insert_msg('Figure 1: study inclusion diagram')
-
-  figs$inclusion <-
-    plot_grid(ggdraw() +
-                draw_image('./schemes/inclusion.png')) %>%
-    as_figure(label = 'figure_1_study_inclusion_scheme',
-              ref_name = 'inclusion',
-              caption = paste('Inclusion scheme for the SIMMUN',
-                              'and INCOV cohorts, and analysis strategy.'),
-              w = 180,
-              h = 180 * 3426/4098)
-
-# Figure 2: linear modeling -----
-
-  insert_msg('Figure 2: linear modeling')
+  insert_msg('Figure 1: linear modeling')
 
   figs$modeling <- mod_eli$forest_plots %>%
     map(~.x + theme(legend.position = 'none'))
@@ -47,7 +33,7 @@
                          '', '',
                          'B', ''),
               label_size = 10) %>%
-    as_figure(label = 'figure_2_linear_modeling',
+    as_figure(label = 'figure_1_linear_modeling',
               ref_name = 'modeling',
               caption = paste('Results of multi-parameter linear modeling',
                               'of tryptophan,',
@@ -57,9 +43,9 @@
               w = 180,
               h = 180)
 
-# Figure 3: multi-parameter modeling of neurotransmitters in the INCOV cohort -----
+# Figure 2: multi-parameter modeling of neurotransmitters in the INCOV cohort -----
 
-  insert_msg('Figure 3: INCOV neurotransmitters')
+  insert_msg('Figure 2: INCOV neurotransmitters')
 
   ## upper panel: fit stats
 
@@ -80,7 +66,10 @@
   ## hacking for re-ordering the Y axis
 
   figs$incov_neuro$plot_order <-
-    c('age' = 'age',
+    c('age' = 'background',
+      'sexmale' = 'background',
+      'bmi_classobesity' = 'background',
+      'bmi_classoverweight' = 'background',
       'timepointacute' = 'SARS-CoV-2',
       'timepointsub-acute' = 'SARS-CoV-2',
       'timepointrecovery' = 'SARS-CoV-2',
@@ -100,7 +89,7 @@
                            rev(c('inflammation',
                                  'metabolites',
                                  'SARS-CoV-2',
-                                 'age'))))
+                                 'background'))))
 
   figs$incov_neuro$bottom <- incov_neuro$forest_plots
 
@@ -119,9 +108,9 @@
 
   figs$incov_neuro$bottom <- figs$incov_neuro$bottom %>%
     map(~.x +
-          labs(title = paste0(.x$labels$title, ', INCOV'))  +
-          expand_limits(x = -0.5) +
-          expand_limits(x = 1.11) +
+          labs(title = paste0(.x$labels$title, ', INCOV')) +
+          scale_x_continuous(limits = c(-0.65, 1.22),
+                             breaks = seq(-0.5, 1, by = 0.5)) +
           facet_grid(subset ~ .,
                      scales = 'free',
                      space = 'free') +
@@ -142,21 +131,21 @@
     plot_grid(figs$incov_neuro$upper,
               figs$incov_neuro$bottom,
               nrow = 2,
-              rel_heights = c(0.3, 0.7),
+              rel_heights = c(0.27, 0.73),
               labels = LETTERS,
               label_size = 10) %>%
-    as_figure(label = 'figure_3_incov_neurotransmitter_modeling',
+    as_figure(label = 'figure_2_incov_neurotransmitter_modeling',
               ref_name = 'incov_neuro',
               caption = paste('Results of multi-parameter robust',
                               'linear modeling of serum levels of',
                               'serotinin and dopamine sulfate',
                               'in the INCOV cohort.'),
               w = 180,
-              h = 210)
+              h = 220)
 
-# Figure 4: INCOV, time course ----
+# Figure 3: INCOV, time course ----
 
-  insert_msg('Figure 4: INCOV time course')
+  insert_msg('Figure 3: INCOV time course')
 
   figs$time_course <- names(time_rlm$ribbon_plots) %>%
     map(~list(time_rlm$ribbon_plots[[.x]] +
@@ -176,7 +165,7 @@
                          'B', '', '',
                          'C', '', ''),
               label_size = 10) %>%
-    as_figure(label = 'figure_4_incov_time_course',
+    as_figure(label = 'figure_3_incov_time_course',
               ref_name = 'time_ourse',
               caption = paste('Time course of inflammatory cytokines',
                               'tryptophan, tyrosine and their metabolites',
@@ -185,11 +174,18 @@
               w = 180,
               h = 210)
 
-# Figure 5: INCOV, correlation -----
+# Figure 4: INCOV, correlation -----
 
-  insert_msg('Figure 5: INCOV correlations')
+  insert_msg('Figure 4: INCOV correlations')
 
-  figs$incov_corr <- incov_mds$network_plots %>%
+  figs$incov_corr <-
+    c(incov_mds$network_plots[c("serotonin.acute",
+                                "serotonin.sub-acute",
+                                "serotonin.recovery")],
+      list(ggdraw()),
+      incov_mds$network_plots[c("dopamine.acute",
+                                "dopamine.sub-acute",
+                                "dopamine.recovery")]) %>%
     map(~.x +
           theme(legend.position = 'none',
                 plot.margin = globals$common_margin)) %>%
@@ -201,7 +197,7 @@
     plot_grid(get_legend(incov_mds$network_plots$`serotonin.sub-acute`),
               ncol = 2,
               rel_widths = c(0.88, 0.12)) %>%
-    as_figure(label = 'figure_5_incov_correlation',
+    as_figure(label = 'figure_4_incov_correlation',
               ref_name = 'incov_corr',
               caption = paste('Correlation of serum levels of inflammatory',
                               'cytokines, serotonin and domamine sulfate,',

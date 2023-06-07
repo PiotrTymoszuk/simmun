@@ -16,14 +16,14 @@
     c(sex = 'Sex',
       age = 'Age, years',
       bmi = 'BMI, kg/m\u00B2',
-      bmi_class = 'Body mass class',
+      bmi_class = 'Body mass index',
       ethnics = 'Ethnics',
       somatic_comorb = 'Physical disorder',
-      psych_comorb = 'Psychiatric disorder',
+      psych_comorb = 'Mental disorder',
       hads_anx_score = 'HADS anxiety score',
       hads_dpr_score = 'HADS depression score',
-      hads_signs = 'Depression or anxiety signs, HADS \u2265 8',
-      pss_stress_score = 'PSS-4 stress score',
+      hads_signs = 'Clinically relevant signs of depression or anxiety, HADS \u2265 8',
+      pss_stress_score = 'PSS-4 mental stress score',
       cov = 'Infection',
       anti_rbd = 'anti-RBD SARS-CoV-2, IgG, AU',
       severity = 'COVID-19 severity') %>%
@@ -43,7 +43,12 @@
   cohort$analysis_tbl$incov <- incov$clinic %>%
     filter(patient_id %in% incov$complete_ids) %>%
     filter(!duplicated(patient_id)) %>%
-    mutate(long_cov = ifelse(long_cov == 'healthy',
+    mutate(cov = car::recode(cov, "'healthy' = 'uninfected'"),
+           cov = factor(cov, c('uninfected', 'SARS-CoV-2')),
+           timepoint = car::recode(timepoint, "'healthy' = 'uninfected'"),
+           timepoint = factor(timepoint,
+                              c('uninfected', 'acute', 'sub-acute', 'recovery')),
+           long_cov = ifelse(long_cov == 'healthy',
                              'no', as.character(long_cov)),
            long_cov = factor(long_cov),
            psy_long_cov = ifelse(psy_long_cov %in% c('healthy',
@@ -100,7 +105,7 @@
                   what = 'table',
                   pub_styled = TRUE)) %>%
     map(reduce, left_join, by = 'variable') %>%
-    map(set_names, c('variable', 'Healthy', 'SARS-CoV-2'))
+    map(set_names, c('variable', 'Uninfected', 'SARS-CoV-2 infection'))
 
 # Testing for differences between the healthy and SARS-CoV-2 ----
 
@@ -130,18 +135,18 @@
              ~.x[c('variable', 'test', 'significance', 'eff_size')]),
          left_join, by = 'variable') %>%
     map(mutate,
-        Healthy = ifelse(stri_detect(variable,
-                                     regex = '(long_cov)|(severity)'),
-                         NA, Healthy),
+        Uninfected = ifelse(stri_detect(variable,
+                                        regex = '(long_cov)|(severity)'),
+                            NA, Uninfected),
         test = ifelse(stri_detect(variable,
                                   regex = '(long_cov)|(severity)'),
                       NA, test),
         significance = ifelse(stri_detect(variable,
                                           regex = '(long_cov)|(severity)'),
                               NA, significance),
-        `SARS-CoV-2` = stri_replace(`SARS-CoV-2`,
-                                    regex = '^healthy.*\\n',
-                                    replacement = ''),
+        `SARS-CoV-2 infection` = stri_replace(`SARS-CoV-2 infection`,
+                                              regex = '^healthy.*\\n',
+                                              replacement = ''),
         test = stri_replace(test,
                             fixed = 'test',
                             replacement = ''),
@@ -155,20 +160,20 @@
 
   cohort$feat_tables <- cohort$feat_tables %>%
     map(format_tbl,
-         dict = cohort$var_lexicon,
+        dict = cohort$var_lexicon,
         rm_complete = TRUE) %>%
     map(mutate,
         eff_size = ifelse(is.na(significance), NA, eff_size)) %>%
     map(set_names,
-        c('Variable', 'Healthy', 'SARS-CoV-2',
+        c('Variable', 'Uninfected', 'SARS-CoV-2 infection',
           'Test', 'Significance', 'Effect size'))
 
   for(i in names(cohort$feat_tables)) {
 
     cohort$feat_tables[[i]] <- cohort$feat_tables[[i]] %>%
       full_rbind(tibble(Variable = 'Participants, n',
-                        Healthy = table(cohort$analysis_tbl[[i]]$cov)[1],
-                        `SARS-CoV-2` = table(cohort$analysis_tbl[[i]]$cov)[2]),
+                        Uninfected = table(cohort$analysis_tbl[[i]]$cov)[1],
+                        `SARS-CoV-2 infection` = table(cohort$analysis_tbl[[i]]$cov)[2]),
                  .)
 
   }
@@ -179,7 +184,12 @@
 
   ## sampling time points
 
-  cohort$sampling_time <- incov$analysis_tbl %>%
+  cohort$sampling_data <-  incov$analysis_tbl %>%
+    mutate(timepoint = car::recode(timepoint, "'healthy' = 'uninfected'"),
+           timepoint = factor(timepoint,
+                              c('uninfected', 'acute', 'sub-acute', 'recovery')))
+
+  cohort$sampling_time <- cohort$sampling_data %>%
     group_by(timepoint) %>%
     summarize(median = median(time_po),
               lower_q = quantile(time_po, 0.25, na.rm = TRUE),
@@ -188,11 +198,11 @@
                             ' [', round(lower_q),
                             ' - ', round(upper_q),
                             ']'),
-           days_pi = ifelse(timepoint == 'healthy', NA, days_pi))
+           days_pi = ifelse(timepoint == 'uninfected', NA, days_pi))
 
   ## sample numbers
 
-  cohort$samples <- incov$analysis_tbl %>%
+  cohort$samples <- cohort$sampling_data %>%
     count(timepoint)
 
   ## common table

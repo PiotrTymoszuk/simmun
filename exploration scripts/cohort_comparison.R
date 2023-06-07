@@ -35,15 +35,18 @@
   comp$analysis_tbl$INCOV <-
     comp$analysis_tbl$INCOV %>%
     mutate(severity = ifelse(cov == 'healthy',
-                             'healthy',
+                             'uninfected',
                              ifelse(stri_detect(severity,
                                                 regex = '(1|2)$'),
-                                    'ambulatory', 'hospitalized')),
-           severity = factor(severity, c('healthy', 'ambulatory', 'hospitalized')))
+                                    'ambulatory', 'hospitalized')))
 
   comp$analysis_tbl <- comp$analysis_tbl %>%
     compress(names_to = 'cohort') %>%
-    mutate(cohort = factor(cohort, c('SIMMUN', 'INCOV')))
+    mutate(cohort = factor(cohort, c('SIMMUN', 'INCOV')),
+           cov = car::recode(cov, "'healthy' = 'uninfected'"),
+           cov = factor(cov, c('uninfected', 'SARS-CoV-2')),
+           severity = car::recode(severity, "'healthy' = 'uninfected'"),
+           severity = factor(severity, c('uninfected', 'ambulatory', 'hospitalized')))
 
   ## test type
 

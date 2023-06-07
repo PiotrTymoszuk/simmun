@@ -63,10 +63,11 @@
 
   insert_msg('Analysis scripts')
 
-  c('./modeling scripts/elimination.R',
-    './modeling scripts/glmnet.R',
-    './modeling scripts/ranger.R',
-    './modeling scripts/cforest.R') %>%
+  c('./modeling scripts/elimination.R'#,
+    #'./modeling scripts/glmnet.R',
+    #'./modeling scripts/ranger.R',
+    #'./modeling scripts/cforest.R'
+    ) %>%
     source_all(message = TRUE, crash = TRUE)
 
 # END ------

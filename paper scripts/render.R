@@ -8,6 +8,15 @@
 
   cov_biblio <- read_bib('./paper/markdown/infl_biblio.bib')
 
+# feedback and issues ------
+
+  insert_msg('Rendering the issue file')
+
+  render('./paper/markdown/issues.Rmd',
+         output_format = word_document2(number_sections = FALSE,
+                                        reference_docx = 'ms_template.docx'),
+         output_dir = './paper')
+
 # supplementary material ------
 
   insert_msg('Rendering the supplements')

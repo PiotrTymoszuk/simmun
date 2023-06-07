@@ -87,7 +87,7 @@
               hjust = 1.5,
               vjust = 0.5,
               color = 'white') +
-    scale_y_discrete(labels = c(pss4 = 'Stress, PSS4',
+    scale_y_discrete(labels = c(pss4 = 'PSS-4 mental stress',
                                 hads_anxiety = 'HADS anxiety',
                                 hads_depression = 'HADS depression')) +
     globals$common_theme +

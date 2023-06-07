@@ -51,9 +51,9 @@
            eff_size) %>%
     set_names(c('Metabolite',
                 'Explanatory variable',
-                'Stratum',
-                'Observations/stratum',
-                'Statistic',
+                'Category',
+                'N',
+                'Median, IQR, range',
                 'Significance',
                 'Effect size'))
 

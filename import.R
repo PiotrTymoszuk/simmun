@@ -82,11 +82,11 @@
       'age' = 'Age, decades',
       'sex' = 'Sex',
       ## psychometrics
-      'pss_stress_score' = 'Stress, PSS-4',
+      'pss_stress_score' = 'Mental stress, PSS-4',
       'hads_anx_score' = 'Anxiety, HADS',
       'hads_dpr_score' = 'Depression, HADS',
       ## comorbidity, medical history
-      'psych_comorb' = 'Psychiatric disorder',
+      'psych_comorb' = 'Mental disorder',
       'somatic_comorb' = 'Physical disorder',
       'bmi_class' = 'BMI',
       'smoking' = 'Smoking',

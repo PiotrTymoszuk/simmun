@@ -61,6 +61,15 @@
                  'tyrosine' = 'darkolivegreen4',
                  'dopamine.3.O.sulfate' = 'steelblue'))
 
+  ## plot titles
+
+  time_rlm$plot_titles <-
+    paste0(c('Inflammatory cytokines',
+             'Serotonin and kynurenine pathway',
+             'Catecholamine pathway'),
+           ', INCOV') %>%
+    set_names(c('inflammatory', 'trp', 'tyr'))
+
 # Construction of the models -----
 
   insert_msg('Model construction')
@@ -139,10 +148,7 @@
     list(vars = list(inflammatory = c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF'),
                      trp = c('tryptophan', 'kynurenine', 'quinolinate', 'serotonin'),
                      tyr = c('phenylalanine', 'tyrosine', 'dopamine.3.O.sulfate')),
-         plot_title = paste0(c('Inflammatory cytokines',
-                               'TRP decay and 5-HT',
-                               'PHE/TYR and DA'),
-                             ', INCOV')) %>%
+         plot_title = time_rlm$plot_titles) %>%
     pmap(plot_tc_ribbon,
          data = time_rlm$analysis_tbl$uninfected,
          plot_subtitle = 'Mean, 2 \u00D7 SEM',
@@ -176,9 +182,7 @@
                                             tyr = c('phenylalanine',
                                                     'tyrosine',
                                                     'dopamine.3.O.sulfate')),
-                                plot_title = paste(c('Inflammatory cytokines',
-                                                     'TRP decay and 5-HT',
-                                                     'PHE/TYR and DA'))) %>%
+                                plot_title = time_rlm$plot_titles) %>%
            pmap(plot_tc_beta,
                 data = x,
                 plot_subtitle = y,

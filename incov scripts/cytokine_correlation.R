@@ -75,9 +75,9 @@
                                     'TNF_INF',
                                     'IFNG_INF'))),
          plot_title =  c('uninfected, INCOV',
-                         'acute CoV, INCOV',
-                         'sub-acute CoV, INCOV',
-                         'CoV recovery, INCOV')) %>%
+                         'acute SARS-CoV-2 infection, INCOV',
+                         'sub-acute SARS-CoV-2 infection, INCOV',
+                         'SARS-CoV-2 infection recovery, INCOV')) %>%
     pmap(corr_buble,
          signif_only = FALSE,
          rotate_x_labs = FALSE)
@@ -93,8 +93,8 @@
                                                'kynurenine',
                                                'quinolinate',
                                                'serotonin'),
-                              'serotonin', 'dopamine'),
-             pathway = factor(pathway, c('serotonin', 'dopamine')))
+                              'serotonin/kynurenine', 'catecholamine'),
+             pathway = factor(pathway, c('serotonin/kynurenine', 'catecholamine')))
 
   }
 

@@ -103,7 +103,10 @@
 
   incov_mds$plots <-
     list(x = incov_mds$plots,
-         y =  paste0(c('Uninfected', 'Acute Cov', 'Sub-acute CoV', 'Recovery'),
+         y =  paste0(c('uninfected',
+                       'acute SARS-CoV-2 infection',
+                       'sub-acute SARS-CoV-2 infection',
+                       'SARS-CoV-2 infection recovery'),
                      ', INCOV') %>%
            rep(2),
          z = paste('n =', map_dbl(incov_mds$analysis_tbl, ncol))) %>%

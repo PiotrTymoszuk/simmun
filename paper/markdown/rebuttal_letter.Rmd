@@ -1,5 +1,5 @@
 ---
-title: "Inflammation, SARS-CoV-2 infection and mental health disorders impact on systemic serotonin and dopamine metabolism"
+title: "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, kynurenine and catecholamine pathway activity"
 subtitle: "Rebuttal Letter"
 author: "PSY Team"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
@@ -53,13 +53,26 @@ However, I think it is worth a shot.
 Please be attentive to reviewer concerns for a resubmission.</span>
 
 Thank you for appreciation of our manuscript and giving us a chance to address Reviewers' issues. 
-Rewrote the paper and put efforts to incorporate the critic in the text. 
-In particular, we defined clearly the analysis endpoints, and decided to present our story in a 'top - bottom' approach. 
-In brief, we employed the most robust and comprehensive analytic technique, multi-parameter modeling, to identify the most relevant explanatory factors affecting systemic serotonin and dopamine metabolism. 
-Subsequently, we explore such factors in more detail by correlation and network analysis, and canonical statistical tests. 
-Finally, we improved quality of language and Discussion. 
-Please see below for details. 
-We hope that, our revised manuscript is now suitable for publication in _Psychoneuroendocrinology_.
+First we would like to thank the Reviewers for their very careful, thoughtful and helpful assessment and comments. 
+We acknowledge that such detailed reviews take a lot of time and demand a lot of commitment and hope that we have done them justice in the revised manuscript.
+
+Overall, we agree that the initial manuscript version was not sufficiently coherent and clear because of the involvement of a large team of researchers in the study. 
+Following your advice and the Reviewers' suggestions, we reworked thoroughly the analysis and the text. 
+We would like to point out that this is one of very few manuscripts that characterize activity of the serotonin, kynurenine and catecholamine pathways, i.e. the metabolic system that controls systemic availability of indolamine and catecholamine neurotransmitters in COVID-19 [@Santiago-Mujika2022; @Saito2022; @Lionetto2021; @Bizjak2022; @Dewulf2022; @Ceballos2022]. 
+Importantly, their role in development of symptoms of mental health disorders in COVID-19 patients was proposed [@Kucukkarapinar2022; @Bower2022]. 
+By analysis of two cohorts, we were able to identify key factors affecting activity of those metabolic pathways and investigate their temporal activity profile in acute and sub-acute SARS-CoV-infection and recovery, which adds to novelty of our work. 
+
+We have re-analysed the data to address the reviewers´ issues and have rewritten many parts of the manuscript following the reviewers' suggestions. 
+In particular, we now clearly and explicitly state the gap in the literature in __Introduction__ and the analysis endpoints in __Methods__ and __Results__. 
+To facilitate interpretation of our results, we now follow a top - bottom analysis approach. 
+In brief, we employed the most robust and comprehensive analytic technique, multi-parameter modeling, to identify the most relevant explanatory factors affecting the key metabolites and activity markers of the kynurenine, serotonin and catecholamine pathways. 
+Subsequently, we explore these factors in more detail by correlation and network analysis, and canonical statistical tests. 
+Following the Reviewer's suggestion we also keep analysis results in the SIMMUN and INCOV cohort separately for the sake of clarity. 
+Concerning the manuscript text we also improved the preciseness of the language and adapted the __Discussion__ part. 
+Please see below the point-to-point response for details. 
+Please notice that due to the scale of changes in the text, it was not feasible to mark all changes introduced during revision. 
+The most relevant changes are <span custom-style = 'revision'>highlighted in red</span>. 
+We hope that our revised manuscript is now suitable for publication in _Psychoneuroendocrinology_.
 
 \newpage
 
@@ -75,35 +88,35 @@ In addition, the use of a very sophisticated analysis (multiparametric linear mo
 However, several weaknesses, including, biochemically wrong assumptions regarding the assessed parameters, lack of transparency regarding the pre-processing of the data, and measurement comparability between the assessed cohorts limit its significance and impact. 
 The quality of the paper also suffers from a lack of references, scientifically inadequate language, and multiple spelling and grammatical errors. Because of the many issues that arise, I would not recommend the manuscript for publication in _Psychoneuroendocrinology_.</span>
 
-We thank the Reviewer for the careful lecture of our manuscript and valuable feedback. 
-In the revised manuscript, we did our best to address the weaknesses pointed out be the Reviewer.
-In order to improve the clarity of our research aims and to facilitate interpretation of the results, we re-formatted the analysis pipeline and the manuscript in the following way: 
+We thank the Reviewer for the careful assessment of our manuscript and valuable feedback which were very helpful in revising our work. 
+First we would like to apologize for imprecise wording, not including enough references and any language errors. 
+We have reworked large parts of the manuscript in order to convey our research aims, results and their interpretation in a more clear way. 
+For these reasons, we re-formatted the analysis pipeline and the manuscript in the following way:
 
-* we streamlined the __Introduction__ section. Here, we describe briefly the serotonin and dopamine metabolism, and the competitor kynurenine pathway, functions of those neurotransmitter in the central nervous system and impact on serotonin, dopamine on mental health. We outline the role of inflammation and mutual relationship between tryptophan metabolism and mental health. Furthermore, we review literature evidence for the SARS-CoV-2/COVID-19 - neurotransmitter connex.
+* we unified nomenclature of the metabolic pathways investigated in our manuscript and term them now 'serotonin pathway', 'kynurenine pathway' and 'catecholamine pathway' in line with prominent review articles [@Badawy2017; @Lukic2022; @Meiser2013]
 
-* In __Introduction__, we also define clearly the 'evidence gap' and our research aims in the last paragraph of the section. 
+* we reorganized and rewrote many parts of __Introduction__.
 
-* In  __Methods/Analysis endpoints__ we define unequivocally the outcomes, i.e. plasma levels of metabolites involved in serotonin and dopamine turnover, and explanatory factors, i.e. demographic, clinical, inflammatory, psychometric and SARS-CoV-2-associated variables.
+* we also more explicitly and clearly state the ‘gap in the literature’ and our research aims in the last paragraph of __Introduction__.
 
-* We restrict the analyzed SIMMUN and INCOV cohorts to participants with the complete set of outcome and explanatory variables (__Figure 1__, __Supplementary Table S1__ and __S3__). By this change, results of particular analyses can be more easily compared with each other. Additionally, to investigate if and how exclusion of participant affected the SIMMUN cohort characteristic and if it could be regarded as a source of bias, we compared th excluded and analyzed individuals as presented in __Supplementary Table S2__ and __Results/Characteristic of the study cohorts__.
+* we included the __Analysis endpoints__ section of __Methods__. Here we describe our analytic approach, define outcome variables and candidate explanatory factors.
 
-* We excluded CRP and IL6 from analyses presented in the revised manuscript. Those markers were found to be slightly above their reference ranges (0.5 mg/dL and 7 pg/mL) solely in 
+* we show the analysis strategy for the SIMMUN and INCOV cohort in __Supplementary Figure S1__. We hope that this makes it easier to follow our analysis. Additionally we restrict the analyzed SIMMUN and INCOV cohorts to participants with the complete set of outcome and explanatory variables (__Supplementary Figure S1__, __Supplementary Table S1__ and __S3__). This makes the results of particular analyses more easily comparable to one another. Additionally, to investigate if and how exclusion of participant affected the SIMMUN cohort characteristic and if it could be regarded as a source of bias, we compared the excluded and analyzed individuals as presented in __Supplementary Table S2__ and __Results/Characteristic of the cohorts__. 
+
+* We excluded CRP and IL6 from analyses presented in the revised manuscript. Both  markers were found to be slightly above their reference ranges (0.5 mg/dL and 7 pg/mL) solely in 
 `r signif(table(stigma$data %>% filter(patient_id %in% stigma$complete_ids) %>% .$crp_class)[2]/nrow(stigma$analysis_tbl) * 100, 2)`% and 
-`r signif(table(stigma$data %>% filter(patient_id %in% stigma$complete_ids) %>% .$il6_class)[2]/nrow(stigma$analysis_tbl) * 100, 2)`% of SIMMUN individuals, respectively. They are hence unlikely to play a clinically relevant role in regulation of TRP, KYN, KYN/TRP, PHE, TYR and PHE/TYR, in spite of statistically significant correlations presented in the initial manuscript. We argument this decision in __Supplementary Methods__ of the revised manuscript.
+`r signif(table(stigma$data %>% filter(patient_id %in% stigma$complete_ids) %>% .$il6_class)[2]/nrow(stigma$analysis_tbl) * 100, 2)`% of SIMMUN individuals, respectively. They are hence unlikely to be biologically and clinically relevant predictors of the kynurenine and catecholamine pathway activity. Details on this are now described in __Supplementary Methods__.
 
-* We provided information on all analyzed variables in the SIMMUN (__Supplementary Table S1__) and INCOV cohort (__Supplementary Table S3__) with their format, units and, if applicable, normality-stabilizing transformations.
+* We provided information on all analyzed variables of the SIMMUN (__Supplementary Table S1__) and INCOV cohort (__Supplementary Table S3__) with their format, units and, if applicable, normality-stabilizing transformations.
 
-* In order to improve clarity of our results, we decided to present our results following a 'top - bottom' scheme. In brief, both in the SIMMUN and the INCOV cohort, we employ multi-parameter modeling (linear regression or robust linear regression), to identify key explanatory factors significantly affecting the outcome. Subsequently, we investigate those significant predictions in more detail by 'univariable' correlation analysis and statistical hypothesis testing. This analysis strategy was pursued in our recent papers as well [@Hufner2022; @Hufner2023].
+* In order to improve clarity of __Results__, we have now reordered and reformatted it. We now present the results in a ‘top - bottom’ approach. In brief, both in the SIMMUN and the INCOV cohort, we employ multi-parameter modeling (linear regression or robust linear regression), to identify key explanatory factors significantly affecting the outcome. Subsequently, we investigate those significant predictors in more detail by ‘univariable’ correlation analysis and statistical hypothesis testing. This analysis strategy has recently been used in two COVID-19-related publications of our group [@Hufner2022; @Hufner2023].
 
 ## Issue 2
 
 <span custom-style = 'reviewer'>__Introduction:__ In the introduction the term "psychoneuroimmunological mechanisms" is mentioned twice. 
 I would appreciate it if at least some of the mechanisms which are relevant to the paper are specified.</span>
 
-As outlined in __Issue 1__, we re-wrote thoroughly the __Introduction__ section. 
-Following discussions in the core author team, we decided no to replace the general and a bit obscure term 'psychoneuroimmunological' with more direct formulations referring to the prime role of inflammation in modulating serotonin and dopamine biosynthesis. 
-For this reason, we describe now explicitly the effects of inflammatory cytokines on IDO- and PAH-mediated regulation of serotonin and dopamine biosynthesis and changed the manuscript title to "Inflammation, SARS-CoV-2 infection and mental health disorders impact on systemic serotonin and dopamine metabolism". 
-In fact as discussed below and in the revised manuscript text, the question how systemic biosynthesis of serotonin and dopamine, involving primarily mesenteric organs and the liver, relates to the neurotransmitter availability in the brain is vigorously disputed in literature [@Goldstein1999; @Moncrieff2022; @Marx2020].
+As outlined in __Issue 1__, we re-ordered and re-wrote the entire __Introduction__ section. Following discussions in the core author team, we decided to replace the general term ‘psychoneuroimmunological’ with more direct descriptions of the mechanisms we are referring to i.e. the role of inflammation on IDO activity are the effect of glucocorticoids on TDO activity. We have also changed the title of the manuscript.
 
 ## Issue 3
 
@@ -112,16 +125,20 @@ For instance, TRP, KYN, and KYN/TRP are listed as markers of serotonin availabil
 However, the available evidence for the relationship between increased degradation of TRP to KYN and its effects on serotonin availability is controversial as only 1-2% of tryptophan metabolism goes into the serotonin pathway (https://doi.org/10.3390/metabo12060514). 
 In addition, line 60 mentions a depressiogenic and an anxiogenic effect of QUIN, and an anxiety- and depression-amplifying effect of kynurenine and catabolites is stated in line 9 (page 3). 
 Should this statement refer to existing cross-sectional findings (e.g., higher QUIN in patients with MDD compared to healthy controls) it is very generalized and not sufficiently justified. 
-If the statement refers to evidence that suggests a causal relationship, a reference is urgently needed. </span>
+If the statement refers to evidence that suggests a causal relationship, a reference is urgently needed.</span>
 
-We agree with the Reviewer, that __Introduction__ needs to be more strict and requires additional references - please refer to the revised text. 
-Concerning your more specific issues: we agree that the great majority majority of tryptophan is catabolized via the KYN and indole pathways and only a marginal fraction is diverted to serotonin synthesis [@Teunis2022; @Lukic2022], and for both serotonin and dopamine, the systemic metabolism taking place in liver, mesenteric organs and vasculature may not reflect the situation in the central nervous system [@Brown2021; @Marx2020; @Schwarcz2012; @Moncrieff2022; @Goldstein1999]. 
-We take up this controversy in __Introduction__ and __Discussion__. 
-Additionally, we addressed the question how TRP levels may affect systemic serotonin availability, we modeled circulating serotonin levels in the INCOV cohort [@Su2022] as a function of its precursors and competitor metabolites (TRP, KYN, QUIN), timepoint of SARS-CoV-2 infection, inflammatory cytokines and age. 
-As presented in __Figure 3__, we could indeed find a significant positive association of plasma TRP and serotonin in multi-parameter modeling, which is expected to be independent of age, inflammation and infection time course. 
-In a more detailed correlation and network analysis of the INCOV dataset (__Figure 5A__), we could observe a moderate-strength correlation of circulating serotonin and TRP levels in acute and sub-acute infection. 
-This suggests that systemic serotonin synthesis may be limited by blood TRP availability to some extent during SARS-CoV-2-dependent inflammation, which was characterized by profoundly decreased TRP and elevated KYN levels (__Figure 4__). 
-In the revised __Introduction__ and __Discussion__, we also critically review the evidence on brain metabolism and effects of KYN, kynurenic acid and QUIN on neuronal signaling and mental health [@Brown2021; @Schwarcz2012], which is indeed limited.
+We agree that the role of the kynurenine pathway metabolites as well as systemic, i.e. peripheral availability of tryptophan, serotonin and dopamine in mental health are controversial, not sufficiently supported by direct experimental evidence and definitely needs a critical view on the topic [@Marx2020; @Brown2021; @Moncrieff2022; @Goldstein1999]. 
+We find that one of the many challenges is that many mechanistic studies are done in the animal model, making the transfer to the human situation questionable [@Brown2021]. 
+On the other hand human studies are quite equivocal and, while there are influential theoretical manuscripts on the issue, surprisingly few original research has been published so far [@Brown2021]. 
+To address you issue, we decided to give a more balanced view on the serotonin, kynurenine, catecholamine pathways and their role in mental health while still keeping the text relatively compact. 
+We now give a more clear, but short introduction to there three biochemical pathways in the introduction section. 
+We provide an ample discussion of the possible role of these pathways in linking mental health and physical conditions. 
+In __Discussion__ and __Limitations__ we comment on controversy over the role of systemic serotonin, kynurenine or catecholamine pathway in depression and other psychiatric disorders [@Brown2021; @Marx2020; @Schwarcz2012; @Moncrieff2022; @Goldstein1999].
+
+Additionally, to address the question how TRP levels may affect systemic serotonin pathway activity in COVID-19 patients, we modeled circulating serotonin levels in the INCOV cohort [@Su2022] as a function of its precursors and competitor metabolites (TRP, KYN, QUIN), timepoint of SARS-CoV-2 infection, inflammatory cytokines and age. 
+As presented in __Figure 2__, we could indeed find a significant positive association of plasma TRP and serotonin in multi-parameter modeling, which is expected to be independent of age, inflammation and infection time course. 
+In a more detailed correlation and network analysis of the INCOV dataset (__Figure 4A__, __Supplementary Figure S6__), we could observe significant, weak-to-moderate strength correlation of circulating serotonin and TRP levels in acute and sub-acute infection. 
+This suggests that systemic serotonin synthesis may be limited by blood TRP availability to some extent during SARS-CoV-2-dependent inflammation, which was characterized by lowered plasma TRP concentration and elevated KYN levels.
 
 ## Issue 4
 
@@ -130,17 +147,15 @@ It highlights that low-grade inflammation (as I understand it, in the case of th
 However, the presented hypotheses use IL-6 and CRP and mental stress, anxiety, and depressive symptoms as predictors in their analysis (multi-parameter linear modeling) and TRP, KYN, KYN/TRP, PHE, TRY, PHE/TRY as dependent variables.</span>
 
 We are sorry for this unclarity. 
-In the revised manuscript, we clearly formulate the aims, and define outcomes and explanatory factors. 
-Please refer to the last paragraph of __Introduction__, __Methods/Analysis endpoints__, __Supplementary Tables S1__ and __S3__. 
-In the revised text, we additionally avoid the misleading term 'low-grade' inflammation. 
-In fact, as described in __Issue 1__ and __Supplementary Methods__, only a minute subset of the SIMMUN study participants had CRP or IL-6 concentrations above the reference levels. 
-Thus, biological effect of those two inflammatory markers is doubtful and we decided to exclude them from the revised analysis pipeline.
+In the revised manuscript, we formulate the aims, and define outcomes and explanatory factors. 
+Please refer to the last paragraph of __Introduction__ and the subsection __Analysis endpoints__ of __Methods__.
 
 ## Issue 5
 
 <span custom-style = 'reviewer'>__Methods:__ while the SIMMUN cohort is described in detail, basic information about the INCOV cohort is missing and should be provided.</span>
 
-We agree with the Reviewer that the INCOV cohort deserves a more thorough description. This is provided in the __Methods/Procedures__ section of the revised manuscript and in __Supplementary Methods__ and in references to the seminal papers [@Su2020; @Su2022].
+We agree with the Reviewer that the INCOV cohort deserves a more thorough description. 
+We included short methodological information of the INCOV cohort in __Methods/Procedures__ and __Supplementary Methods__ [@Su2020; @Su2022].
 
 ## Issue 6
 
@@ -167,9 +182,9 @@ I would therefore suggest using a linear model with predefined contrasts (uninfe
 If the assumptions of linear regression are not fulfilled, robust methods can be used (e.g., R-package: MASS; https://www.rdocumentation.org/packages/MASS/versions/7.3-58.2/topics/rlm). 
 Additionally, the correlations between the assessed dependent variables seem rather high, why controlling for multiple comparisons using Benjamini & Yekutieli procedure (2001) or even robust MANOVAS (see: https://cran.r-project.org/web/packages/MANOVA.RM/vignettes/Introduction_to_MANOVA.RM.html) could be also necessary. Additionally, the terms "acute", "sub-acute and "recovery" should be described in the notes of __Figure 3__.</span>
 
-We are grateful for the hints. 
-In the revised manuscript, we applied robust linear regression with the MM algorithm and Huber's psi function [@Huber2011; @Ripley2022] for multi-parameter modeling (__Figure 3__) and time-course modeling of the INCOV dataset (__Figure 4__). 
-Additionally, we specify in the figure legends of the INCOV results the median time interval between diagnosis and sampling for the acute, sub-acute and recovery timepoints. 
+We are grateful for these suggestions and included them in our analyses. 
+In the revised manuscript, we applied robust linear regression with the MM algorithm and Huber's psi function [@Huber2011; @Ripley2022] for multi-parameter modeling (__Figure 2__) and time-course modeling of the INCOV dataset (__Figure 3__). 
+Additionally, we specify in legends of figures with INCOV cohort data the median time interval between diagnosis and sampling for the acute, sub-acute and recovery timepoints. 
 As suggested, we applied multiple testing adjustment throughout the analysis pipeline. 
 Except for multi-parameter modeling, p values were adjusted separately for each analysis step (e.g. correlation analysis, time-course modeling) with the false discovery rate method known also as 'Benjamini-Hochberg' [@Benjamini1995].
 
@@ -179,8 +194,8 @@ Except for multi-parameter modeling, p values were adjusted separately for each 
 
 We apologize for the missing references and cite the seminal HADS paper and a report dealing with the clinically relevant HADS cutoffs [@Bjelland2002; @Zigmond1983] in the revised text. 
 We also checked consistency of the PSS-4 and HADS psychometric tools employed in our report. 
-Since the HADS scales, and in particular, the HADS depression tool were found to be non-tau-equivalent by factors analysis (__Supplementary Figure S1A__), we decided use McDonald's $\omega$ as a consistency measure instead of the more popular Cronbach's $\alpha$ [@Revelle2022; @McDonald1999]. 
-The PSS-4 tool demonstrated a good and the HADS scales an excellent consistency, as presented in __Supplementary Figure S1B__. 
+Since the HADS scales, and in particular, the HADS depression tool were found to be non-tau-equivalent by factors analysis (__Supplementary Figure S2A__), we decided use McDonald's $\omega$ as a consistency measure instead of the more popular Cronbach's $\alpha$ [@Revelle2022; @McDonald1999]. 
+The PSS-4 tool demonstrated a good and the HADS scales an excellent consistency, as presented in __Supplementary Figure S2B__. 
 
 ## Issue 10
 
@@ -190,18 +205,18 @@ Second, assessing the effect as "dramatic" is not appropriate in a scientific co
 If at all, existing assessments based on effect sizes can be made using generally accepted definitions (e.g., according to Cohen).</span>
 
 We concur with the Reviewer, that a comparison between the cohorts is useful for interpretation of the results. 
-We present significant results of the comparison between the SIMMUN and INCOV cohort in __Supplementary Table S4__ and elaborate on them in __Results/Characteristic of the study cohorts__. 
-The collectives differed in age and sex distribution, rates of SARS-CoV-2 infection and infection severity. 
+We present significant results of the comparison between the SIMMUN and INCOV cohort in __Supplementary Table S5__ and elaborate on them in __Results/Characteristic of the study cohorts__. 
+The cohorts differed in age and sex distribution, rates of SARS-CoV-2 infection and infection severity. 
 In particular, most INCOV study participants experienced moderate-to-critical COVID-19 and required hospitalization. 
-This may explain the way stronger effects of inflammation and infection timepoint on inflammatory cytokines and the metabolites of interest, which we discuss in __Discussion__ and __Limitations__.
+This may explain the stronger effects of inflammation and infection timepoint on inflammatory cytokines and the metabolites of interest, which we discuss in __Discussion__. 
 In the revised text, Figures and Tables we also present effect size metrics for statistical hypothesis tests, correlation and modeling. 
-We interpret them as proposed in the excellent handbook by Jacob Cohen [@Cohen2013] (__Supplementary Methods__).
+We interpret them as proposed in the handbook by Cohen [@Cohen2013] (__Supplementary Methods__).
 
 ## Issue 11
 
 <span custom-style = 'reviewer'>__Results:__ In general, numbers (test statistics, p-values) are missing in the results part and should be added. Additionally, effect sizes should be presented.</span>
 
-We present now p values and effect sizes or model $\beta$ with 95% confidence intervals [@Cohen2013], as appropriate, for the most important findings in Abstract and Results. 
+We present now p values and effect sizes or model $\beta$ with 95% confidence intervals, as appropriate, for the most important findings in Abstract and Results. 
 Yet, for the sake of readability, we were not able to provide significance and effect size information for all effects. 
 In particular, we do not specify p values and effect sizes for non-significant effects and state instead clearly that the effect missed statistical significance. 
 We abstained from referencing test statistics such as $\chi^2$ or $t$, since they depend on the number of complete observations and hence do not deliver reliable information on the effect size.
@@ -218,28 +233,29 @@ Please refer to __Issue 11__ for details.
 
 <span custom-style = 'reviewer'>__Results:__ The terminology of strata (page 10, line 10) can be misleading as no stratification was performed. Probably it would be better to use the term group or subgroup.</span>
 
-Following your suggestion, we avoid using the term 'strata' in the revised text. 
-We use group, subgroup or subset instead. 
+Following your suggestion, we have replaced the term ‘strata’ in the revised text by 'subgroup' or 'subset'.
 
 ## Issue 14
 
 <span custom-style = 'reviewer'>__Introduction:__ The use of subheadings would be helpful to facilitate the understanding of the first part of the introduction.</span>
 
-This point is no relevant anymore, since we re-wrote and consolidated __Introduction__ of the revised manuscript. 
-We describe each thread in a separate paragraph. 
+Since we re-wrote and shortened the __Introduction__ section, we abstained from using subheadings; such format is also not common in original research manuscripts in _Psychoneuroendocrinology_. 
+To facilitate interpretation, each topic of __Introduction__ is described in a separate paragraph. 
+In turn, we employ subheadings in __Discussion__. 
 
 ## Issue 15
 
 <span custom-style = 'reviewer'>__Results:__ The statement that TRP is a precursor of IDO is not correct!</span>
 
-Thanks for careful lecture, this erroneous statement was removed.
+Thanks for the attentive assessment, this misleading wording was removed. 
+Please refer to the metabolic pathway nomenclature in __Issue 1__.
 
 ## Issue 16
 
 <span custom-style = 'reviewer'>__Results:__ The description of the time between the infection and the assessment of 138.5 days leads to the question of how the time between the infection and the assessment was assessed. Maybe it would be better to use complete instead of half and quarter days as units.</span>
 
 This time interval refereed to the SARS-CoV-2 infection diagnosis via PCR test, which we specify in the revised manuscript. 
-We also round them to complete days, as suggested.
+We now also round them to complete days, as suggested.
 
 ## Issue 17
 
@@ -251,26 +267,23 @@ For the sake of clarity, we present characteristic of the SIMMUN and INCOV cohor
 
 <span custom-style = 'reviewer'>__Results:__ Page 9 lines 24-41; This paragraph should be in the Methods instead of the Results. Furthermore, the rationale is missing: Why was INCOV used as a comparison or additional study to your own data? In addition, information on the measurement /measurement system (for INCOV) should be provided. Were the measuring probes used in SIMMUN and INCOV comparable?</span>
 
-We concur with your suggestion, the variables of interests are now listed in the __Methods__ section instead of __Results__. 
-Furthermore, we describe the rationale for analyses in the INCOV cohort in the last paragraph of __Introduction__, __Methods/Analysis endpoints__ and __Results__. 
-In brief, we employed the SIMMUN collective providing more extensive demographic and clinical characteristic in an initial search for the most relevant factors impacting on the indirect readouts of serotonin and dopamine metabolism: TRP, KYN, PHE and TYR [@Brown2021; @Marx2020; @Capuron2011; @Widner1997; @Neurauter2008]. 
-The INCOV dataset with measurements of more direct markers of the neurotransmitter availability, i.e. plasma serotonin and dopamine 3-O-sulfate, the most abundant dopamine metabolite present in human blood [@Meiser2013; @Goldstein1999], allowed us to validate effects of inflammation, SARS-CoV-2 infection and age, i.e. significant predictors identified in the SIMMUN study. 
-Furthermore, due to longitudinal design of the INCOV study, we were able to explore not only the impact of infection recovery but also acute and sub-acute COVID-19 on serotonin and dopamine turnover. 
-Still, the incompatibility of designs and datasets of these two collectives hindered us from developing consistent models in one cohort and direct validation in the outer (canonical training - test or external validation setup). 
+As suggested, we now list the variables of interest in __Methods__ instead of __Results__. 
+Furthermore, we describe the rationale for using the INCOV dataset in the last paragraph of __Introduction__ and the __Analysis endpoints__ subsection of __Methods__. 
+Information on measurement of proteins and metabolites is provided in __Methods/Procedures__ and __Supplementary Methods__. Unfortunately, the incompatibility of designs and datasets of these two cohorts hindered us from developing a comprehensive model in one cohort and direct validation in the outer (canonical training - test setup). 
 We list this issue in __Limitations__.
 
 ## Issue 19
 
 <span custom-style = 'reviewer'>__Results__: The term acute and sub-acute should be defined.</span>
 
-We provide the time intervals for the acute, sub-acute and recovery timepoints in the INCOV cohort in the revised manuscript (__Methods__, __Results__, __Figures__). 
-Of note, those time intervals fit well with the definition of acute, sub-acute and long-COVID/recovery timepoints in our recent population study [@Sahanic2021].
+We provide the time intervals for the acute, sub-acute and recovery timepoints in the INCOV cohort in the revised manuscript (__Methods__, __Results__, __Figures__).
 
 ## Issue 20
 
 <span custom-style = 'reviewer'>__Results:__ What does the term "virtually age-independent" mean? I would appreciate it if concrete numbers are stated here instead.</span>
 
-We apologize for this imprecise term, it was removed from the revised manuscript.
+We have removed all imprecise wording while rewriting the __Results__ section. 
+Thank you for pointing this out.
 
 ## Issue 21
 
@@ -284,35 +297,37 @@ Following your suggestion, we keep details on procedures and statistical analysi
 <span custom-style = 'reviewer'>__Results:__ Page 15 line 28: standard inflammatory cytokines should be named more specifically.</span>
 
 We are sorry for this unclarity. 
-In the revised text, we name inflammatory markers (NEO, NLR, cytokines) more explicitly.
+In the revised text, we name inflammatory markers (SIMMUN: NEO, NLR, INCOV: IL6, IL10, TNF and IFNG) more explicitly.
 
 ## Issue 23
 
 <span custom-style = 'reviewer'>__Discussion:__  The discussion of the study results is rather shallow: Results should be better integrated into existing evidence. Furthermore, there is no discussion of the results of depressive symptoms (HADS).</span>
 
-In the revised manuscript, we restructured and improved scientific quality of __Discussion__. 
-The key explanatory factors proposed by us to influence systemic serotonin and dopamine availability: age, inflammation, SARS-CoV-2 infection and, for serotonin, availability of the precursor aminoacid TRP, are discussed in a context of literature evidence. 
-We also critically elaborate on the link between plasma serotonin, TRP and KYN levels and depressive disorders, which was recently challenged [@Capuron2011; @Hufner2021; @Sun2020; @Hufner2015; @Fellendorf2022; @Paul-Savoie2011; @Hunt2020; @Moncrieff2022; @Marx2020; @Brown2021].
+We restructured and improved __Discussion__. 
+Large parts of __Discussion__ were reorganized and rewritten as suggested by Reviewer 2 (__Issue 40__). 
+We hope that you agree with the structure proposed by the other Reviewer which we have now followed. 
+We have also included new references to back out results. 
+The __Limitations__ section was also expanded and improved.
 
 ## Issue 24
 
-<span custom-style = 'reviewer'>__Discussion:__ The statement that "BH4 is also important for nitric oxide synthesis and therefore involved in oxidative stress" is not correct. (Page 16) BH4 is an essential Co-factor of NO-synthases that produce NO with its function as a vasodilator and additional anti-pathogenic effects. Only if BH4 is missing, there is an uncoupling of NOS with subsequently increased reactive oxygen/nitrogen species. Thus, your "therefore involved in oxidative stress" is misleading in normal physiological states.</span>
+<span custom-style = 'reviewer'>__Discussion:__ The statement that "BH4 is also important for nitric oxide synthesis and therefore involved in oxidative stress" is not correct. (Page 16) BH4 is an essential co-factor of NO-synthases that produce NO with its function as a vasodilator and additional anti-pathogenic effects. Only if BH4 is missing, there is an uncoupling of NOS with subsequently increased reactive oxygen/nitrogen species. Thus, your "therefore involved in oxidative stress" is misleading in normal physiological states.</span>
 
-Following discussion in the study team, we decided to suppress the ROS thread of the discussion since it is likely not so important for interpretation of our data. 
-Instead we focus on direct effects of inflammation on PAH, the enzyme catalyzing the PHE - TYR conversion, i.e. the initial step of dopamine synthesis and its crucial co-factor BH4 [@Geisler2013; @Luporini2021; @Fanet2021; @Capuron2011; @Neurauter2008]. 
+We have removed most of the discussion on oxidative stress from the revised text since it is likely not so important for interpretation of our data. 
+Instead we focus more on BH4 as the co-factor for synthesis of indolamine and catecholamine neurotransmitters [@Geisler2013; @Capuron2011; @Neurauter2008; @Vancassel2018]. 
 
 ## Issue 25
 
 <span custom-style = 'reviewer'>__Discussion:__ Page 14 line 60: "pre-pandemic inflammation markers" is probably not the right term. Maybe rewrite the sentence.</span>
 
-We apologize for this obscure term. 
+We apologize, this is really misleading and was reworded. 
 We meant levels of inflammatory markers in SARS-CoV-2-uninfected individuals, which we state now explicitly.
 
 ## Issue 26
 
 <span custom-style = 'reviewer'>__Highlights:__ In the Highlights, the results and perhaps the conclusion should be emphasized more than the theoretical background (Highlights 1 and 2) or the methodology (Highlights 3 and 4).</span>
 
-_Katharina: please respond, I don't have this manuscript part at all in pre-revision manuscript files._
+The __Highlights__ were adapted according to your suggestions. 
 
 ## Issue 28
 
@@ -321,7 +336,7 @@ Some of these mistakes are listed here.
 However, the manuscript would benefit from professional language correction.
 </span>
 
-We are grateful for the careful language check. 
+Thank you for your careful assessment.  
 We have paid particular attention to the style, grammar and proper scientific language in the revised manuscript. 
 For particular language issues:
 
@@ -343,7 +358,7 @@ For particular language issues:
 
 * _Page 8 line 58: timepoint in [the?] the course sounds strange (and the article is missing), may-be better time between infection and assessment._ - changed to 'timepoints of SARS-CoV-2 infection' and 'days after diagnosis via PCR'
 
-* _Page 9 line 52: What are nadir TRP concentrations?_ - we do not use the term any more, changed to 'minimum' 
+* _Page 9 line 52: What are nadir TRP concentrations?_ - this was changed to 'minimum' 
 
 * _Page 11 line 7: a comma is missing._ - does not apply, the section was rewritten.
 
@@ -353,7 +368,7 @@ For particular language issues:
 
 * _Page 14 line 14: […] via their bidirectional influence_ - rewritten
 
-* _Page 14 line 34: please delete the term "larger"_ - done as suggested.
+* _Page 14 line 34: please delete the term "larger"_ - done as suggested
 
 * _Page 15, line 35: of in individuals_ - rewritten
 
@@ -370,8 +385,8 @@ We apologize for the typo, it was corrected to 'BIC'.
 <span custom-style = 'reviewer'>__Supplementary Figure S2:__ It is not clear why fitted generalized adaptive models are presented as graphs, as the associated statistic (Spearman's rho) assesses monotone relationships.</span>
 
 We concur with the Reviewer's view, that visualization of trends for monotone associations is problematic. 
-Due to profound changes in the manuscript structure, we do not show scatter plots to illustrate monotone correlations between non-normally distributed variables. 
-Correlation analysis results in the INCOV cohort are presented now as simple bubble correlograms or visualized as force-directed graphs [@Briatte2021; @Csardi2006].
+Due to profound changes in the structure of the revised manuscript, we do not use scatter plots to illustrate monotone correlations between non-normally distributed variables any more. 
+Correlation analysis results in the INCOV cohort are now presented as simple bubble correlograms or visualized as force-directed graphs [@Briatte2021; @Csardi2006].
 
 \newpage
 
@@ -387,41 +402,43 @@ The main problem with the current manuscript is the confusion coming from the mo
 The discussion is circumvoluted and difficult to follow.</span>
 
 We thank the Reviewer for appreciation of out text and the constructive feedback. 
-Weaknesses in structure of the test were already pointed out be the Reviewer 1. 
-We addressed them by employing the multi-parameter modeling results for identification of the most vital explanatory factors that affect neurotransmitter metabolism and subsequent more specific correlation analyses and statistical testing with such relevant predictors. 
-To tackle with the confusion around the two investigated cohorts, we separated the results obtained with the SIMMUN and INCOV collective. 
-In more details, we employ the SIMMUN cohort as a kind of 'exploratory' collective to identify factors affecting TRP, KYN, KYN/TRP, PHE and PHE/TYR among a wider palette of demographic, clinical, psychometric, inflammatory and SARS-CoV-2 associated variables. 
-Subsequently, we attempted to validate the most important of them: age, inflammation and SARS-CoV-2 infection in the INCOV cohort. 
-Finally, we re-wrote the __Discussion__ section with a special focus on the crosstalk between inflammation and neurotransmitter biosynthesis and, in part controversial, relevance of systemic neurotransmitter availability for the central nervous system and mental health. 
+Weaknesses in structure of the analyses were already pointed out by the Reviewer 1. 
+We addressed them by employing the multi-parameter modeling results for identification of the most vital explanatory factors that affect neurotransmitter metabolism and subsequent more specific correlation analyses and statistical testing with those relevant predictors. 
+To make the analysis of the two investigated cohorts easier to follow, we separated the results obtained with the SIMMUN and INCOV cohort. 
+In more detail, we employ the SIMMUN cohort as an ‘exploratory’ cohort to identify factors affecting TRP, KYN, KYN/TRP, PHE and PHE/TYR from a wider palette of demographic, clinical, psychometric, inflammatory and SARS-CoV-2 associated variables. Subsequently, we attempted to validate the most important ones, age, inflammation and SARS-CoV-2 infection, in the INCOV cohort. Finally, we re-wrote __Discussion__ with a special focus on the crosstalk between inflammation and neurotransmitter biosynthesis and, in part controversial, relevance of systemic neurotransmitter availability for the central nervous system and mental health.
 
 ## Issue 32
 
 <span custom-style = 'reviewer'>There are a few typos in the text, e.g., othe (line 6 instead of other).</span>
 
-Thanks for the careful lecture. 
+Thanks for the careful assessment. 
 We paid special attention to the grammar and spelling of the revised text. 
 
 ## Issue 33
 
 <span custom-style = 'reviewer'>The text would benefit from further editing by a specialized scientific English editing service</span>
 
-_Katharina: could you provide an answer?_
+The first author of the manuscript has extensive experience in scientific English. 
+We are assuming that some inconsistencies in the first version of the manuscript arose from working on the manuscript in a large study team. 
+The first author has now carefully reworked the text and we hope that this has now lead to a more consistent style and better quality.
 
 ## Issue 34
 
 <span custom-style = 'reviewer'>Line 7: by collectives you probably mean cohorts or population samples.</span>
 
-The term 'collective' has the same meaning as 'cohort' in the manuscript text. 
-For practical reasons, we avoid the wording 'population sample', which may suggest a random and hence representative draw from the general population. 
-In fact neither the SIMMUN cohort enriched in psychiatric patients not the INCOV cohort enriched in hospitalized COVID-19 patients pose a representative sample of the general population during the pandemic (see __Limitations__) .
+Yes, in the manuscript  text the term ‘collective’ had the same meaning as ‘cohort’. 
+We removed the word 'collective' since this obviously was not easy to understand and use consistently 'cohort' instead. 
+For practical reasons, we avoid the wording ‘population sample’, which may suggest a random and hence representative draw from the general population. 
+In fact neither the SIMMUN cohort enriched in psychiatric patients nor the INCOV cohort enriched in hospitalized COVID-19 patients pose a representative sample of the general population during the pandemic (see __Limitations__).
 
 ## Issue 35
 
 <span custom-style = 'reviewer'>The introduction ends with the statement that the study was conducted in an exploratory manner. Was that the objective of the present study in the absence of any specific hypothesis?</span>
 
-As pointed out by Reviewer 1 as well, the last paragraph of __Introduction__ was quite obscure. 
-In the final part of __Introduction__, we present now the 'evidence gap', which is the still incompletely characterized effect of SARS-CoV-2 infection on neurotransmitter metabolism, as well as the aim of our analysis, which identification of factors affecting the neurotransmitter turnover in a cohort of SARS-CoV-2-infected individuals. 
-Still, our study does not have a fully exploratory character, since the candidate explanatory factors: age, sex, body mass class, mental and somatic conditions, smoking and alcohol, depression, anxiety, stress and inflammation have already been described to affect serotonin and dopamine metabolism.
+As also pointed out by Reviewer 1, the last paragraph of __Introduction__ was not written clearly enough in the initial manuscript version. 
+In the final paragraph of __Introduction__, we present now the ‘gap in the literature’, which is the still incompletely characterized effect of SARS-CoV-2 infection on metabolic pathways determining systemic availability of serotonin and dopamine. 
+We also state the aim of our analysis, which was characterization of factors affecting the serotonin, kynurenine and catecholamine pathway activity during SARS-CoV-2 infection and recovery. 
+Our study did  not have a fully exploratory character, since the candidate explanatory factors: age, sex, body mass index, mental and somatic conditions, smoking and alcohol, depression, anxiety, stress and inflammation have already been described to affect serotonin and dopamine metabolism in previous research, also from our own research consortium [@Hufner2019; @Hufner2020; @Hufner2021; @Hufner2015].
 
 ## Issue 36
 
@@ -434,49 +451,47 @@ We changed it to 'variable' throughout the revised text.
 
 <span custom-style = 'reviewer'>Legend of Figures: the use of the term decay is inappropriate, you probably mean metabolites</span>
 
-We avoid using the term 'decay' in the revised text and utilize 'catabolism' or 'conversion' instead.
+This was reworded in the revised version, we utilize 'catabolism', 'breakdown' or 'conversion' instead.
 
 ## Issue 38
 
 <span custom-style = 'reviewer'>The results are difficult to read as you mix up the two cohorts both in the text and in the figures. It would be preferable to first present the results of your own cohort, the SIMMUN cohort, and then test the generality of the results by assessing whether the same variations are found in the INCOV cohort with the limitation that this can only be done for the relationship between immune factors and neurotransmitter precursors.</span>
 
-We concur with your opinion and present the analysis results as suggested. 
+We agree and rearranged the complete __Results__ section. 
 Please refer to __Issues 1__ and __31__ for details.
 
 ## Issue 39
 
-<span custom-style = 'reviewer'> You utilize the terms mental disease, mental stress, mental symptoms, etc… Be more specific and replace these terms by what you measured, i.e., HADS-anxiety, HADS-depression, and PSS. 
+<span custom-style = 'reviewer'> You utilize the terms mental disease, mental stress, mental symptoms, etc. Be more specific and replace these terms by what you measured, i.e., HADS-anxiety, HADS-depression, and PSS. 
 You mention somatic symptoms in the discussion but what they refer to remains obscure. 
 You also refer to somatic diseases. 
 Pathologists would rather speak of physical disorders as opposed to psychiatric disorders.</span>
 
-We are grateful for this hint. 
-In the revised manuscript we provide the psychometric scale when referencing depression, anxiety and stress signs. 
-We removed the sentence of __Discussion__ referring to somatic symptoms, since those were not systematically surveyed in the SIMMUN cohort. 
-Following your suggestion, we term 'somatic conditions' 'physical disorders' consequently in the revised text.
+Thank you for your suggestions. 
+We have specified the terms according to your suggestions throughout the revised manuscript. 
+We removed the sentence from __Discussion__ referring to somatic symptoms, since those were not systematically surveyed in the SIMMUN cohort. 
+Following your suggestion, we term ‘somatic conditions’ ‘physical disorders’ consequently in the revised text.
 
 ## Issue 40
 
 <span custom-style = 'reviewer'>The discussion is convoluted and needs to be simplified. 
-It would be easier to follow if you would first discuss the significance of the association between inflammation and neurotransmitter precursors and then the association between these two sets of factors and what you call mental health measured by HADS and PSS, first in the immune -> HDAS symptomatology or kynurenine -> HDAS symptomatology and then in the stress -> immune direction, remembering that in the case of your own cohort, the cross-sectional nature of your study does not allow you to get further than describing associations.</span>
+It would be easier to follow if you would first discuss the significance of the association between inflammation and neurotransmitter precursors and then the association between these two sets of factors and what you call mental health measured by HADS and PSS, first in the immune -> HDAS symptomatology or kynurenine -> HADS symptomatology and then in the stress -> immune direction, remembering that in the case of your own cohort, the cross-sectional nature of your study does not allow you to get further than describing associations.</span>
 
-We agree with the Reviewer that there was a lot of room for improvement in __Discussion__.
-We rewrote this part of the manuscript during the revision according to the following scheme:
+We thank the Reviewer for this specific suggestion on the discussion section which we have gratefully taken up and rewritten large parts of __Discussion__ according to the following scheme:
 
-* A brief generalizing summary of the results obtained with both cohorts. In this initial paragraph, we highlight the most relevant factors for systemic serotonin and dopamine metabolism: inflammation, SARS-CoV-2 infection, TRP availability, age, signs of depression and mental stress. In this paragraph, we also discuss some discrepancy in our data such as way higher effects of inflammation on neurotransmitter availability in the INCOV cohort than in the SIMMUN dataset. 
+* A brief generalizing summary of the results obtained with both cohorts and discussion of discrepant findings 
 
-* Role of inflammation and SARS-CoV-2 in the KYN pathway and PHE - TYR conversion with implication of systemic availability of serotonin and dopamine. In this paragraph we discuss clinical literature and mechanistic reports tackling with IDO and PAH activity as well as BH4, the key co-factor of the serotonin and dopamine pathway enzymes.
+* Effects of inflammation and infection, including SARS-CoV-2, on the serotonin and kynurenine pathways, and systemic levels of serotonin
 
-* Effects of mental health-related factors (psychiatric disorders, mental stress) on systemic serotonin and dopamine availability.
+* Effects of inflammation and infection on the catecholamine pathway and systemic availability of dopamine
 
-* Relevance of systemic metabolism of serotonin and dopamine for the central nervous system and development of psychiatric disorders. Here we also underline that evidence for effects of peripheral serotonin, systemic activity of the KYN pathway and peripheral dopamine synthesis from PHE and TYR is limited and bases in many cases on clinical association of psychiatric disorders with blood levels of the neurotransmitters, their precursors or competitor pathway products.
+* Mutual effects of mental health-related factors (e.g. depression, anxiety and mental stress) on activity of the serotonin, kynurenine and catecholamine pathways, and systemic serotonin and dopamine availability. Here we also underline that evidence for effects of peripheral serotonin, kynurenine and catecholamine pathways is limited and based in many cases on clinical association of psychiatric disorders with blood levels of the neurotransmitters, their precursors or competitor pathway products.
 
 ## Issue 41
 
 <span custom-style = 'reviewer'>Page 15: the study by Benedetti is at best suggestive but does not demonstrate anything.</span>
 
-We agree with the Reviewer, that the report by Benedetti et al. does not provide any solid mechanistic link between the COVID-19-related inflammation and depression. 
-We removed this paper from __Discussion__ of the revised manuscript.
+We removed this reference from __Discussion__ of the revised manuscript.
 
 # Reviewer 3
 
@@ -494,56 +509,54 @@ This statement is not accurate, as Serotonin is formed from TRP, but there is no
 Only if the catabolism of TRP moves more to the kynurenine pathway, less TRP goes to the serotonin pathway, and the availability of serotonin is reduced. 
 This argument is similar to the line 44.</span>
 
-We concur with the Reviewer's opinion. 
-Certainly, kynurenine and the kynurenine/tryptophan ratio are markers of the pathway which competes with the serotonin biosynthesis. 
-For the sake of clarity, we we term kynurenine, quinolinate and kynurenine/tryptophan ratio 'competitor pathway products/metabolites' or products/metabolites of the competitive kynurenine pathway' in the revised text.
+We absolutely agree with the Reviewer. 
+To clarify that, we use consistently the terms 'serotonin pathway', 'kynurenine pathway' and 'catecholamine pathway' in the revised manuscript. 
 
 ## Issue 44
 
 <span custom-style = 'reviewer'>The principle point is that it would help the reader to orient himself in such a large amount of data if the authors completed the manuscript with a design scheme of the INCOV and SIMMUN study</span>
 
-To improve readability of the revised manuscript, we present the results in a cohort-wise manner, i.e. beginning with the SIMMUN cohort as an 'exploratory' collective and proceeding with the INCOV cohort as a king of 'validation' collective used to verify and study in more detail (e.g. by time course analyses) the key findings from the SIMMUN cohort. 
-Please refer to __Issues 1__ and __Issue 38__ for details. 
-The modified analysis strategy is presented in __Figure 1__.
+Thank you for the suggestions. 
+As described in __Issues 1__ and __38__, we present the results in cohort-wise manner, for the sake of better readability. 
+We also included the analysis strategy scheme in __Supplementary Figure S1__.
 
 ## Issue 45
 
 <span custom-style = 'reviewer'>In line 16 on p. 6 are introducing breakdown products as KYN, TRP, KYN/TRP ratio ..... It would be more precise to introduce them in the order they are formed: TRP, KYN, KYN/TRP ratio ....pls, correct everywhere in the manuscript similar p. 9, line 29 ..... For example, correct position is given on the line 52 of p.11</span>
 
-Thanks for the hint. 
-We stick in the revised manuscript to the proposed metabolite order.
+Thank you, we made the changes you suggest throughout the revised manuscript.
 
 ## Issue 46
 
 <span custom-style = 'reviewer'>p. 14, line 34 : a large meta-analyses ... include more citations</span>
 
-We re-wrote the Discussion part of the revised manuscript and provide now more evidence [@Hunt2020; @Maes2012; @Brown2021; @Marx2020;  @Fellendorf2022] on the link between the so called sickness behavior, inflammation, serotonin and dopamine metabolism in the final part of the scion tackling the relevance of our findings for mental health. 
-We also discuss the controversial relationship between circulating markers of neurotransmitter availability such as tryptophan or serotonin, and the competitor pathway products (kynurenine, quinolinate) on central nervous system and mental health [@Brown2021; @Moncrieff2022].
+We have improved this part of __Discussion__ and now report citations [@Hunt2020; @Maes2012; @Brown2021; @Marx2020;  @Fellendorf2022; @Moncrieff2022]] on the pros and cons of KYN pathway involvement in depression in the text and the __Limitations__ section.
 
 ## Issue 47
 
 <span custom-style = 'reviewer'>p. 15, line 38 - correct as a note in the abstract</span>
 
-_Katharina, could you please respond? I don't have the submission text with the line numbering and can't find the fragment. Thanks!_
+This was re-written as suggested.
 
 ## Issue 48
 
 <span custom-style = 'reviewer'>p. 15, line 62 - where ???</span>
 
-_As above, thanks!_
+The '???' was likely a typo in a figure reference in the manuscript markdown document. 
+We have paid special attention to the proper syntax in the revised text.
 
 ## Issue 49
 
 <span custom-style = 'reviewer'>put one line above the grey text stating that it is INCOR</span>
 
-_Same as above!_
+This was re-written as suggested.
 
 ## Issue 50
 
 <span custom-style = 'reviewer'> the given data do not match mathematically - check or explain why</span>
 
 We apologize for the typos concerning numbers in the study inclusion scheme. 
-Please refer to the correct numbers in the revised __Figure 1__.
+Please refer to the correct numbers in the revised __Supplementary Figure S1__.
 
 ## Issue 51
 

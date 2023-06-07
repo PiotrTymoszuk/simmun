@@ -1,5 +1,5 @@
 ---
-title: "Inflammation, SARS-CoV-2 infection and mental health disorders impact on systemic serotonin and dopamine metabolism"
+title: "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, kynurenine and catecholamine pathway activity"
 subtitle: "Manuscript"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 
@@ -14,10 +14,8 @@ author:
       institute: [daas]
   - Philipp Nelles:
       institute: [psych2]
-  - Markus Anliker: 
-      institute: [zimcl]
   - Tobias Bruckner: 
-      institute: [psych2]
+      institute: [psych2]    
   - Eberhard Deisenhammer: 
       institute: [psych2, psych1]
   - Jonas Egeter: 
@@ -44,13 +42,12 @@ author:
       institute: [psych2]
 
 institute:
-  - psych2: Department of Psychiatry, Psychotherapy, Psychosomatics and Medical Psychology, University Hospital for Psychiatry II, Medical University of Innsbruck, Anichstrasse 35, Innsbruck, Austria
-  - daas: Data Analytics As a Service Tirol, Innsbruck, Austria
-  - zimcl: Central Institute of Medical and Chemical Laboratory Diagnostics, University Hospital Innsbruck, Anichstrasse 35, Innsbruck, Austria
-  - psych1: Department of Psychiatry, Psychotherapy, Psychosomatics and Medical Psychology, University Hospital for Psychiatry I, Medical University of Innsbruck, Anichstrasse 35, Innsbruck, Austria
-  - surg: Department of Visceral, Transplant and Thoracic Surgery, Center of Operative Medicine, Medical University of Innsbruck, Innsbruck, Austria
-  - bio:  Institute of Medical Biochemistry, Biocenter, Medical University of Innsbruck, Innrain 80/82, Innsbruck, Austria
-
+  - psych2: University Hospital of Psychiatry II, Department of Psychiatry, Psychotherapy, Psychosomatics and Medical Psychology, Medical University Innsbruck, Innsbruck, Austria.
+  - daas: Data Analytics As a Service Tirol, Innsbruck, Austria. 
+  - psych1: University Hospital of Psychiatry I, Department of Psychiatry, Psychotherapy, Psychosomatics and Medical Psychology, Medical University Innsbruck, Innsbruck, Austria.
+  - surg: Department of Visceral, Transplant and Thoracic Surgery (VTT), Medical University Innsbruck, Innsbruck, Austria. 
+  - zimcl: Central Institute of Clinical and Chemical Laboratory Diagnostics, University Hospital of Innsbruck, Innsbruck, Austria.
+  - bio:  Insitute of Medical Biochemistry, Medical University Innsbruck, Innsbruck, Austria
 
 output: 
   bookdown::word_document2:   
@@ -58,7 +55,7 @@ output:
 
 bibliography: infl_biblio.bib
 
-csl: frontiers-in-immunology.csl
+csl: psychoneuroendocrinology.csl
 
 header-includes:
   \usepackage{longtable}
@@ -94,61 +91,76 @@ set_flextable_defaults(font.family = 'Cambria', font.size = 10)
 
 ```
 
-\newpage
-
-# Keywords
-
-SARS-CoV-2, inflammation, serotonin, dopamine, tryptophan, kynurenine, psychiatric disorders
+Running title: Activity of the kynurenine, serotonin and dopamine metabolic pathways and COVID-19
 
 \newpage
 
 # Abstract
 
-__Background:__ Serotonin and dopamine metabolism poses a junction of mental and physical health. 
-We aimed to identify demographic, clinical, psychometric and SARS-CoV-2 infection-related factors affecting systemic serotonin and dopamine turnover.
+__Background:__ COVID-19 patients frequently develop symptoms of depression, anxiety and mental stress. 
+The serotonin, kynurenine and catecholamine metabolic pathways determine systemic levels of serotonin and dopamine, whose insufficiency was linked to mental health disorders. 
+We investigated factors that affect their activity in SARS-CoV-2 infection and recovery.
 
-__Methods:__ The cross-sectional SIMMUN (n = `r nrow(stigma$analysis_tbl)`, Austria) and longitudinal INCOV cohort (n = `r  length(unique(incov$complete_ids))`, Su et al. 2022) were investigated. 
-Explanatory variables encompassed age, sex, clinical and inflammatory variables, SARS-CoV-2 infection, signs of anxiety and depression (HADS), and mental stress scoring (PSS-4). 
-Their effects on serotonin biosynthesis markers (serotonin, tryptophan) and competitor kynurenine pathway products (kynurenine, quinolinate), and dopamine availability readouts (dopamine sulfate, phenylalanine, tyrosine) were assessed by linear modeling, correlation analysis and two-tailed T tests.
+__Methods:__ The cross-sectional SIMMUN (n = `r nrow(stigma$analysis_tbl)`) and longitudinal INCOV cohort (n = `r  length(unique(incov$complete_ids))`, Su et al. 2022) were analyzed. 
+Demographic and clinical characteristic, inflammatory markers, SARS-CoV-2 infection, signs of depression and anxiety (HADS), and mental stress (PSS-4) served as explanatory variables. 
+Plasma markers of the serotonin and kynurenine (serotonin, kynurenine/tryptophan ratio), and catecholamine pathway activity (dopamine 3-O-sulfate, phenylalanine/tyrosine ratio) were modeled by multi-parameter linear regression. 
 
-__Results:__ In the SIMMUN cohort, the inflammatory marker neopterin, SARS-CoV-2 infection, age, depression symptoms and mental stress were positively associated with catabolism of the serotonin precursor tryptophan to kynurenine. 
-Inflammation and age were also suppressed the first step of dopamine biosynthesis, phenylalanine - tyrosine conversion. 
-In the INCOV cohort, inflammation was associated with lowered serotonin (IL6: $\beta$ = `r incov_neuro$inference$serotonin %>% filter(variable == 'IL6_INF') %>% mutate(beta_lab = paste0(signif(estimate, 2), ' [95% CI: ', signif(lower_ci, 2), ' to ', signif(upper_ci, 2), ']')) %>% .$beta_lab`) and the dopamine metabolite, dopamine sulfate (interferon-gamma: $\beta$ = `r incov_neuro$inference$dopamine %>% filter(variable == 'IFNG_INF') %>% mutate(beta_lab = paste0(signif(estimate, 2), ' [95% CI: ', signif(lower_ci, 2), ' to ', signif(upper_ci, 2), ']')) %>% .$beta_lab`). 
-Serotonin ($\beta$ = `r incov_neuro$inference$serotonin %>% filter(variable == 'timepoint', level == 'recovery') %>% mutate(beta_lab = paste0(signif(estimate, 2), ' [95% CI: ', signif(lower_ci, 2), ' to ', signif(upper_ci, 2), ']')) %>% .$beta_lab`) 
-and dopamine sulfate ($\beta$ = `r incov_neuro$inference$dopamine %>% filter(variable == 'timepoint', level == 'recovery') %>% mutate(beta_lab = paste0(signif(estimate, 2), ' [95% CI: ', signif(lower_ci, 2), ' to ', signif(upper_ci, 2), ']')) %>% .$beta_lab`) were significantly increased during SARS-CoV-2 infection recovery. 
+__Results:__ In the SIMMUN cohort, the inflammatory marker 
+neopterin ($\beta$ = `r my_beta(mod_eli$inference$kyn_trp, 'log_neo')`), 
+SARS-CoV-2-positivity (`r my_beta(mod_eli$inference$kyn_trp, 'infection', show_ci_txt = FALSE)`), 
+mental stress (`r my_beta(mod_eli$inference$kyn_trp, 'pss_stress_score', show_ci_txt = FALSE)`) and age were positively associated with elevated kynurenine/tryptophan ratio. 
+Phenylalanine/tyrosine ratio was lower in 
+SARS-CoV-2-positive participants (`r my_beta(mod_eli$inference$phe_tyr, 'infection', show_ci_txt = FALSE)`). 
+In the INCOV cohort, inflammation markers were associated with decreased serotonin 
+(IL6: `r my_beta(incov_neuro$inference$serotonin, 'IL6_INF', show_ci_txt = FALSE)`) and dopamine 3-O-sulfate 
+(interferon-gamma: `r my_beta(incov_neuro$inference$dopamine, 'IFNG_INF', show_ci_txt = FALSE)`). 
+Serotonin (`r my_beta(incov_neuro$inference$serotonin, 'timepoint', 'recovery', show_ci_txt = FALSE)`) and 
+dopamine 3-O-sulfate levels (`r my_beta(incov_neuro$inference$dopamine, 'timepoint', 'recovery', show_ci_txt = FALSE)`) were higher during recovery than in acute SARS-CoV-2 infection.
 
-__Conclusion:__ 
-Inflammation limits systemic serotonin and dopamine by activating the competitor kynurenine pathway and inhibiting the phenylalanine - tyrosine conversion, respectively, and may link SARS-CoV-2 infection with mental health. 
-Advanced age and psychiatric disorders can additionally suppress neurotransmitter synthesis.
+__Conclusion:__ SARS-CoV-2 infection, inflammation, mental stress and age are the key independent predictors of high kynurenine pathway activity, which decreases systemic serotonin levels by depleting its precursor tryptophan. 
+These factors are also associated with suppressed catecholamine pathway activity. 
+This lowered serotonin and dopamine availability may contribute to mental health problems in COVID-19 patients. 
+
+# Keywords
+
+serotonin and dopamine availability, COVID-19, kynurenine, tryptophan, inflammation, mental health
 
 \newpage
 
 # Introduction
 
-Physical conditions such as infections, trauma, frailty, autoimmune illness or malignancy are often accompanied by sings of depression, anxiety, metal stress and other psychiatric disorders [@Sorgdrager2019; @Dantzer2008; @Hufner2019; @Hufner2020; @Maes2012; @Geisler2013; @Haroon2012; @Hufner2015]. 
-Imbalance of two depressiolytic and anxiolytic neurotransmitters, serotonin and dopamine, elicited by inflammation as proposed as a connex of physical pathology and mental health deficits [@Dantzer2008; @Brown2021; @Schwarcz2012]. 
-Serotonin is synthesized from the essential aminoacid tryptophan (TRP) via reactions catalyzed by tryptophan hydroxylase (TPH) and aromatic L-amino acid decarboxylase. 
-Yet the great majority of TRP is by the so called kynurenine (KYN) pathway, whose first step is the breakdown of TRP to KYN catalyzed by indoleamine 2,3-dioxygenase (IDO) [@Badawy2017; @Lukic2022]. 
-Expression of an inducible and highly active form of IDO, IDO1, is strongly stimulated by a plethora of cytokines, pathogen products and other inflammatory stimuli [@Robinson2003; @Dai1990; @Litzenburger2014; @Badawy2017]. 
-During systemic or central nervous system-localized inflammation, TRP is depleted by high IDO1 activity, which, in turn, suppresses serotonin biosynthesis [@Brown2021; @Schwarcz2012; @Vancassel2018; @Haroon2012]. 
-Consequently, elevated blood levels of KYN pathway metabolites, decreased TRP and serotonin were reported for numerous physical conditions and associated with symptoms of psychiatric deficits [@Brown2021; @Marx2020; @Hunt2020; @Fellendorf2022; @Hufner2015; @Hufner2021; @Hufner2019; @Paul-Savoie2011; @Capuron2011]. 
-Dopamine synthesis involves the conversion of another essential amino acid phenylalanine (PHE) to tyrosine (TYR) catalyzed by phenylalanine hydroxylase (PAH) followed by hydroxylation of TYR by tyrosine 5-hydroxylase (TH) [@Meiser2013]. 
-Both PAH and TH as well as the serotonin-synthesizing enzyme TPH rely on tetrahydrobiopterin (BH4) as an essential cofactor. 
-During inflammation, BH4 is depleted by oxidation to its inactive derivative and gets consumed in a competitor reaction of nitric oxide formation. 
-As a result of such functional BH4 deficiency, biosynthesis of dopamine and serotonin is further suppressed [@Geisler2013; @Fanet2021; @Vancassel2018]. 
-Accordingly, imbalance of PHE and TYR levels suggestive of systemic dopamine deficiency was reported in cancer, infections and inflammatory conditions and associated with depression and anxiety [@Hufner2015; @Neurauter2008; @Geisler2013; @Fanet2021; @Vancassel2018]. 
+The immune system and the brain interact at multiple levels [@Dantzer2008]. 
+Physical conditions such as infections, cardiovascular disease, frailty, autoimmune illness or malignancy are often accompanied by symptoms of depression, anxiety, mental stress and other psychiatric disorders [@Mitchell2011; @Dickens2001; @Mayerl2020; @Rajan2020; @Renault1987; @Hufner2015; @Hufner2022]. 
+Inflammation interferes with key metabolic processes controlling serotonin and dopamine availability, the serotonin, kynurenine and catecholamine pathways, and was proposed as an important link between mental and physical health [@Bonaccorso2002; @Gostner2020; @Valdiglesias2018; @Dantzer2008; @Hufner2015; @Brown2021]. 
+
+Serotonin is synthesized from the essential aminoacid tryptophan (TRP) via serotonin pathway reactions catalyzed by tryptophan hydroxylase (TPH) and aromatic L-amino acid decarboxylase. 
+Most systemic TRP is catabolized by the kynurenine pathway, which limits serotonin pathway activity [@Lukic2022]. 
+Its first rate-limiting step, the TRP - kynurenine (KYN) breakdown catalyzed by tryptophan 2,3-dioxygenase (TDO) or indoleamine 2,3-dioxygenases (IDO1, IDO2), controls TRP levels available for serotonin synthesis [@Lukic2022; @Badawy2017]. 
+Importantly, IDO1 is stimulated by inflammatory signals [@Badawy2017; @Robinson2003]
+and TDO activity is increased by glucocorticoids released upon depression and mental stress [@Knox1951; @Maes1990]. 
+Kynurenine pathway metabolites such as KYN or quinolinic acid [QUIN] can additionally pass the blood-brain barrier, interfere e.g. glutamatergic signaling and exert neurotoxicity [@Brown2021; @Schwarcz2012]. 
+Hence, the kynurenine pathway, whose activity can be assessed by the ratio of blood KYN to TRP (KYN/TRP), poses a connex of inflammatory and hypothalamic–pituitary–adrenal axis signals, systemic serotonin availability and neural signal transmission [@Badawy2017; @Brown2021; @Schwarcz2012]. 
+Consequently, elevated levels of circulating kynurenine pathway metabolites, high KYN/TRP, decreased TRP or lowered serotonin were reported for numerous physical conditions and associated with symptoms of mental disorders [@Cervenka2017; @Marx2020; @Hunt2020; @Fellendorf2022; @Hufner2015; @Hufner2021; @Hufner2019; @Capuron2011]. 
+
+Dopamine synthesis via the catecholamine pathway involves the conversion of phenylalanine (PHE) to tyrosine (TYR) catalyzed by phenylalanine hydroxylase (PAH) followed by hydroxylation of TYR by tyrosine 5-hydroxylase (TH). 
+PAH, TH and the serotonin pathway enzyme TPH rely on tetrahydrobiopterin (BH4) as an essential cofactor [@Meiser2013; @Neurauter2008]. 
+During inflammation, BH4 is oxidized to its inactive derivative and consumed in a competitor reaction of nitric oxide formation [@Rahimian2022a; @Neurauter2008]. 
+As a result of such functional BH4 deficiency, reflected e.g. by an elevated blood PHE to TYR ratio, biosynthesis of dopamine and serotonin is suppressed [@Geisler2013; @Vancassel2018; @Capuron2011]. 
+Accordingly, changes in PHE and TYR levels have been reported in different physical disorders such as cancer, infections and inflammatory conditions and associated with depression and anxiety [@Vancassel2018; @Geisler2013; @Hufner2015; @Capuron2011].
 
 SARS-CoV-2 virus is the causal pathogen of coronavirus disease 2019 (COVID-19). 
-Apart from sustained physical disability, psychiatric disorders in millions of SARS-CoV-2 patient amount to the persistent burden of the COVID-19 pandemic [@Huang2021; @Al-Aly2021; @Hufner2022; @Sahanic2023; @Staudt2022]. 
-Of note, high activity of the KYN pathway and signs of inflammatory BH4 deficiency manifesting by distorted PHE and TYR levels were reported for COVID-19 patients and associated with inflammation and disease severity [@Gietl2023; @Lionetto2021; @Santiago-Mujika2022; @Luporini2021; @Bizjak2022; @Dewulf2022; @Saito2022]. 
-Furthermore, reduced systemic availability of serotonin and dopamine was postulated to contribute to mental health deficits during SARS-CoV-2 infection recovery [@Bower2022; @Kucukkarapinar2022; @Matits2023]
+Apart from sustained physical disability, psychiatric disorders in millions of patients amount to the persistent burden of the COVID-19 pandemic [@Huang2021; @Al-Aly2021; @Hufner2022; @Sahanic2023; @Staudt2022]. 
+Increased kynurenine pathway activity suggestive of lowered systemic serotonin availability has recently been identified in acute COVID-19 and during COVID-19 recovery and associated with infection severity [@Santiago-Mujika2022; @Lionetto2021; @Bizjak2022; @Dewulf2022]. 
+Theoretical considerations [@Bower2022] and preliminary experimental data suggest that highly active kynurenine pathway along with suppression of serotonin and catecholamine biosynthesis may contribute to symptoms of mental stress, anxiety and depression in COVID-19 patients [@Matits2023; @Kucukkarapinar2022].
 
-Still, the impact of inflammation on systemic metabolism of serotonin and dopamine availability in acute SARS-CoV-2 infection and recovery, along with its mutual interaction with psychiatric disorders is still incompletely characterized. 
-To address that, we explored effects of demographic and clinical factors, inflammation, SARS-CoV-2 infection, anti-SARS-CoV-2 humoral response and psychiatric disorder symptoms on readouts of systemic serotonin and dopamine availability and kynurenine pathway activity in two cross-sectional cohorts of SARS-CoV-2 patients: the SIMMUN cohort and the published longitudinal INCOV study [@Su2022].
+Still, clinical and experimental evidence for interaction of inflammation, mental health and systemic availability of serotonin and dopamine in COVID-19 is scarce. 
+To address this question, we explored effects of demographic, clinical, psychometric (anxiety, depression, mental stress), inflammation- and SARS-CoV-2-related factors on markers of systemic activity of the serotonin, kynurenine and catecholamine pathways in two cross-sectional cohorts of SARS-CoV-2 patients: the SIMMUN cohort and the published longitudinal INCOV study [@Su2022].
 
 \newpage
 
 # Materials and Methods
+
+Details on study cohorts, procedures and analysis are provided in __Supplementary Methods__.
 
 ## Ethics statement
 
@@ -156,376 +168,364 @@ The SIMMUN study was conducted in accordance with the Declaration of Helsinki an
 All participants gave written informed consent prior to enrollment. 
 Participants' data were stored and analyzed in anonymized form.
 This study was approved by the ethics committee of the Medical University Innsbruck (Austria, approval number: 1132/2020). 
-No approval by the ethics committee was required for analysis of the published INCOV dataset [@Su2022].
+No approval by the ethics committee was required for the published INCOV dataset [@Su2022].
 
 ## Study cohorts
-
-Details on study cohorts, procedures and analyses are provided in __Supplementary Methods__. 
 
 ### SIMMUN study
 
 Individuals tested for SARS-CoV-2 via PCR at the University Hospital of Innsbruck and patients of the University Clinic for Psychiatry I and II (Innsbruck, Austria) undergoing routine SARS-CoV-2 PCR were invited to participate. 
 The study was conducted between June 2020 and May 2021. 
-The inclusion criteria were age of 18 - 70 years, proficiency in German, residence in the study region (Tyrol, Austria), and a SARS-CoV-2 PCR test conducted at the study site. 
+The inclusion criteria were age of 18 - 70 years, proficiency in German, residence in the study region (Tyrol, Austria), and a SARS-CoV-2 PCR conducted at the study site. 
 The exclusion criteria were active SARS-CoV-2 infection (< 14 days after diagnosis), pregnancy, active malignancy, organ transplantation, surgery in the past 3 months, inflammatory illness and oral corticosteroid treatment. 
-The analysis inclusion criterion was the complete study variable dataset (__Figure \@ref(fig:fig-inclusion)__, __Supplementary Table S1__). 
+Only individuals with complete explanatory and response variables presented in __Supplementary Table S1__ and __Supplementary Figure S1__ were analyzed. 
 Significant differences between the analyzed and excluded participants are listed in __Supplementary Table S2__.
 
 ### INCOV study
 
-Proteome and metabolome data and clinical information for the INCOV cohort were extracted from supplementary tables accompanying the report by Su and colleagues [@Su2022]. 
-In the current analysis, samples obtained for individuals with the complete age information and complete study variable dataset (__Figure 1__, __Table \@ref(tab:tab-incov-cohort)__, __Supplementary Table S3__).
+Proteome, metabolome and clinical data are [publicly available](https://data.mendeley.com/datasets/96v329bg7g/1) [@Su2022]. 
+Samples with complete explanatory and response variables presented in __Supplementary Figure S1__ and __Supplementary Table S3__ were analyzed.
 
 ## Procedures
 
 ### SIMMUN study
 
-The SIMMUN study data were gathered during a single on-site study visit including a general medical assessment, supervised completion of self-rating questionnaire and a blood sample collection (__Supplementary Table S1__). 
-The median time interval between the study visit and SARS-CoV-2 PCR was 139 days (interquartile range: 119 - 157).
-
-Demographic and clinical variables: age, sex, body mass index, professionally diagnosed psychiatric disorders, self-reported physical disorders, smoking and alcohol consumption, result and date of the SARS-CoV-2 PCR test were surveyed during the study visit or extracted from electronic patient records. 
-Inflammatory markers: plasma neopterin concentrations (NEO) and neutrophil - lymphocyte ratio (NLR) were determined by the certified clinical routine laboratory at the University Hospital of Innsbruck. 
-Plasma concentrations of tryptophan (TRP), kynurenine (KYN), phenylalanine (PHE) and tyrosine (TYR) were determined by high-performance liquid chromatography, and the KYN/TRP and PHE/TYR ratios calculated [@Capuron2011; @Widner1997; @Neurauter2008]. 
-Plasma titer of immunoglobulin gamma against receptor binding domain S1/S2 protein (anti-RBD IgG) were quantified by ELISA [@Deisenhammer2021]. 
-Laboratory measurements at and beyond the detection limits were substituted with the lower or upper detection limit value, respectively. 
+The SIMMUN data were collected during a single on-site visit at median 139 days after the SARS-CoV-2 PCR (interquartile range: 119 - 157) or extracted from electronic patient records (__Supplementary Table S1__). 
+Demographic and clinical characteristic included age, sex, body mass index (BMI), mental disorders diagnosed by a physician, self-reported physical disorders, smoking and alcohol consumption, result and date of the SARS-CoV-2 PCR. 
+Inflammatory markers, plasma neopterin concentrations (NEO) measured by ELISA [@Werner1990] and neutrophil/lymphocyte ratio (NLR) were determined by a certified laboratory at the University Hospital of Innsbruck. 
+Plasma TRP, KYN, PHE and TYR were determined by high-performance liquid chromatography [@Widner1997; @Neurauter2008]. 
+Immunoglobulin gamma against receptor binding domain S1/S2 protein (anti-RBD IgG) was quantified by ELISA [@Deisenhammer2021]. 
+Laboratory measurements beyond the detection limits were substituted with the respective detection limit value. 
 Mental stress was scored with the 4-item perceived stress scale (PSS-4) [@Cohen1983]. 
-Anxiety and depression signs were scored with the hospital anxiety and depression scale (HADS) including 7 items for anxiety and 7 items for depression [@Zigmond1983]. 
-Clinically relevant signs of anxiety or depression were identified with the cutoff of $\geq$ 8 points [@Bjelland2002; @Zigmond1983].
-
-In order to improve normality of some numeric study variables prior to linear modeling and statistical hypothesis testing with parametric tools, logarithm or square root transformations were applied (__Supplementary Table S1__)
+Clinically relevant symptoms of anxiety and depression were defined as $\geq$ 8 points in the hospital anxiety and depression scale (HADS) [@Bjelland2002; @Zigmond1983].
 
 ### INCOV cohort
 
-Plasma proteomes and metabolomes in the INCOV cohort were measured by proximity extension assay (Olink, Sweden) and ultra-high-performance liquid chromatography/tandem accurate mass spectrometry (Metabolon, USA) [@Su2022; @Su2020]. 
-Normalized, age- and sex-adjusted, log~2~-transformed plasma concentrations of metabolites and cytokines, and clinical information were extracted from [supplementary tables](https://data.mendeley.com/datasets/96v329bg7g/1) of the report by Su et al. [@Su2022]. 
-Metabolites implicated in systemic serotonin availability (serotonin, TRP), KYN pathway activity (KYN, quinolinate [QUIN]) and dopamine availability (PHE, TYR and dopamine 3-O-sulfate [DA sulfate]), cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) and age were analyzed (__Supplementary Table S3__).
+Plasma proteomes and metabolomes in the INCOV cohort were measured by proximity extension assay (Olink, Sweden) and liquid chromatography/tandem mass spectrometry (Metabolon, USA), respectively, and expressed as age- and sex-adjusted, log~2~-transformed concentrations [@Su2022; @Su2020]. 
+Markers of the serotonin (serotonin, TRP) [@Lukic2022], kynurenine (KYN, kynurenine/tryptophan ratio [KYN/TRP], QUIN) [@Badawy2017] and catecholamine pathway activity (PHE, TYR, phenylalanine/tyrosine ratio [PHE/TYR] and dopamine 3-O-sulfate [DA sulfate]) [@Meiser2013; @Goldstein1999; @Suominen2013], cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]), age, sex and BMI were analyzed (__Supplementary Table S3__).
 
-Plasma features were sampled in uninfected controls and SARS-CoV-2 individuals during 
-acute (median: `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['acute']`) and 
-sub-acute (median: `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['sub-acute']`) infection, and recovery (median: `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['recovery']` days after diagnosis of SARS-CoV-2 infection via PCR) (__Supplementary Table S3__). 
+Plasma samples were collected in during in acute and sub-acute infection, and recovery at median 
+`r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['acute']`, 
+`r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['sub-acute']`), 
+`r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['recovery']` days after diagnosis of SARS-CoV-2 infection via PCR, respectively (__Supplementary Table S4__). 
 
 ## Analysis endpoints
 
-Our analysis pursued two endpoints. 
-The first endpoint was to determine demographic, clinical, psychometric, inflammation- and SARS-CoV-2-related factors influencing plasma levels of serotonin and dopamine precursors and KYN pathway metabolites (TRP, KYN, KYN/TRP, PHE, TYR, PHE/TYR). 
-This endpoint was addressed by multi-parameter modeling in the SIMMUN cohort. 
-The second endpoint was to investigate how more direct readouts of systemic serotonin and dopamine availability, plasma serotonin [@Paul-Savoie2011; @Sun2020; @Tateishi2021; @Holck2019] and DA sulfate [@Meiser2013; @Hashizume1987; @Goldstein1999], are influenced by age, inflammatory cytokines, timepoint of the SARS-CoV-2 infection, neurotransmitter precursors (TRP, PHE, TYR) and KYN pathway products (KYN, QUIN). 
-This endpoint was addressed by multi-parameter robust linear modeling, time course modeling and correlation analysis in the INCOV cohort (__Figure \@ref(fig:fig-inclusion)__).
+The first endpoint was to determine demographic, clinical, psychometric, inflammation- and SARS-CoV-2-related factors influencing plasma markers of kynurenine and catecholamine pathway activity (TRP, KYN, KYN/TRP, PHE, TYR, PHE/TYR) by multi-parameter modeling in the SIMMUN cohort. 
+The second endpoint was to investigate how markers of systemic serotonin and dopamine availability (DA sulfate), are influenced by age, sex, body mass, inflammatory cytokines, timepoint of SARS-CoV-2 infection, neurotransmitter precursor amino acids (TRP, PHE, TYR) and kynurenine pathway metabolites (KYN, QUIN). 
+This endpoint was addressed by multi-parameter robust linear modeling, time course modeling and correlation analysis in the INCOV cohort (__Supplementary Figure S1__).
 
 ## Statistical analysis
 
 R version 4.2.3 was used for statistical analysis. 
 
 Numeric variables were presented as medians with interquartile ranges and ranges. 
-Categorical variables are presented as percentages and counts within the complete observation set. 
-Distribution normality and variance homogeneity was assessed by Shapiro-Wilk and Levene test, respectively. 
+Categorical variables are presented as percentages and counts. 
+Normality and variance homogeneity was assessed by Shapiro-Wilk and Levene test, respectively. 
 In the SIMMUN cohort, non-normally distributed numeric variables were logarithm- or square root-transformed prior to modeling and parametric tests (__Supplementary Table S1__). 
 Since most of the INCOV study variables were non-normally distributed, robust linear modeling and non-parametric testing were employed. 
-Since the tau-equivalence assumption investigated by factor analysis for the HADS scales was violated, consistency of psychometric tools was investigated by global McDonald's $\omega$ [@McDonald1999; @Bartlett1937; @Revelle2022]. 
+Consistency of psychometric tools was investigated by global McDonald's $\omega$ [@McDonald1999]. 
 Except for multi-parameter modeling, p values were corrected for multiple testing with the false discovery rate method [@Benjamini1995] separately for each analysis task. 
 Effects with p < 0.05 were considered significant.
 
-Correlation was assessed by Spearman's rank or Pearson test. 
-Significance of comparisons of numeric variables between two groups was determined by Mann-Whitney test with r effect size statistic or by two-tailed T test with Cohen's d effect size metric. 
-Comparisons of categorical variable distributions were evaluated by $\chi^2$ test with Cramer V effect size statistic. 
-Correlation was assessed by Pearson's or Spearman's rank test [@Cohen2013; @Kassambara2021]. 
+Significance was determined by Mann-Whitney test with r effect size, two-tailed T test with Cohen's d effect size statistic or $\chi^2$ test with Cramer's V effect size statistic. 
+Correlation was assessed by Pearson's or Spearman's rank test and visualized as bubble or force-directed network plots [@Csardi2006].
 
-In the SIMMUN cohort, effects of age, sex, body mass class, physical and psychiatric disorders, body mass class, smoking and alcohol consumption, inflammation markers (NEO, NLR), SARS-CoV-2 infection, anti-RBD IgG titer, depression and anxiety signs (HADS), mental stress (PSS-4) on TRP, KYN, KYN/TRP, PHE, TYR and PHE/TYR were assessed by multi-parameter linear regression with backward elimination. 
-Modeling responses and explanatory variables were subjected to normality-stabilizing transformations (__Supplementary Table S1__) and normalized. 
-Normality and homogeneity of model residuals were evaluated by Shapiro-Wilk and Levene test, respectively, and visual inspection (residuals versus fitted and quantile-quantile plots). 
-In the INCOV cohort, effects of age, cytokine markers of inflammation (IL6, IL10, TNF, IFNG), SARS-CoV-2 infection timepoint (acute, sub-acute, recovery versus uninfected control), neurotransmitter precursors (TRP, PHE, TYR) and KYN pathway products (QUIN, KYN) on plasma serotonin and DA sulfate were modeled by multi-parameter robust linear regression with the MM algorithm and Huber psi function [@Huber2011; @Ripley2022]. 
-Reproducibility and proper parameterization of the multi-parameter linear and robust models was investigated by RMSE and $R^2$ statistics in 10-fold cross-validation [@Kuhn2008]. 
-Significance of the model estimates was assessed by two-tailed T test. 
-
-Differences in cytokines and metabolites between SARS-CoV-2 infection timepoints in the INCOV collective were investigated by robust linear modeling (MM algorithm, Huber's psi function) with uninfected subset or acute infection serving as baselines. 
-
-Pairwise Spearman's correlation coefficients $\rho$ were calculated for cytokines and metabolites in the INCOV cohort. 
-The correlation matrices were subsequently scaled into the [0, 1] range and converted to undirected force directed graphs [@Csardi2006]. 
-The graphs were visualized as two-dimensional network plots with the node proximity determined by the $\rho$ value and distance-dependent repulsion, and edge color and width coding for the $\rho$ value and sign [@Briatte2021].
+Responses and explanatory variables were normalized prior to modeling. 
+In the SIMMUN cohort, effects of age, sex, body mass class, physical and psychiatric disorders, BMI, smoking and alcohol consumption, inflammation markers (NEO, NLR), SARS-CoV-2 infection, anti-RBD IgG titer, clinically relevant symptoms of depression and anxiety (HADS), mental stress (PSS-4) on pathway activity markers were assessed by multi-parameter linear regression with backward elimination. 
+In the INCOV cohort, effects of age, sex, BMI, cytokine markers of inflammation (IL6, IL10, TNF, IFNG), SARS-CoV-2 infection timepoint (uninfected, acute, sub-acute, recovery), serotonin and catecholamine pathway metabolites (TRP, PHE, TYR) and kynurenine pathway metabolites (QUIN, KYN) on plasma serotonin and DA sulfate were modeled by multi-parameter robust linear regression [@Huber2011]. 
+Explanatory performance, reproducibility and proper parameterization of the multi-parameter models was investigated by R^2^ and root mean square error (RMSE) in 10-fold cross-validation. 
+Differences in cytokines and metabolites between SARS-CoV-2 infection timepoints in the INCOV collective were investigated by robust linear modeling with uninfected subset or acute infection serving as baselines. 
 
 \newpage
 
 # Results
 
-## Characteristic of the study cohorts
+## Characteristic of the cohorts
 
-Herein, two cohorts of uninfected and SARS-CoV-2-positive individuals were analyzed. 
-Out of `r nrow(stigma$data)` individuals enrolled in the SIMMUN study, `r nrow(stigma$analysis_tbl)` participants with a complete study variable dataset were analyzed (__Figure \@ref(fig:fig-inclusion)__, __Supplementary Table S1__). 
-The excluded individuals were characterized by more frequent psychiatric disorders, depression and anxiety signs, elevated mental stress scoring and less frequent SARS-CoV-2 infections as compared with the analyzed participants (__Supplementary Table S2__). 
-SARS-CoV-2-positive individuals accounted for 
-`r my_percent(cohort$analysis_tbl$stigma, 'cov')['healthy']`% of the analyzed SIMMUN cohort. 
-None of the participants had received anti-SARS-CoV-2 vaccination prior to enrollment. 
-Males represented 
-`r my_percent(cohort$analysis_tbl$stigma, 'sex')['male']`% of the cohort and the median age was 
+Two cohorts of uninfected and SARS-CoV-2-infected individuals were analyzed (SIMMUN and INCOV). 
+Out of `r nrow(stigma$data)` individuals enrolled in the SIMMUN study, 
+`r nrow(stigma$analysis_tbl)` participants with complete study variables were analyzed (__Supplementary Figure S1__, __Supplementary Table S1__). 
+The excluded individuals were characterized by more frequent mental disorders and clinically relevant symptoms of depression and anxiety (HADS), higher scores of mental stress (PSS-4) and less frequent SARS-CoV-2 infections than the analyzed participants (__Supplementary Table S2__). 
+In the analyzed SIMMUN cohort, males represented 
+`r my_percent(cohort$analysis_tbl$stigma, 'sex')['male']`% and the median age was 
 `r median(cohort$analysis_tbl$stigma$age)` years. 
+The SIMMUN study data were recorded at median 139 days after the SARS-CoV-2 PCR. 
+None of the participants had received anti-SARS-CoV-2 vaccination prior to enrollment. 
+SARS-CoV-2-positive individuals accounted for 
+`r my_percent(cohort$analysis_tbl$stigma, 'cov')['SARS-CoV-2']`% of the analyzed participants. 
 The gender and age structure of the SARS-CoV-2-negative and -positive subsets was comparable. 
 In the entire SIMMUN cohort, 
-`r signif(sum(table(cohort$analysis_tbl$stigma$bmi_class)[c(2, 3)])/nrow(cohort$analysis_tbl$stigma), 2) * 100`% of participants were overweight or obese, the physical disorder rate was 
-`r my_percent(cohort$analysis_tbl$stigma, 'somatic_comorb')['yes']`%; these figures were comparable between SARS-CoV-2-negative and -positive individuals. 
-Psychiatric disorders affected 
+`r signif(sum(table(cohort$analysis_tbl$stigma$bmi_class)[c(2, 3)])/nrow(cohort$analysis_tbl$stigma), 2) * 100`% of participants were overweight or obese, and `r my_percent(cohort$analysis_tbl$stigma, 'somatic_comorb')['yes']`% reported a physical disorder; these figures were comparable between SARS-CoV-2-negative and -positive individuals. 
+Mental disorders diagnosed by a physician affected 
 `r my_percent(cohort$analysis_tbl$stigma, 'psych_comorb')['yes']`% of participants and were significantly more common in SARS-CoV-2-negative 
 (`r cohort$analysis_tbl$stigma %>% filter(cov == 'healthy') %>% my_percent('psych_comorb') %>% .['yes']`%) than in SARS-CoV-2-positive individuals 
 (`r cohort$analysis_tbl$stigma %>% filter(cov == 'SARS-CoV-2') %>% my_percent('psych_comorb') %>% .['yes']`%, 
 `r cohort$clin_test$stigma %>% filter(variable == 'psych_comorb') %>% .$significance`, 
 effect size: 
-`r cohort$clin_test$stigma %>% filter(variable == 'psych_comorb') %>% .$significance`). 
-Signs of depression and anxiety, and intensity of mental stress were gauged with the HADS depression, HADS anxiety and PSS-4 tools, respectively [@Zigmond1983; @Cohen1983]. 
-The psychometric tools displayed good-to-excellent internal consistency 
-($\omega$ = `r cons$omega_stats %>% filter(factor == 'g') %>% .$total %>% range %>% signif(2) %>% paste(collapse = ' - ')`) [@McDonald1999] (__Supplementary Figure S1__). 
-Clinically relevant anxiety signs (HADS $\geq$ 8) [@Bjelland2002; @Zigmond1983] were more frequent in the uninfected 
-(`r cohort$analysis_tbl$stigma %>% filter(cov == 'healthy') %>% my_percent('hads_anx_score') %>% .[2]`%) than in the SARS-CoV-2-positive subset 
+`r cohort$clin_test$stigma %>% filter(variable == 'psych_comorb') %>% .$eff_size`) (__Table \@ref(tab:tab-stigma-cohort)__). 
+The psychometric tools for assessment of perceived mental stress (PSS-4), depression and anxiety (HADS) displayed good-to-excellent internal consistency 
+($\omega$ = `r cons$omega_stats %>% filter(factor == 'g') %>% .$total %>% range %>% signif(2) %>% paste(collapse = ' - ')`) [@McDonald1999] (__Supplementary Figure S2__). 
+Clinically relevant symptoms of anxiety (HADS $\geq$ 8) were more frequent in SARS-CoV-2-negative
+(`r cohort$analysis_tbl$stigma %>% filter(cov == 'healthy') %>% my_percent('hads_anx_score') %>% .[2]`%) than in SARS-CoV-2-positive participants 
 (`r cohort$analysis_tbl$stigma %>% filter(cov == 'SARS-CoV-2') %>% my_percent('hads_anx_score') %>% .[2]`%, 
 `r cohort$clin_test$stigma %>% filter(variable == 'hads_anx_score') %>% .$significance`, 
 effect size: 
 `r cohort$clin_test$stigma %>% filter(variable == 'hads_anx_score') %>% .$eff_size`). 
-Depression signs were more common in SARS-CoV-2-negative 
+Clinically relevant symptoms of depression (HADS $\geq$ 8) were more common in SARS-CoV-2-negative 
 (`r cohort$analysis_tbl$stigma %>% filter(cov == 'healthy') %>% my_percent('hads_dpr_score') %>% .[2]`%) than in SARS-CoV-2-positive participants 
-(`r cohort$analysis_tbl$stigma %>% filter(cov == 'SARS-CoV-2') %>% my_percent('hads_dpr_score') %>% .[2]`%), yet this effect was no significant. 
+(`r cohort$analysis_tbl$stigma %>% filter(cov == 'SARS-CoV-2') %>% my_percent('hads_dpr_score') %>% .[2]`%), yet this effect was no statistically significant. 
 Scores of mental stress were comparable in both SARS-CoV-2 subsets 
 (negative: median `r cohort$analysis_tbl$stigma %>% filter(cov == 'healthy') %>% .$pss_stress_score %>% median`, 
 positive: median `r cohort$analysis_tbl$stigma %>% filter(cov == 'SARS-CoV-2') %>% .$pss_stress_score %>% median` points). 
-As expected, titer of antibodies against the S1/S2 SARS-CoV-2 protein (anti-RBD IgG) was significantly higher in the convalescent subset 
+As expected, titer of antibodies against the S1/S2 SARS-CoV-2 protein (anti-RBD IgG) was significantly higher in the SARS-CoV-2-positive subset 
 (median: `r cohort$analysis_tbl$stigma %>% filter(cov == 'SARS-CoV-2') %>% .$anti_rbd %>% median %>% signif(2)` AU) as compared with uninfected individuals 
 (median: `r cohort$analysis_tbl$stigma %>% filter(cov == 'healthy') %>% .$anti_rbd %>% median %>% signif(2)` AU, 
 `r cohort$clin_test$stigma %>% filter(variable == 'anti_rbd') %>% .$significance`, 
 effect size: `r cohort$clin_test$stigma %>% filter(variable == 'anti_rbd') %>% .$eff_size`). 
-In 73% of SARS-CoV-2-infected SIMMUN study participants, the infection was mild and ambulatory (__Table \@ref(tab:tab-stigma-cohort)__). 
+In 73% of SARS-CoV-2-infected SIMMUN study participants, the infection was mild and treated on an outpatient basis (__Table \@ref(tab:tab-stigma-cohort)__). 
 
 Out of 
-`r full_join(incov$proteome, incov$metabolome, by = 'patient_id') %>% filter(!duplicated(patient_id)) %>% nrow` individuals initially enrolled in the INCOV study [@Su2020; @Su2022], 
-`r length(unique(incov$complete_ids))` participants with `r length(incov$complete_ids)` samples with a complete study variable dataset were analyzed (__Figure \@ref(fig:fig-inclusion)__, __Supplementary Table S3 - S4__). 
+`r intersect(incov$proteome$patient_id, incov$metabolome$patient_id) %>% length` individuals initially enrolled in the INCOV study [@Su2022], 
+`r length(unique(incov$complete_ids))` participants with complete study variables providing 
+`r length(incov$complete_ids)` metabolome and proteome samples were analyzed (__Supplementary Figure S1__, __Supplementary Tables S3 - S4__). 
+In the analyzed INCOV cohort, the median age was 
+`r signif(median(cohort$analysis_tbl$incov$age), 2)` years and 
+`r my_percent(cohort$analysis_tbl$incov, 'sex')['male']`% of participants were male. 
 SARS-CoV-2-positive individuals comprised 
-`r my_percent(cohort$analysis_tbl$incov, 'cov')['SARS-CoV-2']`% of the analyzed INCOV collective. 
-Males constituted 
-`r my_percent(cohort$analysis_tbl$incov, 'sex')['male']`% of participants, the median age was 
-`r signif(median(cohort$analysis_tbl$incov$age), 2)` years. 
-SARS-CoV-2-positive participants 
-(median age: `r cohort$analysis_tbl$incov %>% filter(cov == 'SARS-CoV-2') %>% .$age %>% median %>% signif(2)` years) were significantly older than the uninfected subset 
-(median age: `r cohort$analysis_tbl$incov %>% filter(cov == 'healthy') %>% .$age %>% median %>% signif(2)` years, 
+`r my_percent(cohort$analysis_tbl$incov, 'cov')['SARS-CoV-2']`% of the cohort. 
+SARS-CoV-2-positive individuals 
+(median age: `r cohort$analysis_tbl$incov %>% filter(cov == 'SARS-CoV-2') %>% .$age %>% median %>% signif(2)` years) were significantly older than uninfected participants 
+(median age: `r cohort$analysis_tbl$incov %>% filter(cov == 'uninfected') %>% .$age %>% median %>% signif(2)` years, 
 `r cohort$clin_test$incov %>% filter(variable == 'age') %>% .$significance`, 
 effect size: `r cohort$clin_test$incov %>% filter(variable == 'age') %>% .$eff_size`). 
-Shares of overweight or obese individuals were higher among SARS-COV-2-positive 
+Percentages of overweight or obese individuals were higher among SARS-COV-2-positive 
 (`r cohort$analysis_tbl$incov %>% filter(cov == 'SARS-CoV-2') %>% my_percent('bmi_class') %>% .[c(2, 3)] %>% sum`%) 
 than SARS-CoV-2-negative participants 
-(`r cohort$analysis_tbl$incov %>% filter(cov == 'healthy') %>% my_percent('bmi_class') %>% .[c(2, 3)] %>% sum`%), yet this effect missed statistical significance. 
+(`r cohort$analysis_tbl$incov %>% filter(cov == 'uninfected') %>% my_percent('bmi_class') %>% .[c(2, 3)] %>% sum`%), this effect was not statistically significant. 
 Nearly all 
-(`r cohort$analysis_tbl$incov %>% filter(cov == 'SARS-CoV-2') %>% my_percent('severity') %>% .[c('moderate', 'severe', 'critical')] %>% sum`%) of SARS-CoV-2-positive INCOV individuals were hospitalized due to a moderately or critically severe infection (__Table \@ref(tab:tab-incov-cohort)__). 
+(`r cohort$analysis_tbl$incov %>% filter(cov == 'SARS-CoV-2') %>% my_percent('severity') %>% .[c('moderate', 'severe', 'critical')] %>% sum`%) of SARS-CoV-2-positive participants of the INCOV study experienced moderate-to-critically severe infections and were hospitalized during COVID-19 (__Table \@ref(tab:tab-incov-cohort)__). 
 
-As compared with the SIMMUN collective, the INCOV cohort was characterized by a significantly higher percentage of males (`r comp$test %>% filter(variable == 'sex') %>% .$significance`, 
+As compared with the SIMMUN cohort, the INCOV cohort had a significantly higher percentage of males (`r comp$test %>% filter(variable == 'sex') %>% .$significance`, 
 effect size: `r comp$test %>% filter(variable == 'sex') %>% .$eff_size`), 
-more advanced age (`r comp$test %>% filter(variable == 'age') %>% .$significance`, 
+higher age (`r comp$test %>% filter(variable == 'age') %>% .$significance`, 
 effect size: `r comp$test %>% filter(variable == 'age') %>% .$significance`), 
-elevated rates of overweight or obesity (`r comp$test %>% filter(variable == 'bmi_class') %>% .$significance`, 
+higher rates of overweight or obese participants (`r comp$test %>% filter(variable == 'bmi_class') %>% .$significance`, 
 effect size: `r comp$test %>% filter(variable == 'bmi_class') %>% .$eff_size`), 
-higher share of SARS-CoV-2 cases (`r comp$test %>% filter(variable == 'cov') %>% .$significance`, 
-effect size: `r comp$test %>% filter(variable == 'cov') %>% .$eff_size`) and 
+more frequent SARS-CoV-2 infections (`r comp$test %>% filter(variable == 'cov') %>% .$significance`, 
+effect size: `r comp$test %>% filter(variable == 'cov') %>% .$eff_size`), and 
 higher hospitalization rates (`r comp$test %>% filter(variable == 'severity') %>% .$significance`, 
 effect size: `r comp$test %>% filter(variable == 'severity') %>% .$eff_size`) (__Supplementary Table S5__).
 
-## Inflammation, SARS-CoV-2 infection, age, mental stress and depression influence systemic levels of neutrotransmitter precursors and kynurenine pathway activity
+## Inflammation, SARS-CoV-2 infection, age, mental stress and depression influence systemic activity of the kynurenine pathway
 
-We employed the SIMMUN dataset in an initial search for predictors of systemic neurotransmitter availability. 
-As markers of serotonin turnover, we modeled plasma levels of the serotonin precursor TRP and readouts of the competitor KYN pathway, KYN and KYN/TRP [@Capuron2011; @Lukic2022; @Badawy2017]. 
-Plasma concentrations of PHE, TYR and PHE/TYR were investigated as markers of dopamine availability [@Meiser2013; @Neurauter2008; @Geisler2013]. 
-The candidate explanatory variables were age, sex, body mass, physical and psychiatric disorders, alcohol and tobacco consumption, SARS-CoV-2 infection, anti-SARS-CoV-2 antibody titer, NEO and NLR as inflammatory markers, mental stress, depression and anxiety signs (__Supplementary Table S1__). 
-All those variables were recorded at a single timepoint, median 139 days after the SARS-CoV-2 test (interquartile range: 119 - 157).
+In the SIMMUN dataset, we initially searched for predictors of activity of the kynurenine and catecholamine pathways. 
+TRP, KYN and KYN/TRP served as markers of the kynurenine pathway [@Badawy2017], and PHE, TYR and PHE/TYR were investigated as markers of the catecholamine pathway activity [@Meiser2013]. 
+The candidate explanatory variables were age, sex, BMI, the presence of physical and mental disorders, smoking, alcohol consumption, SARS-CoV-2 infection, anti-SARS-CoV-2 antibody titer, NEO and NLR as inflammatory markers, perceived mental stress, and symptoms of depression and anxiety (__Supplementary Table S1__).  
 
-Full multi-parameter linear models were optimized by backwards elimination of non-significant terms [@Ripley2022] (__Supplementary Table S6__). 
-Meaningful models could be established for TRP, KYN, KYN/TRP, TYR and PHE/TYR. 
-The PHE model had a negligible explanatory performance, proved non-significant as compared with the intercept-only null model and was hence not further analyzed. 
-The remaining models were characterized by good reproducibility and proper parameterization as indicated by comparable fit errors in the genuine dataset and cross-validation. 
-The KYN and KYN/TRP ratio models had the best explanatory performance measured by cross-validated $R^2$ of 
+Meaningful multi-parameter models optimized by backward elimination could be established for TRP, KYN, KYN/TRP, TYR and PHE/TYR. The PHE model had a negligible explanatory performance, proved non-significant as compared with the intercept-only null model and was hence not further analyzed  (__Supplementary Table S6__). 
+The remaining models were characterized by good reproducibility and proper parameterization as indicated by comparable fit errors (RMSE) in the training dataset and cross-validation. 
+The KYN and KYN/TRP ratio models had the best, moderate-to-substantial explanatory performance measured by cross-validated R^2^ of 
 `r mod_eli$cv_stats %>% filter(data_type == 'cv', statistic == 'rsq', response == 'kyn') %>% .$estimate %>% signif(2)` and 
 `r mod_eli$cv_stats %>% filter(data_type == 'cv', statistic == 'rsq', response == 'kyn_trp') %>% .$estimate %>% signif(2)`, respectively. 
-The TRP, TYR and PHE/TYR models could explain between 
-`r (mod_eli$cv_stats %>% filter(data_type == 'cv', statistic == 'rsq', response %in% c('trp', 'tyr', 'phe_tyr')) %>% .$estimate %>% range %>% signif(2))[1] * 100`% and 
-`r (mod_eli$cv_stats %>% filter(data_type == 'cv', statistic == 'rsq', response %in% c('trp', 'tyr', 'phe_tyr')) %>% .$estimate %>% range %>% signif(2))[2] * 100`% of the cross-validated response variances ($R^2$, __Supplementary Figure S2__).
+The cross-validated R^2^ metric values for the TRP, TYR and PHE/TYR models ranged from 
+`r (mod_eli$cv_stats %>% filter(data_type == 'cv', statistic == 'rsq', response %in% c('trp', 'tyr', 'phe_tyr')) %>% .$estimate %>% range %>% signif(2))[1]`% to 
+`r (mod_eli$cv_stats %>% filter(data_type == 'cv', statistic == 'rsq', response %in% c('trp', 'tyr', 'phe_tyr')) %>% .$estimate %>% range %>% signif(2))[2]` indicative of weak-to-moderate explanatory value (__Supplementary Figure S3__).
 
-The inflammatory marker NEO 
+Regarding the kynurenine pathway, the inflammatory marker NEO 
 ($\beta$ = `r my_beta(mod_eli$inference$trp, variable = 'log_neo')`) 
-and depression signs 
+and clinically relevant depression symptoms 
 (HADS $\geq$ 8, $\beta$ = `r my_beta(mod_eli$inference$trp, variable = 'hads_dpr_score')`) were independently associated with reduced plasma TRP. 
-Increased KYN and KYN/TRP were significantly associated with 
+KYN and KYN/TRP were significantly associated with 
 SARS-CoV-2 infection (KYN: $\beta$ = `r my_beta(mod_eli$inference$kyn, variable = 'infection')`, 
 KYN/TRP: $\beta$ = `r my_beta(mod_eli$inference$kyn_trp, variable = 'infection')`), 
-elevated NEO (KYN: $\beta$ = `r my_beta(mod_eli$inference$kyn, variable = 'log_neo')`, 
+higher NEO (KYN: $\beta$ = `r my_beta(mod_eli$inference$kyn, variable = 'log_neo')`, 
 KYN/TRP: $\beta$ = `r my_beta(mod_eli$inference$kyn_trp, variable = 'log_neo')`) and 
 age (KYN: $\beta$ = `r my_beta(mod_eli$inference$kyn, variable = 'age')`, 
 KYN/TRP: $\beta$ = `r my_beta(mod_eli$inference$kyn_trp, variable = 'age')`). 
-Additionally, high mental stress measured by PSS-4 was linked to increased KYN/TRP 
+Additionally, high perceived mental stress (PSS-4) was identified as a significant predictor of increased KYN/TRP 
 ($\beta$ = `r my_beta(mod_eli$inference$kyn_trp, variable = 'pss_stress_score')`).  
-Low NLR, in turn, was related to increased KYN (`r my_beta(mod_eli$inference$kyn, variable = 'log_nlr')`) (__Figure \@ref(fig:fig-modeling)A__). 
-Plasma TYR concentrations were negatively associated with the inflammatory marker NEO 
-($\beta$ = `r my_beta(mod_eli$inference$tyr, variable = 'log_neo')`) and rose significantly with age 
+High KYN concentrations were related to low NLR 
+($\beta$ = `r my_beta(mod_eli$inference$kyn, variable = 'log_nlr')`) (__Figure \@ref(fig:fig-modeling)A__). 
+
+Concerning the catecholamine pathway, plasma TYR concentrations were negatively associated with NEO 
+($\beta$ = `r my_beta(mod_eli$inference$tyr, variable = 'log_neo')`) and positively with age 
 ($\beta$ = `r my_beta(mod_eli$inference$tyr, variable = 'age')`). 
 SARS-CoV infection ($\beta$ = `r my_beta(mod_eli$inference$phe_tyr, variable = 'infection')`) 
-and age ($\beta$ = `r my_beta(mod_eli$inference$phe_tyr, variable = 'age')`) were linked to lower PHE/TYR (__Figure \@ref(fig:fig-modeling)B__).
+and age ($\beta$ = `r my_beta(mod_eli$inference$phe_tyr, variable = 'age')`) were significant predictors of lower PHE/TYR (__Figure \@ref(fig:fig-modeling)B__).
 
-By univariable analysis, we could corroborate significant, positive, moderate-to-strong correlations of age and NEO with increased KYN and higher KYN/TRP in the SIMMUN dataset.
-Participant's age was paralleled by elevated circulating TYR and lowered PHE/TYR in univariable correlation analysis (__Supplementary Figure S3 - S4__, __Supplementary Tables S7 - S8__).
+By analysis of single significant predictors identified by modeling, we could corroborate significant, positive, moderate-to-strong correlations of age and NEO with KYN and KYN/TRP in the SIMMUN cohort. 
+This analysis revealed also a significant positive correlation of age with TYR and a significant negative correlation of age with PHE/TYR (__Supplementary Figure S4 - S5__, __Supplementary Tables S7 - S8__).
 
-## Inflammatory cytokines, SARS-CoV-2 infection course, age and availability of biosynthesis precursors regulate systemic serotonin and dopamine turnover
+## Inflammatory cytokines, SARS-CoV-2 infection course, age and availability of biosynthesis precursors regulate systemic serotonin and dopamine levels
 
-Next, we sought to validate the effects of inflammation, SARS-CoV-2 infection and age on systemic serotonin and dopamine availability in the longitudinal INCOV cohort [@Su2022]. 
-The outcome variables in such analyses were plasma levels of serotonin [@Paul-Savoie2011; @Sun2020; @Tateishi2021; @Holck2019; @Lukic2022; @Moncrieff2022], and DA sulfate, a the main circulating dopamine catabolite [@Meiser2013; @Hashizume1987; @Goldstein1999]. 
-The explanatory variables were age, infection timepoint, major cytokines induced by inflammatory signaling (IL6, IL10, TNF, IFNG), the serotonin precursor TRP, KYN pathway metabolites (KYN, QUIN) [@Capuron2011; @Lukic2022; @Badawy2017], and dopamine precursors (PHE, TYR) [@Meiser2013; @Neurauter2008] (__Supplementary Table S3__). 
-Metabolites and cytokines were sampled in SARS-CoV-2 INCOV patients at three timepoints of infection: 
-acute (median `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['acute']`), 
-sub-acute (median `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['sub-acute']`) and 
-recovery (median `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['recovery']` days after infection diagnosis via PCR) (__Supplementary Table S4__).
+Next, we investigated factors affecting plasma levels of serotonin [@Lukic2022] and a major circulating catabolite of dopamine, DA sulfate [@Meiser2013; @Goldstein1999], as direct markers of the serotonin and catecholamine pathway activity, respectively. 
+This analysis was done in the INCOV cohort [@Su2022] with age, sex, BMI, cytokines markers of inflammation (IL6, IL10, TNF, IFNG), timepoint of SARS-CoV-2 infection, concentrations of serotonin and catecholamine pathway metabolites (TRP, PHE, TYR), and kynurenine pathway metabolite levels (KYN, QUIN) as candidate explanatory variables (__Supplementary Table S3__). 
+Metabolites and cytokines were sampled in SARS-CoV-2-positive participants during acute and sub-acute infection, and recovery, at median 
+`r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['acute']`, 
+`r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['sub-acute']` and 
+`r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['recovery']` days after infection diagnosis via PCR, respectively (__Supplementary Table S4__).
 
-Multi-parameter robust regression models [@Huber2011; @Ripley2022] could explain 
-`r (incov_neuro$cv_stats %>% filter(data_type == 'cv', response == 'serotonin', statistic == 'rsq') %>% .$estimate %>% signif(2)) * 100`% and 
-`r (incov_neuro$cv_stats %>% filter(data_type == 'cv', response == 'dopamine', statistic == 'rsq') %>% .$estimate %>% signif(2)) * 100`% of cross-validated variance ($R^2$) of serotonin and DA sulfate, respectively. 
-Comparable fit errors in the training dataset and cross-validation indicated good reproducibility and proper parameterization of the models (__Figure \@ref(fig:fig-incov-neuro)A__). 
+The multi-parameter robust regression model [@Huber2011] for plasma serotonin was characterized by moderate explanatory performance 
+(cross-validated R^2^ = `r incov_neuro$cv_stats %>% filter(data_type == 'cv', response == 'serotonin', statistic == 'rsq') %>% .$estimate %>% signif(2)`). 
+The explanatory performance of the DA sulfate model was weak 
+(cross-validated R^2^ = `r incov_neuro$cv_stats %>% filter(data_type == 'cv', response == 'dopamine', statistic == 'rsq') %>% .$estimate %>% signif(2)`). 
+Comparable fit errors (RMSE) in the training dataset and cross-validation indicated good reproducibility and proper parameterization of the models (__Figure \@ref(fig:fig-incov-neuro)A__).
+
 In the INCOV collective, 
-`r incov_neuro$inference$serotonin %>% filter(variable != 'Intercept', p_value < 0.05) %>% filter(!duplicated(variable)) %>% nrow` predictors of plasma serotonin were identified. 
-Age ($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'age')`) and 
+`r incov_neuro$inference$serotonin %>% filter(variable != 'Intercept', p_value < 0.05) %>% filter(!duplicated(variable)) %>% nrow %>% int_to_text` significant predictors of plasma serotonin were identified. 
+Age ($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'age')`), 
+male sex ($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'sex', 'male')`) and 
 the inflammatory cytokine 
 IL6 ($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'IL6_INF')`) were associated with significantly lower serotonin levels, whereas 
-TRP ($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'tryptophan')`) and the SARS-CoV-2 infection recovery 
-($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'timepoint', 'recovery')`) were predictors of increased plasma serotonin. 
-Infection recovery ($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'timepoint', 'recovery')`) 
-and TNF ($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'TNF_INF')`) predicted higher DA sulfate levels, and IFNG was associated with significantly decreased DA sulfate concentrations 
-($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'IFNG_INF')`) (__Figure \@ref(fig:fig-incov-neuro)__, __Supplementary Table S9__). 
+TRP ($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'tryptophan')`) and recovery from SARS-CoV-2 infection 
+($\beta$ = `r my_beta(incov_neuro$inference$serotonin, 'timepoint', 'recovery')` versus uninfected controls) were predictors of higher plasma serotonin. 
+Significantly higher DA sulfate levels were identified for recovery from SARS-CoV-2 infection 
+($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'timepoint', 'recovery')` versus uninfected control) 
+and high TNF concentrations ($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'TNF_INF')`). 
+In turn, obesity ($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'bmi_class', 'obesity')` versus normal weight) and IFNG ($\beta$ = `r my_beta(incov_neuro$inference$dopamine, 'IFNG_INF')`) were independently associated with significantly decreased DA sulfate levels (__Figure \@ref(fig:fig-incov-neuro)B__, __Supplementary Table S9__). 
 
-This association of serotonin and DA sulfate levels wuth inflammation was confirmed by time course modeling. 
+The association of serotonin and DA sulfate levels with inflammation was confirmed by time course modeling (__Figure \@ref(fig:fig-time-ourse)__, __Supplementary Tables S10 - S11__). 
 The maximum plasma concentrations of inflammation markers IL6, IL10, TNF and IFNG were observed during acute infection. 
-They were paralleled by a significant decrease of the serotonin precursor 
-TRP ($\beta$ = `r my_beta(time_rlm$inference$uninfected$tryptophan, variables = 'timepoint', levels = 'acute')`) and upregulated TRP catabolism products 
+They were paralleled by changes in metabolites of the serotonin and kynurenine pathways with a significantly decreased 
+TRP ($\beta$ = `r my_beta(time_rlm$inference$uninfected$tryptophan, variables = 'timepoint', levels = 'acute')`), increased 
 KYN ($\beta$ = `r my_beta(time_rlm$inference$uninfected$kynurenine, variables = 'timepoint', levels = 'acute')`) and 
-QUIN ($\beta$ = `r my_beta(time_rlm$inference$uninfected$quinolinate, variables = 'timepoint', levels = 'acute')`) as compared with uninfected individuals. 
-The inflammatory milieu of acute infection was associated with a significant rise in 
-PHE ($\beta$ = `r my_beta(time_rlm$inference$uninfected$phenylalanine, variables = 'timepoint', levels = 'acute')` versus uninfected), suggestive of an inhibited PHE - TYR conversion [@Neurauter2008]. 
+elevated QUIN ($\beta$ = `r my_beta(time_rlm$inference$uninfected$quinolinate, variables = 'timepoint', levels = 'acute')`) during acute infection as compared with uninfected individuals.
+The inflammatory milieu of acute infection was also associated with significantly increased levels of the catecholamine pathway substrate PHE ($\beta$ = `r my_beta(time_rlm$inference$uninfected$phenylalanine, variables = 'timepoint', levels = 'acute')` versus uninfected controls). 
 Resolution of systemic inflammation during sub-acute SARS-CoV-2 infection and 
 recovery was reflected by decreasing plasma levels of IL6, IL10, TNF and INFG as compared with acute disease. 
-The inflammation resolution was paralleled by decreased 
+This was paralleled by decreasing levels of 
 KYN (sub-acute: $\beta$ = `r my_beta(time_rlm$inference$acute$kynurenine, 'timepoint', 'sub-acute')`, 
 recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$kynurenine, 'timepoint', 'recovery')`) and 
 QUIN (sub-acute: $\beta$ = `r my_beta(time_rlm$inference$acute$quinolinate, 'timepoint', 'sub-acute')`, 
-recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$quinolinate, 'timepoint', 'recovery')`), paralleled by elevated 
+recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$quinolinate, 'timepoint', 'recovery')`), and increasing 
 TRP (sub-acute: $\beta$ = `r my_beta(time_rlm$inference$acute$tryptophan, 'timepoint', 'sub-acute')`, 
 recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$tryptophan, 'timepoint', 'recovery')`) and 
-serotonin (sub-acute: `r my_beta(time_rlm$inference$acute$serotonin, 'timepoint', 'sub-acute')`, 
+serotonin levels (sub-acute: `r my_beta(time_rlm$inference$acute$serotonin, 'timepoint', 'sub-acute')`, 
 recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$serotonin, 'timepoint', 'recovery')`) as compared with acute SARS-CoV-2 infection. 
-Similarly, infection recovery was associated with significantly decreased 
-PHE (recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$phenylalanine, 'timepoint', 'recovery')`) and elevated 
-DA sulfate (recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$dopamine.3.O.sulfate, 'timepoint', 'recovery')`) as compared with acute infection. 
+Similarly, infection recovery was associated with significantly decreasing 
+PHE (sub-acute: $\beta$ = `r my_beta(time_rlm$inference$acute$phenylalanine, 'timepoint', 'sub-acute')`, 
+recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$phenylalanine, 'timepoint', 'recovery')`) and elevated 
+DA sulfate (sub-acute: $\beta$ = `r my_beta(time_rlm$inference$acute$dopamine.3.O.sulfate, 'timepoint', 'sub-acute')`, 
+recovery: $\beta$ = `r my_beta(time_rlm$inference$acute$dopamine.3.O.sulfate, 'timepoint', 'recovery')`) as compared with acute infection. 
 
-In correlation analysis, the serotonin precursor TRP was negatively associated with all investigated cytokines during 
+In correlation analysis of inflammation-associated cytokines and metabolites (__Figure \@ref(fig:fig-incov-corr)A__, __Supplementary Figure S6__), 
+TRP  was negatively associated with all investigated cytokines during 
 acute ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'tryptophan', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`) and 
-sub-acute infection ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'tryptophan', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`). 
+sub-acute infection ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'tryptophan', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`) with weak-to-moderate and moderate-to-large effect size. 
 Plasma serotonin levels correlated negatively with IL6 concentrations during acute infection 
-($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'serotonin', 'IL6_INF')`) and was negatively associated with IL6, IL10, TNF and IFNG in sub-acute infection 
-($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'serotonin', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`). 
-By contrast, the TRP catabolites 
-KYN (acute, $\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'kynurenine', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`; 
+($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'serotonin', 'IL6_INF')`, effect size: weak) and correlated negatively with IL6, IL10, TNF and IFNG in sub-acute infection 
+($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'serotonin', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`, effect size: weak-to-moderate). 
+By contrast, KYN (acute, $\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'kynurenine', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`; 
 sub-acute. $\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'kynurenine', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`) and 
 QUIN (acute, $\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'quinolinate', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`; 
-sub-acute, $\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'quinolinate', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`) correlated positively with circulating IL6, IL10, TNF and IFNG. 
+sub-acute, $\rho$: `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'quinolinate', c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF')) %>% range %>% paste(collapse = ' - ')`) correlated positively with circulating IL6, IL10, TNF and IFNG with a moderate-to-large strength.  
 Serotonin levels correlated with TRP during 
 acute ($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['serotonin.acute']]), 'serotonin', 'tryptophan')`) and 
-sub-acute infection ($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'serotonin', 'tryptophan')`) with weak and moderate effect size, respectively. 
-This may indicate that systemic availability of tryptophan may be particularly crucial for serotonin synthesis at the peak of the infection-related inflammation (__Figure \@ref(fig:fig-incov-corr)A__, __Supplementary Figure S5__).
-Concerning the dopamine availability readouts, positive correlations of PHE with the cytokine markers of inflammation IL6, IL10 and TNF were observed in acute infection ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['dopamine.acute']]), 'phenylalanine', c('IL6_INF', 'IL10_INF', 'TNF_INF')) %>% range %>% paste(collapse = ' - ')`). 
-PHE was positively associated with IL10 in sub-acute SARS-CoV-2 infection 
+sub-acute infection ($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['serotonin.sub-acute']]), 'serotonin', 'tryptophan')`) with weak and moderate effect size, respectively.
+
+Concerning the catecholamine pathway metabolites (__Figure \@ref(fig:fig-incov-corr)B__, __Supplementary Figure S6__), positive weak-to-moderate correlations of PHE with IL6, IL10 and TNF were observed in acute infection ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['dopamine.acute']]), 'phenylalanine', c('IL6_INF', 'IL10_INF', 'TNF_INF')) %>% range %>% paste(collapse = ' - ')`). 
+PHE was weakly positively associated with IL10 in sub-acute SARS-CoV-2 infection 
 ($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['dopamine.sub-acute']]), 'phenylalanine', 'IL10_INF')`). 
-TYR plasma concentrations correlated in turn negatively with TNF and IFNG during acute 
+In turn, TYR plasma concentrations correlated negatively with TNF and IFNG during acute 
 ($\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['dopamine.acute']]), 'tyrosine', c('TNF_INF', 'IFNG_INF'))[1]`) and 
-sub-acute infection ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['dopamine.sub-acute']]), 'tyrosine', c('TNF_INF', 'IFNG_INF')) %>% range() %>% paste(collapse = ' - ')`). 
-DA sulfate was negatively associated with IFNG and IL6 in acute 
+sub-acute infection ($\rho$: `r my_rho(t(incov_mds$analysis_tbl[['dopamine.sub-acute']]), 'tyrosine', c('TNF_INF', 'IFNG_INF')) %>% range() %>% paste(collapse = ' - ')`) with weak effect size. 
+DA sulfate correlated negatively with IFNG and IL6 in acute 
 (IFNG, $\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['dopamine.acute']]), 'dopamine.3.O.sulfate', 'IFNG_INF')`) and sub-acute infection 
-(IL6, $\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['dopamine.sub-acute']]), 'dopamine.3.O.sulfate', 'IL6_INF')`), respectively (__Figure \@ref(fig:fig-incov-corr)B__, __Supplementary Figure S5__).
+(IL6, $\rho$ = `r my_rho(t(incov_mds$analysis_tbl[['dopamine.sub-acute']]), 'dopamine.3.O.sulfate', 'IL6_INF')`), respectively, with weak effect size.
 
 \newpage
 
 # Discussion
 
-Herein, we explored effects of demographic, clinical, psychometric, infection-, inflammation- and SARS-CoV-2-related factors on systemic availability of serotonin and dopamine in SARS-CoV-2 infection. 
-Our results underline the pivotal role of SARS-CoV-2-dependent inflammation in systemic neurotransmitter metabolism. 
-Furthermore, they put forward plasma TRP levels as a one of limiting factors for systemic serotonin biosynthesis during SARS-CoV-2 infection. 
-Age, mental stress and depression were proposed as infection-independent factors contributing to activity of the KYN pathway, lowered TRP and, consequently, reduced serotonin formation. 
-Our data suggest similar inhibitory effects of inflammation and age on PHE - TYR conversion, which is the initial step of dopamine formation. 
+## Result summary
 
-Two discrepancies of our results need a more thorough discussion. 
-First, in the SIMMUN cohort, the inflammatory marker NEO was associated with higher plasma levels of KYN [@Capuron2011]. 
-Unexpectedly, another inflammatory variable, NLR could be linked to lower KYN. 
-This may be explained e.g. by sustained suppression of neutrophil counts reported for up to 1 year after infection [@Lin2022]. 
-Second, effects of inflammatory markers on neurotransmitter-associated metabolites were stronger in the INCOV than in the SIMMUN cohort. 
-This phenomenon can be traced back to the more severe infection in INCOV study participants.
+In two separate cohorts, we investigated factors affecting the key metabolic pathways determining systemic availability of serotonin and dopamine in SARS-CoV-2 infection. 
+Our analysis underlines the pivotal role of SARS-CoV-2-dependent and -independent inflammation on the serotonin and kynurenine pathway activity. 
+In particular, levels of the kynurenine pathway markers, KYN, KYN/TRP and QUIN, were higher, whereas concentration of the serotonin precursor TRP was lower, in the presence of inflammation reflected by elevated NEO or IL6. 
+This observation and the significant association of serotonin with TRP levels in the INCOV cohort suggest collectively that depletion of TRP via highly active kynurenine pathway can limit systemic serotonin availability during SARS-CoV-2 infection [@Badawy2017]. 
+Age, male sex, mental stress and depression were proposed as infection-independent predictors of high kynurenine pathway activity, lowered TRP and, consequently, reduced serotonin formation. 
+Our data suggest similar inhibitory effects of inflammation on the first step of the catecholamine pathway, PHE - TYR conversion, and a reduced systemic dopamine availability reflected by lowered circulating DA sulfate [@Meiser2013]. 
 
-Mechanistically, multiple inflammatory cytokines such as type I and type II interferon, TNF or IL6, identified here as a predictor of plasma serotonin in the INCOV cohort, signal via JAK/STAT or NK-$\kappa$B pathways, which in turn activate transcription of the _IDO1_ gene [@Robinson2003; @Dai1990; @Litzenburger2014; @Badawy2017]. 
-The IDO1 protein, together with inflammation-independent enzyme forms, TDO and IDO2, catalyze the first step of the KYN pathway, which catabolizes >90% TRP in the body [@Badawy2017; @Lukic2022; @Sathyasaikumar2022]. 
-As such, conversion of the serotonin precursor TRP to KYN and subsequent breakdown to downstream KYN pathway products such as 3-hydroxykynurenine, 3-hydroxyanthanilic acid, QUIN or kynurenic acid is believed to limit systemic serotonin production [@Badawy2017; @Lukic2022]. 
-Additionally, such KYN pathway intermediates were ascribed standalone activity in neuronal signaling, e.g. by interfering with glutamatergic NMDA receptors [@Brown2021; @Schwarcz2012; @Vancassel2018]. 
-Elevated KYN and KYN pathway products were reported for multiple inflammatory conditions [@Badawy2017]. 
-In COVID-19, activity of the KYN pathway was found to correlate positively with inflammatory markers [@Dewulf2022; @Saito2022; @Santiago-Mujika2022], disease severity [@Dewulf2022; @Saito2022; @Lionetto2021] and was implicated in persistent symptom presence [@Bizjak2022; @Gietl2023; @Matits2023; @Cysique2022] 
-Interestingly, our INCOV data demonstrating the positive association of serotonin and TRP levels suggest the KYN pathway activity may especially efficiently compete for TRP with systemic serotonin synthesis in the highly inflammatory milieu of acute and sub-acute COVID-19. 
-Increasing TRP and serotonin in infection recovery in INCOV study participants suggest re-routing of the from IDO-mediated catabolism to the serotonin biosynthesis [@Capuron2011; @Lukic2022; @Badawy2017]. 
-The results of multi-parameter modeling in the SIMMUN cohort demonstrate an additional, inflammation-independent effect of SARS-CoV-2 infection on KYN and KYN/TRP. 
-While its mechanism remains obscure, an analogical sustained upregulation of KYN in absence of the inflammatory marker C-reactive protein was described by Bizjak et al. in long-term COVID-19 recovery [@Bizjak2022]. 
+Few discrepancies need a more thorough discussion. 
+First, explanatory performance of analyses of the serotonin and kynurenine pathway activity measured by R^2^ and correlation coefficients were generally higher than explanatory values of the catecholamine pathway analyses. 
+This indicates that the predictors identified by our analysis, inflammation, SARS-CoV-2-positivity and infection timepoint impact the TRP metabolic pathways to a larger degree than catecholamine metabolism, in line with a metabolomic study in COVID-19 individuals [@Thomas2020]. 
+Second, effects of inflammation on markers of the kynurenine and catecholamine pathway activity were stronger in the INCOV than in the SIMMUN cohort, which may reflect more severe infection in INCOV study participants. 
+Third, in the SIMMUN cohort, the inflammatory marker NLR could be unexpectedly linked to lower KYN, which  may be explained by a sustained low-grade neutropenia reported for up to 1 year after COVID-19 [@Lin2022]. 
 
-Tetrahydrobiopterin (BH4) is a co-factor of PAH, the enzyme catalyzing the PHE - TYR conversion, and of TH, catalyzing the TYR - L-DOPA (L-3,4-dihydroxyphenylalanine) conversion [@Geisler2013; @Fanet2021]. 
-Importantly, BH4 serves also as a co-factor of TPH, which converts TRP to 5-hydroxytryptophan, an intermediate in serotonin synthesis from TRP [@Fanet2021; @Meiser2013]. 
-BH4 poses, apart from IDO1, another junction between neurotransmitter metabolism and inflammation [@Geisler2013; @Fanet2021; @Werner1990; @Werner-Felmayer1993; @Meiser2013]. 
-Activity of GTP cyclohydrolase I, the enzyme catalyzing the rate limiting step of the BH4 synthesis is strongly stimulated by IFNG and other inflammatory stimuli [@Fanet2021; @Werner1990; @Werner-Felmayer1993]. 
-However, during inflammation, BH4 is oxidized to the inactive derivative dihydrobiopterin and consumed during nitric oxide formation by the BH4-dependent nitric oxide synthase, which restricts BH4 from neurotransmitter synthesis [@Geisler2013; @Fanet2021; @Vancassel2018; @Huber1984; @Hufner2019; @Neurauter2008]. 
-Furthermore, upon high activity of GTP cyclohydrolase I, NEO, a side product of BH4 biosynthesis exploited as an inflammation marker in the SIMMUN cohort, is secreted by myeloid leukocytes [@Geisler2013; @Fanet2021; @Vancassel2018; @Huber1984]. 
-In line with a previous report [@Luporini2021], we could demonstrate an increase in circulating PHE in SARS-CoV-2 infection and associate lowered TYR with NEO. 
-Additionally, we observed negative correlations of plasma levels of the dopamine derivative DA sulfate [@Meiser2013; @Goldstein1999] and TYR with the canonical GTP cyclohydrolase I and neopterin inducer, IFNG. 
-Collectively, these phenomena support the model of inflammatory BH4 deficiency culminating at inefficient PHE - TYR conversion, hyperphenylalaninemia and impaired catecholamine biosynthesis during acute SARS-CoV-2 infection. 
-By contrast, the rise in DA sulfate during infection recovery in the INCOV cohort and the significantly lower PHE/TYR in SARS-CoV-2 infection convalescents in the SIMMUN collective may indicate a restored BH4 homeostasis leading to an efficient PHE - TYR conversion, dopamine synthesis and subsequent dopamine sulfonylation [@Meiser2013; @Hashizume1987; @Neurauter2008; @Goldstein1999; @Geisler2013].
+## Effects of inflammation and infection on the serotonin and kynurenine pathways, and systemic levels of serotonin
 
-Rising activity of the KYN pathway with individual's age was evident in both the SIMMUN and INCOV cohort data. 
-This phenomenon was attributed to 'inflammaging', a chronic low-grade inflammation observed in elderly [@Capuron2011; @Sorgdrager2019; @Valdiglesias2018]. 
-Our multi-parameter modeling results suggest, that the lowered TRP and elevated KYN and KYN/TRP in older SIMMUN study participants, and plasma serotonin levels decreasing with age of the INCOV cohort are at least partly independent of inflammatory marker levels. 
-This may implicate e.g. increased KYN formation by inflammation-independent IDO2 and TDO in elderly participants. 
-This fits well to the data of Martilla and colleagues, who describe similar expression of _IDO1_ in immune cells from young and elderly individuals [@Marttila2011]. 
-Contrary to the expected age-related suppression of catecholamine synthesis [@Peters2006; @Sorgdrager2019], we observed 
+IDO1, together with TDO and IDO2, catalyzes the first reaction of the kynurenine pathway, the TRP - KYN conversion, which catabolizes >90% of TRP and may limit serotonin availability [@Badawy2017; @Lukic2022]. 
+Expression and activity of IDO1 are induced by inflammatory stimuli such as IL6, TNF and IFNG [@Robinson2003; @Badawy2017]. Consequently, elevated metabolite levels and activity readouts of the kynurenine pathway were reported for multiple inflammatory conditions [@Badawy2017]. 
+In COVID-19, levels of metabolites of the kynurenine pathway in blood and urine were found to correlate positively with inflammatory markers [@Dewulf2022; @Santiago-Mujika2022], disease severity [@Dewulf2022; @Lionetto2021; @Ceballos2022] and was implicated in persistent COVID-19 symptom [@Bizjak2022; @Matits2023; @Cysique2022]. 
+These findings were summarized in a recent metaanalysis demonstrating increased KYN/TRP in COVID-19 and particularly in its severe manifestations [@Almulla2022]. 
+Using high-throughput metabolomics, tryptophan metabolism via serotonin and kynurenine pathways was identified as the most prominently affected metabolic system in acute COVID-19. 
+In this study, TRP and serotonin were demonstrated to decrease and KYN was shown to increase in an IL6-dependent way [@Thomas2020]. 
+Of note, IL6 was also identified by us as a predictor of lower plasma serotonin in the INCOV study. 
+We demonstrated significant, positive associations of serotonin and TRP levels in acute and sub-acute infection in the INCOV cohort. 
+This suggests that kynurenine pathway may especially efficiently compete for TRP with systemic serotonin synthesis in the highly inflammatory milieu of early COVID-19. 
+In turn, increasing TRP and serotonin during infection recovery in the INCOV cohort may reflect decreasing IDO1 activity and re-routing of TRP to the serotonin biosynthesis [@Lukic2022; @Badawy2017]. 
+The multi-parameter modeling in the SIMMUN cohort revealed an additional, inflammation-independent effect of SARS-CoV-2-positivity at median 139 days after infection on KYN and KYN/TRP. 
+While its mechanism remains unclear, an analogical sustained increase in KYN in absence of the inflammatory marker C-reactive protein was described in long-term COVID-19 recovery [@Bizjak2022]. 
+Age was identified by us as another predictor of high kynurenine pathway activity and low serotonin availability, which may be a result of a chronic low-grade inflammation observed in elderly [@Capuron2011; @Sorgdrager2019]. 
+Furthermore, significantly lower levels of serotonin were observed in male participants of the INCOV study. 
+This may reflect a generally stronger inflammatory response to SARS-CoV-2 in males [@Ceballos2022], which was also evident in our data (INCOV, IL6: $\beta$ = `r my_beta(gender_incov$inference$IL6_INF, 'sex', 'male')`, male versus female, robust linear modeling). 
+
+## Effects of inflammation and infection on the serotonin and kynurenine pathways, and systemic levels of serotonin
+
+BH4 poses, another junction between neurotransmitter metabolism and inflammation. 
+Activity of GTP cyclohydrolase I, the enzyme catalyzing the rate-limiting step of BH4 synthesis, is strongly stimulated by IFNG and other inflammatory stimuli. 
+However, during inflammation, BH4 availability for catecholamine and serotonin pathway enzymes is limited due to oxidation and depletion by nitric oxide synthesis [@Geisler2013; @Meiser2013; @Neurauter2008]. 
+As previously reported [@Luporini2021], we could demonstrate an increased plasma PHE during acute and sub-acute infection in the INCOV cohort. 
+We could also correlate readouts of suppressed catecholamine pathway activity such as increased PHE and PHE/TYR, and low TYR and DA sulfate levels with inflammatory markers NEO, IL6, TNF and IFNG. 
+Collectively, these observations are consistent with the inflammatory BH4 deficiency leading to suppressed PHE - TYR conversion, hyperphenylalaninemia and impaired catecholamine biosynthesis during acute and sub-acute SARS-CoV-2 infection. 
+By contrast, the increased DA sulfate during infection recovery in the INCOV cohort and the significantly lower PHE/TYR at median 139 days after SARS-CoV-2 infection in the SIMMUN cohort may indicate a restored BH4 homeostasis and efficient dopamine synthesis [@Meiser2013; @Goldstein1999; @Geisler2013; @Neurauter2008]. 
+Contrary to the reported suppression of catecholamine synthesis with age [@Peters2006], we observed 
 higher blood levels of TYR and lower PHE/TYR in older participants of the SIMMUN study. 
-However, reproducibility and clinical significance of this phenomenon and is questionable.
-The effect of age on PHE and TYR could not be corroborated in the INCOV collective (not shown), and no significant effects of age on circulating levels of the dopamine derivative DA sulfate were discerned. 
+However, since we could not corroborate this effect in the INCOV cohort, its reproducibility remains questionable.
+Analogically, although low DA sulfate levels were associated with obesity in the INCOV cohort, we could no observe any significant effects of obesity on markers of the catecholamine pathway activity in the SIMMUN cohort. 
 
-Depression [@Paul-Savoie2011; @Hufner2021; @Hufner2015; @Fellendorf2022; @Hunt2020; @Marx2020; @Capuron2011; @Brown2021], 
-depression treatment resistance [@Holck2019; @Tateishi2021; @Sun2020; @Ertugrul2007], 
-schizophrenia [@Marx2020], 
-suicidal behavior [@Tyano2006],  
-pathological mental stress [@Hufner2020] were associated with decreased circulating TRP and serotonin, high KYN pathway activity and increased blood concentrations of neuroactive KYN pathway metabolites. 
-Systemic and central nervous system inflammation was put forward as a neuroimmune mechanism contributing to those mental health disorders [@Capuron2011; @Lukic2022; @Dantzer2008; @Miller2016; @Schwarcz2012; @Haroon2012; @Brown2021; @Hunt2020; @Maes2012; @Vancassel2018]. 
-In infections, inflammation was proposed to suppress serotonin biosynthesis and trigger KYN pathway activity that mediate the 'sickness behavior' characterized by reduced locomotor activity, social avoidance, reduced appetite, lethargy and concentration problems [@Maes2012]. 
-Inflammatory stimuli were also found to reduce dopamine availability measured by PHE/TYR ratio and hence contribute to depression in cancer [@Hufner2015] and trauma patients [@Hufner2019]. 
-In the SIMMUN cohort, depression signs [@Bjelland2002; @Zigmond1983] and mental stress [@Cohen1983] along with the inflammatory marker NEO could be linked to decreased TRP and higher KYN/TRP, respectively. 
-In the INCOV collective, inflammation was also identified as the main diver of alterations in circulating serotonin, its precursor TRP and the competitor pathway products KYN and QUIN. 
-Others also identified lowered TRP in COVID-19 convalescents with signs of depression and anxiety [@Kucukkarapinar2022] and linked KYN pathway activity to depressive symptoms [@Matits2023] and cognitive impairment [@Cysique2022] during long-term COVID-19 recovery. 
-These observations may hence support the neuroimmune model assuming inflammation as a link between physical conditions, neurotransmitter disturbance and psychiatric disorders. 
-Still, most evidence for this mechanism and relevance of the peripheral neurotransmitter availability is delivered by observational and in vitro studies, whereas in vivo experimental reports are scarce [@Brown2021; @Schwarcz2012; @Vancassel2018]. 
-In the periphery, liver, mesenteric organs and vasculature are the main sites of serotonin and dopamine synthesis and catabolism, and KYN pathway activity [@Badawy2017; @Lukic2022; @Meiser2013; @Goldstein1999; @Hashizume1987]. 
-Although the neurotransmitter precursors TRP and TYR, and neuroactive KYN pathway products were postulated to pass the blood-brain barrier [@Brown2021; @Schwarcz2012; @Vancassel2018], psychiatric disorders are not consistently paralleled by changes in dopamine, serotonin and neuroactive KYN metabolites or expression of KYN pathway enzymes in the central nervous system [@Miller2008; @Clark2016; @Brown2021]. 
-Of note, quality of evidence of the serotonin theory of depression was also criticized in a recent systematic review [@Moncrieff2022]. 
-Hence, the hypothesis that inflammatory stimuli impact on systemic and central nervous system serotonin and dopamine availability and, hence, contribute to psychiatric disorders, like those frequently observed during COVID-19 recovery [@Huang2021; @Al-Aly2021; @Hufner2022; @Sahanic2023; @Bower2022], needs validation in a robust experimental or prospective setting. 
+## Interaction of mental health with activity of the serotonin, kynurenine and catecholamine pathways, and systemic serotonin and dopamine availability
 
-# Limitations
+Peripheral and central nervous system inflammation was put forward as a neuroimmune mechanism contributing to mental health disorder symptoms such as depression, anxiety and mental stress [@Brown2021; @Schwarcz2012; @Vancassel2018]. 
+Sickness behavior accompanying e.g. infections and inflammatory conditions comprises symptoms of depression and anxiety, social disconnection, fatigue, cognitive disturbance, and psychomotor slowing. 
+Mechanistically, sickness behavior was postulated to involve kynurenine pathway along with suppression of serotonin and catecholamine metabolism mediated by acute or protracted low grade inflammation [@Dantzer2008; @Maes2012; @Vancassel2018]. Additionally, kynurenine pathway metabolites were ascribed standalone activity in neuronal signaling, e.g. by interfering with glutamatergic receptors [@Brown2021; @Schwarcz2012]. 
+Accordingly, markers of the kynurenine pathway activity and suppressed serotonin pathway such as serotonin, TRP, KYN or KYN/TRP were associated with symptoms of depression in recent metaanalyses [@Hunt2020; @Marx2020; @Fellendorf2022]. 
+Inflammatory markers were also associated with elevated PHE/TYR indicative of reduced dopamine availability and proposed to contribute to depression in cancer [@Hufner2015] and trauma [@Hufner2019]. 
+The potential role of protracted inflammation and TRP depletion in persistent symptoms and mental disorders in COVID-19 convalescents was proposed in recent hypothesis papers [@Eroglu2021; @Bower2022]. 
+There is also clinical evidence for concomitantly elevated markers of inflammation, kynurenine pathway activity and lowered TRP availability in COVID-19 patients suffering from persistent symptoms [@Bizjak2022], cognitive impairment [@Cysique2022], or symptoms of anxiety, depression and mental stress [@Kucukkarapinar2022; @Matits2023]. 
+In the SIMMUN cohort, clinically relevant depression symptoms (HADS) and mental stress (PSS-4) along with the inflammatory marker NEO could be linked to decreased TRP and higher KYN/TRP, respectively. 
+In the INCOV collective, inflammation was also identified as a major diver of alterations in circulating serotonin, TRP, as well as the kynurenine pathway metabolites KYN and QUIN. 
+Hence, the additive effects of inflammation, infection, mental stress and age may disrupt the homeostasis of the serotonin, kynurenine and catecholamine pathways and predispose to depressive or anxious disorders in COVID-19 patients [@Dantzer2008; @Bower2022]. 
+
+Still, most evidence for relevance of the peripheral neurotransmitter levels in mental disorders is delivered by observational studies, whereas in vivo experimental reports are scarce [@Brown2021]. 
+In the periphery, liver, mesenteric organs and vasculature are the main sites of tryptophan, serotonin and dopamine metabolism [@Badawy2017; @Lukic2022; @Meiser2013; @Goldstein1999]. 
+Although the neurotransmitter precursors TRP and TYR, and kynurenin pathway metabolites were postulated to pass the blood-brain barrier [@Brown2021; @Schwarcz2012; @Vancassel2018], psychiatric disorders are not consistently paralleled by alterations in dopamine, serotonin, and kynurenine pathway metabolites in the central nervous system [@Miller2008; @Clark2016; @Brown2021]. 
+Of note, clinical evidence for the serotonin theory of depression was also questioned in a recent systematic review [@Moncrieff2022]. 
+Whether inflammatory and infection-related factors impact on peripheral and brain availability of serotonin and dopamine availability and, hence, contribute to psychiatric disorders frequently observed in COVID-19 patients [@Huang2021; @Al-Aly2021; @Hufner2022; @Sahanic2023], needs validation in a robust experimental and prospective setting. 
+
+## Limitations
 
 Our study has limitations. 
-First, circulating serotonin, dopamine or any abundant dopamine metabolites (e.g. DA sulfate) [@Meiser2013; @Hashizume1987; @Goldstein1999], i.e. more direct readouts of neurotransmitter turnover than TRP, KYN, PHE and TYR, were not measured in the SIMMUN cohort. 
-Additionally, the SIMMUN study variables were recorded at a single timepoint with a highly variable infection - sampling interval. 
-For the INCOV collective, KYN/TRP and PHE/TYR could not be computed with normalized metabolome data, and measurements of stress, depression and anxiety were not available. 
-This incompatibility of the datasets precluded development of comprehensive multi-parameter models in one of the cohorts and subsequent direct validation in the other. 
-Second, relevance of circulating markers serotonin and dopamine availability, and KYN pathway metabolites for the central nervous system and psychiatric disorders is controversial, as discussed above. 
-Third, the SIMMUN cohort suffered from a selection bias due to enrichment in psychiatric patients with a high rate of physical and psychiatric disorders. 
+First, incompatibility of study designs and variable sets of the SIMMUN and INCOV studies precluded direct comparison and validation of our findings in the classical training - test cohort analysis setting. 
+In particular, we were not able to validate effects of early infection on the metabolic pathways of interest in the SIMMUN cohort. 
+Conversely, we could not validate the effects of stress, depression and anxiety in the INCOV cohort due to unavailability of psychometric data. 
+Second, relevance of the systemic serotonin, kynurenine and catecholamine pathway activity for the central nervous system and mental health is controversial, as discussed above. 
+Third, the SIMMUN cohort had a limited sample size and a highly variable diagnosis - sampling interval, which likely diminished effect sizes of the SARS-CoV-2 infection. 
+Fourth, the SIMMUN cohort suffered from a selection bias due to enrichment in psychiatric patients with a high rate of physical and mental disorders. 
 Analogically, hospitalized COVID-19 patients constituted the majority of the INCOV cohort. 
-Hence, none of the collectives is representative for the entire pandemic population. 
-Fourth, both the SIMMUN and INCOV cohorts were recruited during initial phases of the pandemic and do not include any (SIMMUN) or systematically vaccinated patients (INCOV). 
-Similarly, the analyzed cohorts were exposed to wild-type-like SARS-CoV-2 variants and do not allow to assess effects of repeated, seasonal infections with highly transmissible but far less virulent omicron pathogens. 
-For these reasons, studies with recent, real world post-pandemic collectives are urgently needed to validate our findings. 
-Finally, the cross-sectional SIMMUN and INCOV cohorts encompassed uninfected controls and SARS-CoV-2 infections ranging from asymptomatic to critical disease. 
-In particular, the shares of pathogen-positive individuals and the infection severity differed significantly between the analyzed collectives, which may have contributes to stronger effects of inflammation on neurotransmitter metabolism observed in the INCOV cohort.
+Hence, none of the cohorts is representative for the entire population. 
+Fifth, both cohorts were recruited during initial phases of the pandemic and do not include vaccinated patients. 
+Similarly, the analyzed cohorts were exposed to wild-type-like SARS-CoV-2 variants and do not allow to assess effects of infection with highly transmissible but less virulent omicron pathogens. 
+For these reasons, studies with recent, post-pandemic collectives are urgently needed to validate our findings. 
+Finally, the cross-sectional SIMMUN and INCOV cohorts encompassed uninfected controls and SARS-CoV-2 infections ranging from asymptomatic to critical disease.
 
-# Conclusions
+## Conclusions
 
-SARS-CoV-2-dependent inflammation can lower systemic availability of serotonin and dopamine by depletion of the tryptophan via the competitive kynurenine pathway and inhibition of the phenylalanine - tyrosine suppression, respectively. 
-Those effects can be further amplified by advanced age, mental stress and depression.  
-It remains to be investigated, if and how this mechanism may contribute to neurotransmitter metabolism in the central nervous system and, consequently, to psychiatric disorders following SARS-CoV-2 infection.
+SARS-CoV-2-dependent and -independent inflammation alters activity of the serotonin, kynurenine and catecholamine pathway which may limit systemic availability of serotonin and dopamine. 
+Those effects can be further amplified by advanced age, mental stress and depression. 
+Further research is needed to explore the mechanistic interplay of SARS-CoV-2 infection, inflammation and mental health parameters. 
+It remains to be investigated, if and how this mechanism contributes to psychiatric disorders following SARS-CoV-2 infection.
 
 \newpage
 
@@ -553,7 +553,7 @@ The analysis pipeline code is available at https://github.com/PiotrTymoszuk/simm
 
 # Tables
 
-```{r tab-stigma-cohort, tab.cap = 'Characteristic of the local SIMMUN cohort. Numeric variables are presented as medians with interquartile ranges. Categorical variables are presented as percentages and counts within complete observation sets.'}
+```{r tab-stigma-cohort, tab.cap = 'Characteristic of the SIMMUN cohort. Numeric variables are presented as medians with interquartile ranges. Categorical variables are presented as percentages and counts within complete observation sets.'}
 
 flextable::flextable(tabs$stigma_cohort) %>% 
   width(1, width = 4, unit = 'cm') %>% 
@@ -565,7 +565,7 @@ flextable::flextable(tabs$stigma_cohort) %>%
            part = 'header', 
            ref_symbols = 'a') %>% 
   footnote(1, 5, 
-           value = as_paragraph('corrected for multiple testing with the false discovery rate method.'), 
+           value = as_paragraph('Corrected for multiple testing with the false discovery rate method.'), 
            part = 'header', 
            ref_symbols = 'b') %>% 
   footnote(4, 1, 
@@ -585,14 +585,18 @@ flextable::flextable(tabs$incov_cohort) %>%
   width(2:3, width = 4, unit = 'cm') %>% 
   width(4, width = 2.5, unit = 'cm') %>% 
   width(5:6, width = 2.7, unit = 'cm') %>% 
-  footnote(3, 1, 
+  footnote(1, 5, 
+           value = as_paragraph('Corrected for multiple testing with the false discovery rate method.'), 
+           part = 'header', 
+           ref_symbols = 'a') %>% 
+  footnote(4, 1, 
            value = as_paragraph('overweight: body mass index (BMI) 25 - 30 kg/mm\u00B2, obesity: BMI > 30 kg/mm\u00B2'), 
            part = 'body', 
-           ref_symbols = 'a') %>% 
-  footnote(5, 1, 
-           value = as_paragraph('WHO ordinal scale for clinical improvement; mild: 1 - 2, moderate: 3 - 4, severe: 5 - 6, critical: 7'), 
-           part = 'body', 
            ref_symbols = 'b') %>% 
+  footnote(6, 1, 
+           value = as_paragraph('WHO ordinal scale for clinical improvement; mild: 1 - 2, moderate: 3 - 4, severe: 5 - 6, critical: 7; moderate, severe and critical infection patients were hospitalized during COVID-19.'), 
+           part = 'body', 
+           ref_symbols = 'c') %>% 
   theme_vanilla
 
 ```
@@ -600,20 +604,6 @@ flextable::flextable(tabs$incov_cohort) %>%
 \newpage
 
 # Figures
-
-```{r fig-inclusion, fig.width = figur::convert(figs$inclusion, to = 'in')$w, fig.height = figur::convert(figs$inclusion, to = 'in')$h, fig.cap = 'Inclusion scheme for the SIMMUN and INCOV cohorts, and analysis strategy.'}
-
-figs$inclusion$plot
-
-```
-
-__Figure \@ref(fig:fig-inclusion). Inclusion scheme for the SIMMUN and INCOV cohorts, and analysis strategy.__ 
-
-_Sampling timepoints in the INCOV cohort: acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after diagnosis of SARS-CoV-2 infection via PCR._
-
-_TRP: tryptophan; KYN: kynurenine; PHE: phenylalanine; TYR: tyrosine; KYN/TRP: kynurenine - tryptophan ratio; PHE/TYR: phenylalanine - tyrosine ratio; QUIN: quinolinate; 5-HT: serotonin; DA: dopamine; Ab: antibody; IL6: interleukin-6; IL10: interleukin-10; TNF: tumor-necrosis factor alpha; IFNG: interferon gamma._
-
-\newpage
 
 ```{r fig-modeling, fig.width = figur::convert(figs$modeling, to = 'in')$w, fig.height = figur::convert(figs$modeling, to = 'in')$h, fig.cap = 'Results of multi-parameter linear modeling of tryptophan, kynurenine, kynurenine/tryptophan ratio, tyrosine and phenylalanine/tyrosine ratio in the SIMMUN cohort.'}
 
@@ -623,9 +613,7 @@ figs$modeling$plot
 
 __Figure \@ref(fig:fig-modeling). Results of multi-parameter linear modeling of tryptophan, kynurenine, kynurenine/tryptophan ratio, tyrosine and phenylalanine/tyrosine ratio in the SIMMUN cohort.__ 
 
-_Effects of systemic inflammation markers (neopterin [NEO], neutrophil-lymphocyte ratio [NLR]), SARS-CoV-2 infection status, titre of immunoglobulin gamma against the receptor binding domain of the S1/S2 SARS-CoV-2 protein (anti-RBD IgG), symptoms of anxiety and depression (hospital depression and anxiety scale [HADS] $\geq$ 8 points), intensity of mental stress (perceived stress scale, 4 item [PSS4]), age and sex on readouts of serotonin and dopamine availability and KYN pathway activity were investigated by multi-parameter linear regression with backward elimination of non-significant terms. Numeric variables were normalized prior to modeling. Overall model validity was assessed by likelihood-ratio test (LRT) as compared with the respective null models. Significant coefficient estimates ($\beta$) with 95% confidence intervals are presented in Forest plots. LRT results (F values, degrees of freedom and p values) and total numbers of complete observations are indicated in the plot captions. Model intercepts (baseline) are indicated in the X axis titles._
-
-_TRP: tryptophan; KYN: kynurenin; KYN/TRP: kynurenine - tryptophan ratio; PHE: phenylalanine; TYR: tyrosine; PHE/TYR: phenylalanine - tyrosine ratio._
+_Effects of markers of systemic inflammation (neopterin [NEO], neutrophil/lymphocyte ratio [NLR]), SARS-CoV-2 infection status, titre of immunoglobulin gamma against the receptor binding domain of the S1/S2 SARS-CoV-2 protein (anti-RBD IgG), clinically relevant symptoms of anxiety and depression (hospital depression and anxiety scale [HADS] $\geq$ 8 points), intensity of mental stress (perceived stress scale, 4 item [PSS-4]), age and sex on readouts of the kynurenine pathway (A, tryptophan [TRP], kynurenine [KYN], kynurenine/tryptophan ratio [KYN/TRP]) and the catecholamine pathway activity (B, phenylalanine [PHE], tyrosine [TYR], phenylalanine/tyrosine ratio [PHE/TYR]) were investigated by multi-parameter linear regression with backward elimination of non-significant terms. Numeric variables were normalized prior to modeling. Overall model validity was assessed by likelihood-ratio test (LRT) as compared with the respective null models. Coefficient estimates ($\beta$) with 95% confidence intervals are presented in Forest plots. LRT results (F values, degrees of freedom and p values) and total numbers of complete observations are indicated in the plot captions. Model intercepts (baseline) are indicated in the X axis titles._
 
 \newpage
 
@@ -637,35 +625,35 @@ figs$incov_neuro$plot
 
 __Figure \@ref(fig:fig-incov-neuro). Results of multi-parameter robust linear modeling of plasma levels of serotonin and dopamine 3-O-sulfate in the INCOV cohort.__ 
 
-_Effects of patient's age, timepoint after SARS-CoV-2 infection (acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after SARS-CoV-2 infection diagnosis via PCR as compared with healthy controls), plasma levels of metabolites related to neurotransmitter biosynthesis and KYN pathway activity (tryptophan [TRP], kynurenine [KYN], quinolinate [QUIN], phenylalanine [PHE] and tyrosine [TYR]), and plasma concentrations of cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) on plasma concentrations of serotonin (5-hydroxy tryptamine [5-HT]) and dopamine 3-O-sulfate (DA sulfate) were modeled by multi-parameter robust linear regression._
+_Effects of age, timepoint of SARS-CoV-2 infection (acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after SARS-CoV-2 infection diagnosis via PCR), plasma levels of metabolites of the serotonin and kynurenine pathways (tryptophan [TRP], kynurenine [KYN], quinolinic acid [QUIN]), plasma levels of metabolites of the catecholamine pathway (phenylalanine [PHE], tyrosine [TYR]), and plasma concentrations of cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) on plasma concentrations of serotonin (5-hydroxy tryptamine [5-HT]) and dopamine 3-O-sulfate (DA sulfate) were modeled by multi-parameter robust linear regression._
 
-_(A) Model fit error (root mean square error [RMSE]) and fraction of explained variances (R-squared) of the robust linear models assessed in the genuine training dataset and 10-fold cross-validation (CV)._
+_(A) Model fit error (root mean square error [RMSE]) and fraction of explained variance (R^2^) of the robust linear models assessed in the training dataset and infection timepoint-stratified 10-fold cross-validation (CV)._
 
 _(B) Estimates of model coefficients ($\beta$) with 95% confidence intervals presented in Forest plots. Numbers of complete observations are indicated in the plot captions. Model intercepts (baseline) are indicated in the X axis titles._
 
 \newpage
 
-```{r fig-time-ourse, fig.width = figur::convert(figs$time_course, to = 'in')$w, fig.height = figur::convert(figs$time_course, to = 'in')$h, fig.cap = 'Time course of cytokine markers of inflammation, serotonin, dopamine 3-0-sulfate and the neurotransmitter biosynthesis precursors and kynurenine pathway products during SARS-CoV infection and recovery in the INCOV cohort.'}
+```{r fig-time-ourse, fig.width = figur::convert(figs$time_course, to = 'in')$w, fig.height = figur::convert(figs$time_course, to = 'in')$h, fig.cap = 'TTime course of cytokine markers of inflammation, and metabolites of the serotonin, kynurenine and catecholamine pathways during SARS-CoV-2 infection and recovery in the INCOV cohort.'}
 
 figs$time_course$plot
 
 ```
 
-__Figure \@ref(fig:fig-time-ourse). Time course of cytokine markers of inflammation, serotonin, dopamine 3-0-sulfate and the neurotransmitter biosynthesis precursors and kynurenine pathway products during SARS-CoV infection and recovery in the INCOV cohort.__ 
+__Figure \@ref(fig:fig-time-ourse). Time course of cytokine markers of inflammation, and metabolites of the serotonin, kynurenine and catecholamine pathways during SARS-CoV-2 infection and recovery in the INCOV cohort.__ 
 
-_Time courses of normalized log~2~-transformed plasma concentrations of cytokine makers of inflammation (A, interleukin-6 [IL6], interleukin-10 [IL-10], tumor necrosis factor-alpha [TNF] and interferon gamma [INFG]), metabolites implicated in serotonin synthesis (B, tryptophan [TRP], kynurenine [KYN], quinolinate [QUIN] and serotonin/5-hydroxy tryptamine [5-HT]) and metabolites implicated in dopamine turnover (C, phenylalanine [PHE], tyrosine [TYR] and dopamine 3-O-sulfate [DA sulfate]). Differences between uninfected controls and acute, sub-acute SARS-CoV-2 infection and recovery (median 10, 14 and 64 days after SARS-CoV-2 infection diagnosis via PCR, respectively) were modeled by robust linear regression with the uninfected controls as baseline. Mean normalized concentrations with 2 standard errors of the mean (2 $\times$ SEM) are depicted as solid lines with tinted ribbons (plots on the left). Robust linear model coefficient estimates ($\beta$) with 95% confidence intervals are visualized in Forest plots (right). Numbers of complete observations per timepoint are indicated in the X axes._
+_Time courses of normalized log~2~-transformed plasma concentrations of cytokine makers of inflammation (A, interleukin-6 [IL6], interleukin-10 [IL-10], tumor necrosis factor-alpha [TNF], interferon gamma [INFG]), metabolites of the serotonin and kynurenine pathways (B, tryptophan [TRP], kynurenine [KYN], quinolinic acid [QUIN], serotonin/5-hydroxy tryptamine [5-HT]), and metabolites of the catecholamine pathway (C, phenylalanine [PHE], tyrosine [TYR], dopamine 3-O-sulfate [DA sulfate]). Differences between uninfected controls and acute, sub-acute SARS-CoV-2 infection and recovery (median 10, 14 and 64 days after SARS-CoV-2 infection diagnosis via PCR, respectively) were modeled by robust linear regression with the uninfected controls as baseline. Mean normalized concentrations with 2 standard errors of the mean (2 $\times$ SEM) are depicted as solid lines with tinted ribbons (plots on the left). Robust linear model coefficient estimates ($\beta$) with 95% confidence intervals are visualized in Forest plots (right). Numbers of complete observations per timepoint are indicated in the X axes._
 
 \newpage
 
-```{r fig-incov-corr, fig.width = figur::convert(figs$incov_corr, to = 'in')$w, fig.height = figur::convert(figs$incov_corr, to = 'in')$h, fig.cap = 'Correlation of plasma levels of cytokine markers of inflammation, serotonin and dopamine 3-O-sulfate, neurotransmitter precursors and kynurenine pathway products in healthy controls and SARS-CoV-2 patients of the INCOV cohort.'}
+```{r fig-incov-corr, fig.width = figur::convert(figs$incov_corr, to = 'in')$w, fig.height = figur::convert(figs$incov_corr, to = 'in')$h, fig.cap = 'Correlation of plasma levels of cytokine markers of inflammation, and metabolites of the serotonin, kynurenine and catecholamine pathways during SARS-CoV-2 infection in the INCOV cohort.'}
 
 figs$incov_corr$plot
 
 ```
 
-__Figure \@ref(fig:fig-incov-corr). Correlation of plasma levels of cytokine markers of inflammation, serotonin and dopamine 3-O-sulfate, neurotransmitter precursors and kynurenine pathway products in healthy controls and SARS-CoV-2 patients of the INCOV cohort.__ 
+__Figure \@ref(fig:fig-incov-corr). Correlation of plasma levels of cytokine markers of inflammation, and metabolites of the serotonin, kynurenine and catecholamine pathways during SARS-CoV-2 infection and recovery in the INCOV cohort.__ 
 
-_Plasma levels of metabolites implicated in serotonin synthesis (tryptophan [TRP], serotonin [5-hydroxy tryptamine, 5-HT]), kynurenine pathway activity (kynurenine [KYN], quinolinic acid [QUIN]) and dopamine metabolism (phenylalanine [PHE], tyrosine [TYR], dopamine sulfate [DA sulfate]) and cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF], interferon-gamma [INFG]) were subjected to pairwise correlation analysis in uninfected and SARS-CoV-2-infected individuals (acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after SARS-CoV-2 infection diagnosis via PCR). Correlation coefficient matrices for correlation coefficients $\rho$ > 0.2 were visualized as force-directed network plots. Node color codes for the variable type (gray: inflammatory markers, orange: serotonin metabolism and KYN pathway, green: dopamine metabolism), edge width and color codes for the value and sign of the correlation coefficient._
+_Plasma levels of metabolites of the kynurenine and serotonin pathways (tryptophan [TRP], serotonin [5-hydroxy tryptamine, 5-HT], kynurenine [KYN], quinolinic acid [QUIN]) and metabolites of the catecholamine pathway (phenylalanine [PHE], tyrosine [TYR], dopamine 3-O-sulfate [DA sulfate]) and cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF], interferon-gamma [INFG]) were subjected to pairwise correlation analysis in SARS-CoV-2-infected individuals (acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after SARS-CoV-2 infection diagnosis via PCR). Correlation coefficient matrices for correlation coefficients $\rho$ > 0.2 were visualized as force-directed network plots. Node color codes for the variable type (gray: inflammatory markers, orange: serotonin and kynurenine pathway, green: catecholamine pathway), edge width and color codes for the value and sign of the correlation coefficient._
 
 \newpage
 

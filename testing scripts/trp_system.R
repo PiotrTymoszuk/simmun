@@ -22,9 +22,9 @@
   tst_trp$analysis_tbl <- stigma$data %>%
     mutate(infection = car::recode(cov,
                                    "'healthy' = 'uninfected';
-                                    'SARS-CoV-2' = 'recovery'"),
+                                    'SARS-CoV-2' = 'SARS-CoV-2'"),
            infection = factor(infection,
-                              c('uninfected', 'recovery'))) %>%
+                              c('uninfected', 'SARS-CoV-2'))) %>%
     select(patient_id,
            all_of(unname(tst_trp$responses)),
            all_of(tst_trp$lexicon$variable)) %>%

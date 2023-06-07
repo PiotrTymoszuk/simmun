@@ -12,6 +12,7 @@
   library(knitr)
   library(bookdown)
   library(clipr)
+  library(caret)
 
 # Descriptive stats -----
 
@@ -106,25 +107,25 @@
 
 # multiple testing -----
 
-  re_adjust <- function(data, method = 'BH') {
+  re_adjust <- function(data, p_variable = 'p_value', method = 'BH') {
 
     ## adjusts for multiple testing e.g. with the Benjamini-Hochberg method
 
     if(method != 'none') {
 
       data <- data %>%
-        mutate(p_adjusted = p.adjust(p_value, method = method))
+        mutate(p_adjusted = p.adjust(.data[[p_variable]], method = method))
 
     }
 
     data %>%
-      mutate(significance = ifelse(p_adjusted < 0.001,
+      mutate(significance = ifelse(.data[[p_variable]] < 0.001,
                                    'p < 0.001',
-                                   ifelse(p_adjusted >= 0.05,
+                                   ifelse(.data[[p_variable]] >= 0.05,
                                           paste0('ns (p = ',
-                                                 signif(p_adjusted, 2), ')'),
+                                                 signif(.data[[p_variable]], 2), ')'),
                                           paste('p =',
-                                                signif(p_adjusted, 2)))))
+                                                signif(.data[[p_variable]], 2)))))
 
   }
 
@@ -494,10 +495,11 @@
                              vars = c('IL6_INF', 'IL10_INF', 'TNF_INF', 'IFNG_INF'),
                              average_stat = c('mean', 'median'),
                              ribbon_stat = c('SEM', '2SEM', 'IQR'),
+                             split_factor = 'timepoint',
                              plot_title = NULL,
                              plot_subtitle = NULL,
                              y_lab = expression('normalized log'[2] * ' concentration'),
-                             x_lab = 'SARS-CoV-2',
+                             x_lab = 'SARS-CoV-2 infection',
                              ribbon_alpha = 0.45) {
 
     ## plots average stats with errors as lines and ribbons
@@ -522,21 +524,23 @@
 
     ## computing stats per timepoint -------
 
-    data <- data[c('timepoint', vars)]
+    data <- data[c(split_factor, vars)]
+
+    levs <- levels(data[[split_factor]])
 
     summ_data <- data %>%
-      blast(timepoint) %>%
-      map(select, -timepoint) %>%
+      blast(all_of(split_factor)) %>%
+      map(select, -all_of(split_factor)) %>%
       map(~map(.x,
                ~c(stat = average_fun[[average_stat]](.x),
                   ribbon_fun[[ribbon_stat]](.x))) %>%
             reduce(rbind) %>%
             as.data.frame %>%
             mutate(variable = factor(vars, vars))) %>%
-      compress(names_to = 'timepoint') %>%
-      mutate(timepoint = factor(timepoint, levels(data[['timepoint']])))
+      compress(names_to = 'split_factor') %>%
+      mutate(split_factor = factor(split_factor, levs))
 
-    n_labs <- count(data, timepoint)
+    n_labs <- count(data, .data[[split_factor]])
 
     n_labs <- map2_chr(n_labs[[1]],
                        n_labs[[2]],
@@ -546,7 +550,7 @@
     ## plotting -------
 
     summ_data %>%
-      ggplot(aes(x = timepoint,
+      ggplot(aes(x = split_factor,
                  y = stat,
                  color = variable,
                  fill = variable)) +
@@ -572,7 +576,7 @@
                            plot_title = NULL,
                            plot_subtitle = NULL,
                            y_lab = expression(beta * ', 95% CI'),
-                           x_lab = 'SARS-CoV-2',
+                           x_lab = 'SARS-CoV-2 infection',
                            hide_baseline = TRUE,
                            baseline_lab = 'uninfected',
                            dodge_w = 0.5,
@@ -753,6 +757,66 @@
 
   }
 
+# Timepoint-balanced CV -------
+
+  time_balanced_folds <- function(data,
+                                  time_variable,
+                                  number = 10,
+                                  savePredictions = 'final',
+                                  returnData = TRUE,
+                                  returnResamp = 'final') {
+
+    ## creates a timepoint-balanced series of CV folds.
+    ## This is done be splitting the dataset by the time variable
+    ## and creating the folds in each subset separately
+    ## Subsequently, the corresponding folds
+    ## of the timepoints are merged together
+    ## I.e. fold 1 from the timepoint A, fold 2 from the timepoint B and so on
+    ## The purpose is to avoid an extreme (and less extreme as well) situation
+    ## where data from solely or predominantly late timepoints are used
+    ## to predict earlier timepoints
+    ##
+    ## Returns an ready-to-use trainControl object
+
+
+    ## timepoint split, creating folds (training!) per timepoint
+    ## retrieval of the original indexes
+
+    time_points <- data %>%
+      mutate(orig_index = 1:nrow(.)) %>%
+      blast(time_variable) %>%
+      map(select, orig_index, all_of(time_variable))
+
+
+    time_indexes <- time_points %>%
+      map(~createFolds(y = .x[[1]],
+                       k = number,
+                       list = TRUE,
+                       returnTrain = TRUE))
+
+    time_folds <-
+      map2(time_points,
+           time_indexes,
+           function(data, index) index %>%
+             map(~data[.x, ][['orig_index']]))
+
+    ## fold-wise stitching the indexes obtained for timepoints
+
+    time_folds <- time_folds %>%
+      transpose %>%
+      map(reduce, c)
+
+    ## trainControl object
+
+    trainControl(method = 'cv',
+                 number = 10,
+                 savePredictions = 'final',
+                 returnData = TRUE,
+                 returnResamp = 'final',
+                 index = time_folds)
+
+  }
+
 # custom caret method for MM robust linear regression -----
 
   mm_rlm <-
@@ -802,6 +866,26 @@
          prob = NULL,
          sor = function(x) x)
 
+# Common y axis for ggplots -------
+
+  set_common_y_axis_range <- function(plot1, plot2,
+                                      y_variables = c('stat', 'lower', 'upper')) {
+
+    plot_list <- list(plot1, plot2)
+
+    y_range <- plot_list %>%
+      map(~.x$data[y_variables]) %>%
+      map(map, range) %>%
+      reduce(c) %>%
+      range
+
+    plot_list %>%
+      map(~.x +
+            ylim(y_range))
+
+  }
+
+
 # markdown -----
 
   my_word <- function(...) {
@@ -837,6 +921,46 @@
 
   }
 
+  insert_revision <- function(text = NULL) {
+
+    if(!is.null(text)) {
+
+      text <- paste0("<span custom-style = 'revision'>", text, "</span>")
+
+    } else {
+
+      text <- paste0("<span custom-style = 'revision'></span>")
+
+    }
+
+    write_clip(content = text,
+               object_type = "character",
+               breaks = "\n")
+
+    return(text)
+
+  }
+
+  insert_auth_comment <- function(text = NULL) {
+
+    if(!is.null(text)) {
+
+      text <- paste0("<span custom-style = 'author'>", text, "</span>")
+
+    } else {
+
+      text <- paste0("<span custom-style = 'author'></span>")
+
+    }
+
+    write_clip(content = text,
+               object_type = "character",
+               breaks = "\n")
+
+    return(text)
+
+  }
+
   my_percent <- function(data,
                          variable,
                          return_n = FALSE,
@@ -858,6 +982,7 @@
   my_beta <- function(data,
                       variables,
                       levels = NULL,
+                      show_ci_txt = TRUE,
                       signif_digits = 2) {
 
     ## extracts beta with 95% confidence interval from an inference summary
@@ -872,11 +997,23 @@
 
     }
 
-    beta_dat %>%
-      mutate(txt_lab = paste0(signif(estimate, signif_digits),
-                              ' [95% CI: ', signif(lower_ci, signif_digits),
-                              ' - ', signif(upper_ci, signif_digits), ']')) %>%
-      .$txt_lab
+    if(show_ci_txt) {
+
+      beta_dat <-  beta_dat %>%
+        mutate(txt_lab = paste0(signif(estimate, signif_digits),
+                                ' [95% CI: ', signif(lower_ci, signif_digits),
+                                '-', signif(upper_ci, signif_digits), ']'))
+
+    } else {
+
+      beta_dat <-  beta_dat %>%
+        mutate(txt_lab = paste0(signif(estimate, signif_digits),
+                                ' [', signif(lower_ci, signif_digits),
+                                '-', signif(upper_ci, signif_digits), ']'))
+
+    }
+
+    beta_dat $txt_lab
 
   }
 
@@ -894,5 +1031,21 @@
       signif(signif_digits)
 
   }
+
+  int_to_text <- function(x) {
+
+    if (x > 10) {
+
+      return(x)
+
+    } else {
+
+      switch(x,
+             "one", "two", "three", "four", "five",
+             "six", "seven", "eight", "nine", "ten")
+    }
+
+  }
+
 
 # END ------

@@ -1,5 +1,10 @@
 # Robust linear modeling of metabolites as a function of infection status
 # and levels of inflammatory cytokines
+#
+# A short note on cross-validation: the model are validated by 10-fold CV
+# where the folds are constructed in a timepoint-balanced wise
+# (or more precisely: timepoint-stratified CV),
+# see: tools/tools.R for code details and rationale
 
   insert_head()
 
@@ -31,6 +36,8 @@
   incov_mod$variable_lexicon <-
     c('timepoint' = 'SARS-CoV-2',
       'age' = 'Age',
+      'sex' = 'Sex',
+      'bmi_class' = 'BMI',
       'IL6_INF' = 'IL6',
       'IL10_INF' = 'IL10',
       'TNF_INF' = 'TNF',
@@ -61,6 +68,15 @@
     map(as.formula) %>%
     set_names(incov_mod$response_lexicon$variable)
 
+  ## train control object
+
+  set.seed(123456)
+
+  incov_mod$trainControl <-
+    time_balanced_folds(data = incov_mod$analysis_tbl,
+                        time_variable = 'timepoint',
+                        number = 10)
+
 # Construction of models -----
 
   insert_msg('Construction of models')
@@ -72,16 +88,6 @@
                  family = NULL,
                  method = 'MM',
                  psi = psi.huber))
-
-# Custom model list for caret -------
-
-  insert_msg('A custom list for caret')
-
-  ## merely a copy-paste from the output of getModelInfo('rlm')
-  ## but specifying the method "MM" explicitly
-
-  incov_mod$caret_list <-
-
 
 # cross-validation via caret ------
 
@@ -98,11 +104,7 @@
                                                 "'sub-acute' = 'sub'")),
                method = mm_rlm,
                metric = 'RMSE',
-               trControl = trainControl(method = 'repeatedcv',
-                                        number = 10,
-                                        savePredictions = 'final',
-                                        returnData = TRUE,
-                                        returnResamp = 'final'),
+               trControl =incov_mod$trainControl,
                tuneGrid = data.frame(intercept = TRUE,
                                      psi = 'psi.huber'))) %>%
     map(as_caretx)

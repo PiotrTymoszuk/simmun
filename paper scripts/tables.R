@@ -20,8 +20,8 @@
                  regex = '^HADS.*\\nHADS\\+:\\s{1}',
                  replacement = '')) %>%
     map(set_names,
-        c('Variable', 'Uninfected',
-          'SARS-CoV-2', 'Test', 'Significance', 'Effect size'))
+        c('Variable', 'Uninfected', 'SARS-CoV-2 infection',
+          'Test', 'Significance', 'Effect size'))
 
   ## skipping the somatic symptoms
 
@@ -29,13 +29,13 @@
     filter(Variable %in% c('Participants, n',
                            'Sex',
                            'Age, years',
-                           'Body mass class',
+                           'Body mass index',
                            'Physical disorder',
-                           'Psychiatric disorder',
+                           'Mental disorder',
                            'HADS anxiety score',
                            'HADS depression score',
-                           'Depression or anxiety signs, HADS ≥ 8',
-                           'PSS-4 stress score',
+                           'Clinically relevant signs of depression or anxiety, HADS ≥ 8',
+                           'PSS-4 mental stress score',
                            'anti-RBD SARS-CoV-2, IgG, AU',
                            'COVID-19 severity'))
 
@@ -117,15 +117,18 @@
 
   suppl_tabs$incov_study_vars <-
     globals$incov_lexicon[c('variable', 'label', 'unit')] %>%
-    rbind(tibble(variable = 'age',
-                 label = 'age',
-                 unit = 'years')) %>%
+    rbind(tibble(variable = c('age', 'sex', 'bmi_class'),
+                 label = c('age', 'sex', 'body mass index'),
+                 unit = c('years', NA, NA))) %>%
     mutate(var_type = ifelse(variable %in% c('serotonin', 'dopamine 3-O-sulfate'),
-                             'response', 'explanatory')) %>%
+                             'response', 'explanatory'),
+           format = ifelse(is.na(unit), 'categorical', 'numeric')) %>%
+    arrange(desc(var_type)) %>%
     select(var_type,
            label,
+           format,
            unit) %>%
-    set_names(c('Variable type', 'Variable label', 'Unit')) %>%
+    set_names(c('Variable type', 'Variable label', 'Format', 'Unit')) %>%
     mdtable(label = 'table_s3_incov_study_vars',
             ref_name = 'incov_study_vars',
             caption = 'Study variables in the INCOV cohort.')
@@ -164,8 +167,8 @@
                                             variable,
                                             exchange(variable,
                                                      dict = globals$stigma_lexicon)),
-            Stratum = level,
-            `Observations/stratum` = n,
+            Category = level,
+            n = n,
             `Estimate, 95% CI` = paste0(signif(estimate, 2), ' [',
                                         signif(lower_ci, 2), ' - ',
                                         signif(upper_ci, 2), ']'),
@@ -197,7 +200,7 @@
                            'SIMMUN cohort.'),
                      paste('Comparison of serum metabolite levels',
                            'in SIMMUN study participants',
-                           'stratified by depression signs',
+                           'split by depression signs',
                            'and SARS-CoV-2 infection status.'))) %>%
     pmap(mdtable)
 
@@ -213,8 +216,8 @@
                                             exchange(variable,
                                                      dict = reduce(incov_neuro$variable_lexicons,
                                                                    rbind))),
-            Stratum = level,
-            `Observations/stratum` = n,
+            Category = level,
+            n = n,
             `Estimate, 95% CI` = paste0(signif(estimate, 2), ' [',
                                         signif(lower_ci, 2), ' - ',
                                         signif(upper_ci, 2), ']'),
