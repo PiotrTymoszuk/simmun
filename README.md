@@ -9,7 +9,7 @@ Effects of demographic, clinical, psychometric, inflammatory and infection-relat
 
 <br>
 <p align = "center"> 
-<img src = "https://github.com/PiotrTymoszuk/simmun/assets/80723424/c023461f-4552-4f74-80c7-39e1294708a9" width = "80%">
+<img src = "https://github.com/PiotrTymoszuk/simmun/assets/80723424/da3f4501-0f31-4854-8f1d-fac52d5e44f3" width = "80%">
 </p>
 
 Our results indicate that SARS-CoV-2-dependent inflammation can lower systemic availability of serotonin and dopamine by depletion of the tryptophan via the competitive kynurenine pathway and inhibition of the phenylalanine - tyrosine suppression, respectively. Those effects can be further amplified by advanced age, mental stress and depression. It remains to be investigated, if and how this mechanism may contribute to neurotransmitter metabolism in the central nervous system and, consequently, to psychiatric disorders following SARS-CoV-2 infection.
