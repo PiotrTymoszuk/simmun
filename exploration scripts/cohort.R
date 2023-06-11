@@ -211,7 +211,7 @@
                               cohort$samples,
                               by = 'timepoint') %>%
     set_names(c('Time point',
-                'Days post infection',
+                'Days since positive PCR test',
                 'Sample number'))
 # END -----
 

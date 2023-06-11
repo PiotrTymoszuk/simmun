@@ -34,7 +34,7 @@
                            'Mental disorder',
                            'HADS anxiety score',
                            'HADS depression score',
-                           'Clinically relevant signs of depression or anxiety, HADS ≥ 8',
+                           #'Clinically relevant signs of depression or anxiety, HADS ≥ 8',
                            'PSS-4 mental stress score',
                            'anti-RBD SARS-CoV-2, IgG, AU',
                            'COVID-19 severity'))
@@ -103,7 +103,12 @@
 
   insert_msg('Table S2: included and excluded participants, SIMMUN')
 
+  ## the variable 'Clinically relevant signs of depression or anxiety, HADS ≥ 8'
+  ## is redundant and removed from the tables and supplementary tables
+
   suppl_tabs$excluded <- excl$feat_table %>%
+    filter(!Variable %in% c('Clinically relevant signs of depression or anxiety, HADS ≥ 8',
+                            'Depression or anxiety signs, HADS ≥ 8')) %>%
     mdtable(label = 'table_s2_included_excluded',
             ref_name = 'excluded',
             caption = paste('Significant differences between participant',

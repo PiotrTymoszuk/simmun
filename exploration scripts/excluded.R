@@ -16,13 +16,13 @@
     c(sex = 'Sex',
       age = 'Age, years',
       bmi_class = 'Body mass class',
-      somatic_comorb = 'Somatic comorbidity',
-      psych_comorb = 'Psychiatric comorbidity',
+      somatic_comorb = 'Physical illness',
+      psych_comorb = 'Mental illness',
       hads_anx_score = 'HADS anxiety score',
       hads_dpr_score = 'HADS depression score',
       hads_signs = 'Depression or anxiety signs, HADS \u2265 8',
       pss_stress_score = 'PSS-4 stress score',
-      cov = 'Infection',
+      cov = 'SARS-CoV-2 infection',
       anti_rbd = 'anti-RBD SARS-CoV-2, IgG, AU',
       severity = 'COVID-19 severity',
       trp = 'TRP, µmol/L',
@@ -49,7 +49,14 @@
                                     c('analyzed', 'excluded'))) %>%
     select(patient_id,
            analysis_status,
-           all_of(excl$var_lexicon$variable))
+           all_of(excl$var_lexicon$variable)) %>%
+    mutate(cov = car::recode(cov,
+                             "'healthy' = 'uninfected'"),
+           cov = factor(cov, c('uninfected', 'SARS-CoV-2')),
+           severity = car::recode(severity,
+                                  "'healthy' = 'uninfected'"),
+           severity = factor(severity,
+                             c('uninfected', 'ambulatory', 'hospitalized')))
 
 # Descriptive stats -----
 

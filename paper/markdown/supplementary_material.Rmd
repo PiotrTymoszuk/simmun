@@ -1,5 +1,5 @@
 ---
-title: "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, kynurenine and catecholamine pathway activity"
+title: "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, and kynurenine and catecholamine pathway metabolites"
 subtitle: "Supplementary Material"
 author: "PSY Team"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
@@ -9,7 +9,7 @@ output:
     reference_docx: ms_template.docx
     
 bibliography: infl_biblio.bib
-csl: frontiers-in-immunology.csl
+csl: psychoneuroendocrinology.csl
 header-includes:
   \usepackage{longtable}
   \usepackage{tabu}
@@ -71,7 +71,7 @@ The analysis inclusion criterion was the complete study variable dataset consist
 basic demographic and medical history variables, 
 SARS-CoV-2 PCR result, titer of anti-receptor-binding domain S12/S2 protein immunoglobulin gamma (anti-RBD IgG), 
 psychometric scoring of depression, anxiety and mental stress as well as blood levels of inflammatory markers and metabolites of the kynurenine and catecholamine pathway. 
-A total of `r nrow(stigma$analysis_tbl)` SIMMUN study participants were analyzed here. 
+A total of `r nrow(stigma$analysis_tbl)` SIMMUN study participants were analyzed. 
 The SIMMUN study variables with their transformation and stratification schemes are listed in __Supplementary Table S\@ref(tab:tab-study-vars)__.
 The SIMMUN study data were gathered during a single on-site study visit at the study center at median 139 days after the SARS-CoV-2 PCR test (interquartile range: 119 - 157). 
 The study visits were conducted between 17. June 2020 and 27. May 2021. 
@@ -82,29 +82,31 @@ Characteristic of the analyzed SIMMUN cohort split by the SARS-CoV-2 infection s
 Demographic and clinical history variables, age, sex, body mass index (BMI), professionally diagnosed psychiatric disorders, self-reported chronic physical disorders, smoking and alcohol consumption, and result and date of the SARS-CoV-2 PCR were surveyed during the study visit or extracted from electronic patient records. 
 Body mass classes were defined as follows: normal for BMI < 25 kg/m^2^, overweight for BMI 25 - 30 kg/m^2^ and obesity for BMI > 30 kg/m^2^. 
 
-The inflammatory markers included in the analysis, plasma concentration of neopterin (NEO) measured by ELISA and neutrophil/lymphocyte ratio (NLR) were determined by a certified clinical routine laboratory at the University Hospital of Innsbruck. 
-C-reactive protein (CRP) and interleukin-6 (IL6) were determined in the SIMMUN cohort as well but excluded from the analysis, since their levels were within the reference range in the great majority of participants. 
+Neutrophil/lymphocyte ratio (NLR) and serum neopterin concentration were used as markers of inflammation. 
+NLR was determined by a certified clinical routine laboratory at the University Hospital of Innsbruck. 
+NEO levels were measured by enzyme-linked immunosorbent assay (BRAHMS Diagnostics, Berlin, Germany). 
+In addition to NLR and NEO, C-reactive protein (CRP) and interleukin-6 (IL6) were determined in the SIMMUN cohort as well but excluded from the analysis, since their levels were within the reference range in the great majority of participants. 
 Elevated CRP > 0.5 mg/dL was detected in 
 `r signif(table(stigma$data %>% filter(patient_id %in% stigma$complete_ids) %>% .$crp_class)[2]/nrow(stigma$analysis_tbl) * 100, 2)`% and 
 elevated IL6 > 7 pg/mL was observed in 
-`r signif(table(stigma$data %>% filter(patient_id %in% stigma$complete_ids) %>% .$il6_class)[2]/nrow(stigma$analysis_tbl) * 100, 2)`% of the analyzed SIMMUN cohort. 
-Plasma concentrations of tryptophan (TRP), kynurenine (KYN), phenylalanine (PHE) and tyrosine (TYR) were determined by high-performance liquid chromatography, as described elsewhere [@Widner1997; @Neurauter2008]. 
+`r signif(table(stigma$data %>% filter(patient_id %in% stigma$complete_ids) %>% .$il6_class)[2]/nrow(stigma$analysis_tbl) * 100, 2)`% of the analyzed SIMMUN participants. 
+Serum concentrations of tryptophan (TRP), kynurenine (KYN), phenylalanine (PHE) and tyrosine (TYR) were determined by high-performance liquid chromatography, as described elsewhere [@Widner1997; @Neurauter2008]. 
 Kynurenine - tryptophan and phenylalanine - tyrosine ratios (KYN/TRP and PHE/TYR) were used as readouts of systemic indoleamine 2,3-dioxygenase (IDO, kynurenine pathway) and phenylalanine hydroxylase (PAH, catecholamine pathway) activity, respectively [@Capuron2011]. 
-Plasma titer of anti-RBD IgG were quantified by ELISA as described before [@Deisenhammer2021]. 
+Serum titer of anti-RBD IgG were quantified by ELISA as described before [@Deisenhammer2021]. 
 Strongly non-normally distributed anti-RBD IgG levels were expressed as arbitrary units (AU) and stratified with the $\leq$ 1, 1 - 16.3 and > 16.3 AU cutpoints defined by the maximal titer in the uninfected participants (1 AU) and median titer in the SARS-CoV-2 subset (16.3 AU). 
 Laboratory measurements at and beyond detection limits were substituted with the respective detection limit value. 
 
 Mental stress was assessed with the 4-item perceived stress scale (PSS-4) [@Cohen1983]. 
 Clinically relevant symptoms of anxiety and depression were scored with the hospital anxiety and depression scale (HADS) including 7 items for anxiety and 7 items for depression [@Zigmond1983]. 
 The total possible score range for each subscale is 0 to 21, with higher scores indicating more severe symptoms of anxiety/depression. 
-Clinically relevant signs of anxiety or depression were identified with the cutoff of $\geq$ 8 points at the respective subscale as proposed [@Bjelland2002; @Zigmond1983]. 
+Clinically relevant symptoms of anxiety or depression were identified with the cutoff of $\geq$ 8 points at the respective subscale as proposed [@Bjelland2002; @Zigmond1983]. 
 PSS-4, HADS anxiety and depression scales displayed good-to-excellent internal consistency as measured by the McDonald $\omega$ statistic [@McDonald1999] (__Supplementary Figure S\@ref(fig:fig-consistency)__).
 
 In order to improve normality of some numeric SIMMUN study variables prior to linear modeling and statistical hypothesis testing with parametric tools, 
 logarithm 
 (`r suppl_tabs$study_vars %>% filter(Transformation == 'logarithm') %>% .[['Variable label']] %>% paste(collapse = ', ')`) or square root transformations 
 (`r suppl_tabs$study_vars %>% filter(Transformation == 'square root') %>% .[['Variable label']] %>% paste(collapse = ', ')`) were applied. 
-Strongly non-normally distributed HADS scores and anti-RBD IgG were stratified with the cutoffs described above. 
+The strongly non-normally distributed HADS scores and anti-RBD IgG titers were stratified with the cutoffs described above. 
 Transformation and stratification schemes of study variable are provided in __Supplementary Table S\@ref(tab:tab-study-vars)__.
 
 The SIMMUN cohort data were stored as a SPSS file and imported in R with the `read.spss()` function (package _foreign_). 
@@ -122,7 +124,7 @@ The INCOV study variables are listed in __Supplementary Table S\@ref(tab:tab-inc
 The analysis inclusion scheme for the INCOV cohort is presented in __Supplementary Figure S\@ref(fig:fig-inclusion)__. 
 Characteristics of the INCOV cohort are shown in __Table 2__.
 
-Concerning the INCOV study design, plasma metabolites and proteome were determined in uninfected controls and SARS-CoV-2 individuals at three timepoints after diagnosis: 
+Concerning the INCOV study design, plasma metabolome and proteome analyses were performed in uninfected participants and SARS-CoV-2-infected individuals at three timepoints after diagnosis: 
 acute (median `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['acute']` days), 
 sub-acute (median `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['sub-acute']` days) and 
 recovery (median `r (blast(incov$analysis_tbl, timepoint) %>% map_dbl(~round(median(.x$time_po))))['recovery']` days after diagnosis of SARS-CoV-2 infection via PCR). 
@@ -137,7 +139,8 @@ Descriptive statistics were computed with the function `explore()` from the [_Ex
 
 Distribution normality and variance homogeneity was assessed by Shapiro-Wilk and Levene test, respectively (functions `explore()` and `compare_variables()`, package [_ExDA_](https://github.com/PiotrTymoszuk/ExDA)). 
 The distribution testing revealed substantial deviations from normality for some SIMMUN study parameters. 
-For this reason, logarithm and square root transformations were applied prior to modeling and statistical hypothesis testing with parametric tools as specified in __Supplementary Table S\@ref(tab:tab-study-vars)__. 
+Therefore, logarithm and square root transformations were applied to non-normally distributed variables prior to modeling and statistical hypothesis testing with parametric tools. 
+Transformations of the SIMMUN study variables are specified in __Supplementary Table S\@ref(tab:tab-study-vars)__. 
 Most of the INCOV study variables were non-normally distributed. 
 For this reason, non-parametric Spearman rank test was chosen for correlation analysis and robust linear regression was used as a modeling approach.
 
@@ -166,7 +169,7 @@ The following effect size measures were used [@Cohen2013]:
 ## Statistical hypothesis testing
 
 Differences in characteristic of SIMMUN participants included in the analysis and excluded due to data missingness were assessed by $\chi^2$ test with Cramer's V effect size statistic and Mann-Whitney test with r effect size metric for numeric and categorical features, respectively (__Supplementary Table S\@ref(tab:tab-excluded)__). 
-Differences in characteristic of SIMMUN participants or INCOV study participants divided by the SARS-CoV-2 infection status were investigated by $\chi^2$ test with Cramer's V effect size statistic and Mann-Whitney test with r effect size metric for numeric and categorical features, respectively (__Tables 1__ and __2__). 
+Differences in characteristic of SIMMUN study participants or INCOV study participants divided by the SARS-CoV-2 infection status were investigated by $\chi^2$ test with Cramer's V effect size statistic and Mann-Whitney test with r effect size statistic for numeric and categorical features, respectively (__Tables 1__ and __2__). 
 Correlation of metabolite concentrations with age, scoring of mental stress (PSS-4) and markers of inflammation (NEO and NLR) in the SIMMUN cohort was done by Pearson's test (__Supplementary Table S\@ref(tab:tab-univariate-correlation)__). 
 Pairwise correlations of cytokine and metabolite levels in the INCOV cohort were assessed by Spearman's rank test. 
 Differences in metabolite concentrations and metabolite ratios in the SIMMUN cohort split by the SARS-CoV-2 infection status or presence of clinically relevant depression symptoms (HADS) were assessed by two-tailed T test with Cohen's d effect size metric (__Supplementary Table S\@ref(tab:tab-univariate-complarison)__). 
@@ -175,7 +178,7 @@ Statistical hypothesis testing was accomplished with the functions `compare_vari
 
 ## Multi-parameter linear regression with backwards elimination in the SIMMUN cohort
 
-Effects of age, sex, body mass class, physical and mental disorders, BMI class, smoking and alcohol consumption, the inflammation markers NEO and NLR, SARS-CoV-2 infection status, anti-RBD IgG titer, clinically relevant symptoms of depression and anxiety (HADS), mental stress scoring (PSS-4) on readouts of the kynurenine (TRP, KYN, KYN/TRP) and catecholamine pathway activity (PHE, TYR, PHE/TYR) were assessed by multi-parameter linear regression with backward elimination. 
+Effects of age, sex, physical and mental disorders, BMI class, smoking and alcohol consumption, the inflammation markers NEO and NLR, SARS-CoV-2 infection status, anti-RBD IgG titer, clinically relevant symptoms of depression and anxiety (HADS), mental stress scoring (PSS-4) on readouts of the kynurenine (TRP, KYN, KYN/TRP) and catecholamine pathway activity (PHE, TYR, PHE/TYR) were assessed by multi-parameter linear regression with backward elimination. 
 Responses and numeric explanatory variables were transformed with log or squared root functions to improve normality as specified in __Supplementary Table S\@ref(tab:tab-study-vars)__ and normalized prior to modeling. 
 
 Full models including the complete set of explanatory variables listed above were constructed (function `make_lm()`, package [_lmqc_](https://github.com/PiotrTymoszuk/lmqc)) and optimized by Bayesian information criterion (BIC) driven backwards elimination of non-significant terms (method `step()`, [_lmqc_](https://github.com/PiotrTymoszuk/lmqc), employing internally `stepAIC()` from the _MASS_ package) [@Ripley2022]. 
@@ -187,13 +190,13 @@ As presented in __Supplementary Figure S\@ref(fig:fig-fit-stats)A__, similar val
 
 Inference statistics for the model estimates ($\beta$, expected values and 95% confidence intervals) were extracted from the model objects with the `summary()` method. 
 Significance of the estimates ($p(\beta\neq0)$) was determined by two-tailed T test. 
-Results of the linear modeling in the INCOV cohort are presented in __Figure 2__ and __Supplementary Table S\@ref(tab:tab-modeling-simmun)__.
+Results of the linear modeling in the SIMMUN cohort are presented in __Figure 2__ and __Supplementary Table S\@ref(tab:tab-modeling-simmun)__.
 
 ## Multi-parameter robust linear modeling in the INCOV cohort
 
-Effects of the key explanatory factors identified by multi-parameter linear modeling in the SIMMUN cohort on systemic neurotransmitter availability were subsequently tested in the publicly available INCOV cohort [@Su2022]. 
-We modeled normalized plasma levels of serotonin as the product of the serotonin pathway [@Lukic2022], and the major product of systemic dopamine catabolism, dopamine 3-O-sulfate (DA sulfate) [@Goldstein1999; @Meiser2013]. 
-The explanatory variables were age, sex and BMI class, plasma levels of cytokines markers of inflammation (IL6, IL10, TNF, IFNG), plasma concentrations of metabolites of the serotonin and kynurenine pathway (TRP, KYN, QUIN), plasma concentrations of metabolites of the catecholamine pathway (PHE, TYR) and timepoint of SARS-CoV-2 infection (acute, sub-acute, recovery versus uninfected control). 
+Effects of the key explanatory factors identified by multi-parameter linear modeling in the SIMMUN cohort on kynurenine and catecholamine pathway activity were subsequently tested in the publicly available INCOV cohort [@Su2022]. 
+We modeled normalized plasma levels of serotonin, and the major product of systemic dopamine catabolism, dopamine 3-O-sulfate (DA sulfate) [@Goldstein1999; @Meiser2013]. 
+The explanatory variables were age, sex and BMI class, plasma levels of cytokines markers of inflammation (IL6, IL10, TNF, IFNG), plasma concentrations of metabolites of the kynurenine (TRP, KYN, QUIN) and catecholamine pathway (PHE, TYR) and timepoint of SARS-CoV-2 infection (acute, sub-acute, recovery versus uninfected individuals). 
 Since most numeric features were non-normally distributed, MM algorithm robust linear regression with Huber's psi function was chosen [@Huber2011; @Ripley2022] as a modeling approach. 
 
 The robust linear models were built with the `make_lm()` wrapper ([_lmqc_](https://github.com/PiotrTymoszuk/lmqc) package) around the MASS package `rlm()` function [@Ripley2022]. 
@@ -205,14 +208,14 @@ The robust linear modeling results are presented in __Figure 3__ and __Supplemen
 
 ## Time course of cytokines and metabolites in the INCOV cohort
 
-Differences in normalized blood concentrations of cytokines and metabolites between uninfected controls, acute and sub-acute SARS-CoV-2 infection and recovery were investigated with robust linear modeling with uninfected subset or acute infection serving as baselines. 
+Differences in normalized blood concentrations of cytokines and metabolites between uninfected individuals, acute and sub-acute SARS-CoV-2 infection and recovery were investigated with robust linear modeling with uninfected subset or acute infection serving as baselines. 
 Models were constructed with the `make_lm()` function (package [_lmqc_](https://github.com/PiotrTymoszuk/lmqc)) employing internally the MM `rlm()` algorithm with Huber's psi function (package _MASS_) [@Huber2011; @Ripley2022]. 
 Inference statistics were computed as described for multi-parameter robust linear modeling. 
 The time course modeling results are presented in __Figure 4__, __Supplementary Table S\@ref(tab:tab-time-uninfected)__ - __S\@ref(tab:tab-time-acute)__.
 
 ## Correlation and network analysis in the INCOV cohort
 
-Pairwise Spearman's correlation coefficients $\rho$ were calculated for plasma concentrations of cytokines (IL6, IL10, TNF and IFNG), metabolites of the serotonin and kynurenine pathways (serotonin, TRP, KYN and QUIN), and metabolites of the catecholamine pathway (PHE, TYR and DA sulfate) with the `cor()` function from the _stats_ package at each of the timepoints of SARS-CoV-2 infection (uninfected, acute, sub-acute and recovery). 
+Pairwise Spearman's correlation coefficients $\rho$ were calculated for plasma concentrations of cytokines (IL6, IL10, TNF and IFNG), serotonin and metabolites of the kynurenine (TRP, KYN and QUIN), and catecholamine pathway (PHE, TYR and DA sulfate) with the `cor()` function from the _stats_ package at each of the timepoints of SARS-CoV-2 infection (uninfected, acute, sub-acute and recovery). 
 The correlation matrices were subsequently scaled into the [0, 1] range with the $0.5\times(x + 1)$ function and converted to undirected force directed graphs with the `graph_from_adjacency_matrix()` function from the _igraph_ package [@Csardi2006]. 
 The graphs were visualized with tools provided by the _ggnetwork_ package [@Briatte2021] as two-dimensional network plots with the node proximity determined by the $\rho$ value and distance-dependent repulsion, and edge color and width coding for the $\rho$ value and sign (__Figure 5__). 
 Additionally, correlation analysis results were presented as correlograms in __Supplementary Figure \@ref(fig:fig-corr-invcov)__.
@@ -282,7 +285,7 @@ flextable::flextable(suppl_tabs$incov_study_vars) %>%
   width(4, width = 6, unit = 'cm') %>% 
   merge_v(1) %>% 
   footnote(1, 2, 
-           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinic acid; PHE: phenylalanine; 5-HT: serotonin; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
+           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinic acid; PHE: phenylalanine; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
            part = 'header', 
            ref_symbols = 'a') %>% 
    footnote(14, 2, 
@@ -327,7 +330,7 @@ flextable::flextable(suppl_tabs$cohort_comp) %>%
 
 \newpage
 
-```{r tab-modeling-simmun, tab.cap = 'Results of multi-parameter linear modeling of plasma concentrations of tryptophan, kynurenine, tyrosine, and kynurenine - tryptophan, and phenylalanine - tyrosine ratios in the SIMMUN cohort.'}
+```{r tab-modeling-simmun, tab.cap = 'Results of multi-parameter linear modeling of serum concentrations of tryptophan, kynurenine, tyrosine, and kynurenine/tryptophan and phenylalanine/tyrosine ratios in the SIMMUN cohort.'}
 
 flextable::flextable(suppl_tabs$modeling_simmun) %>% 
   width(1, width = 2.2, unit = 'cm') %>% 
@@ -351,7 +354,7 @@ flextable::flextable(suppl_tabs$modeling_simmun) %>%
 
 \newpage
 
-```{r tab-univariate-correlation, tab.cap = "Correlation of age, perceived mental stress scoring, plasma neopterin levels and neutrophil/leukocyte ratio with plasma metabolite levels in the SIMMUN cohort investigated by Pearson's test."}
+```{r tab-univariate-correlation, tab.cap = "Correlation of age, perceived mental stress scoring, serum neopterin levels and neutrophil/leukocyte ratio with serum levels of metabolites of the kynurenine and catecholamine pathways in the SIMMUN cohort investigated by Pearson's test."}
 
 flextable::flextable(suppl_tabs$univariate_correlation) %>% 
   width(1, width = 3.7, unit = 'cm') %>% 
@@ -378,7 +381,7 @@ flextable::flextable(suppl_tabs$univariate_correlation) %>%
 
 \newpage
 
-```{r tab-univariate-complarison, tab.cap = "Comparison of plasma metabolite concentrations in SIMMUN study participants split by clinically relevant depression signs and SARS-CoV-2 infection status with two-tailed T test and Cohen's d effect size statistic."}
+```{r tab-univariate-complarison, tab.cap = "Comparison of serum metabolite concentrations in SIMMUN study participants split by presence of clinically relevant symptoms of depression and SARS-CoV-2 infection status with two-tailed T test and Cohen's d effect size statistic."}
 
 flextable::flextable(suppl_tabs$univariate_complarison) %>% 
   width(1, width = 2.6, unit = 'cm') %>% 
@@ -422,7 +425,7 @@ flextable::flextable(suppl_tabs$modeling_incov) %>%
   width(6, width = 2.7, unit = 'cm') %>% 
   merge_v(1:2) %>% 
   footnote(1, 1, 
-           value = as_paragraph('5-HT: 5-hydroxy tryptamine/serotonin; DA sulfate: dopamine 3-O-sulfate.'), 
+           value = as_paragraph('DA sulfate: dopamine 3-O-sulfate.'), 
            part = 'header', 
            ref_symbols = 'a') %>%
   footnote(1, 2, 
@@ -435,7 +438,7 @@ flextable::flextable(suppl_tabs$modeling_incov) %>%
 
 \newpage
 
-```{r tab-time-uninfected, tab.cap = 'Results of robust linear modeling of serum levels of cytokine markers of inflammation, and metabolites of the serotonin, kynurenine and catecholamine pathways as a function of SARS-CoV-2 infection timepoint in the INCOV cohort. The uninfected subset served as a baseline.'}
+```{r tab-time-uninfected, tab.cap = 'Results of robust linear modeling of plasma levels of cytokine markers of inflammation, serotonin, and metabolites of the kynurenine and catecholamine pathways as a function of SARS-CoV-2 infection timepoint in the INCOV cohort. The uninfected subset served as a baseline.'}
 
 flextable::flextable(suppl_tabs$time_uninfected) %>% 
   width(1, width = 3, unit = 'cm') %>% 
@@ -445,7 +448,7 @@ flextable::flextable(suppl_tabs$time_uninfected) %>%
   width(5, width = 2.9, unit = 'cm') %>% 
   merge_v(1:2) %>% 
   footnote(1, 2, 
-           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinic acid; PHE: phenylalanine; 5-HT: serotonin; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
+           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinic acid; PHE: phenylalanine; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
            part = 'header', 
            ref_symbols = 'a') %>% 
   footnote(1, 5, 
@@ -458,7 +461,7 @@ flextable::flextable(suppl_tabs$time_uninfected) %>%
 
 \newpage
 
-```{r tab-time-acute, tab.cap = 'Results of robust linear modeling of serum levels of cytokine markers of inflammation, and metabolites of the serotonin, kynurenine and catecholamine pathways as a function of SARS-CoV-2 infection timepoint in the INCOV cohort. The acute SARS-CoV-2 infection subset served as a baseline.'}
+```{r tab-time-acute, tab.cap = 'Results of robust linear modeling of plasma levels of cytokine markers of inflammation, serotonin, and metabolites of the kynurenine and catecholamine pathways as a function of SARS-CoV-2 infection timepoint in the INCOV cohort. The acute SARS-CoV-2 infection subset served as a baseline.'}
 
 flextable::flextable(suppl_tabs$time_acute) %>% 
   width(1, width = 3, unit = 'cm') %>% 
@@ -468,7 +471,7 @@ flextable::flextable(suppl_tabs$time_acute) %>%
   width(5, width = 2.9, unit = 'cm') %>% 
   merge_v(1:2) %>% 
   footnote(1, 2, 
-           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinic acid; PHE: phenylalanine; 5-HT: serotonin; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
+           value = as_paragraph('TNF: tumor necrosis factor-alpha; IFNG: interferon gamma; IL6: interleukin-6; IL10: interleukin-10; QUIN: quinolinic acid; PHE: phenylalanine; TRP: tryptophan; TYR: tyrosine; KYN: kynurenine; DA sulfate: dopamine 3-O-sulfate.'), 
            part = 'header', 
            ref_symbols = 'a') %>% 
   footnote(1, 5, 
@@ -493,7 +496,7 @@ __Supplementary Figure S\@ref(fig:fig-inclusion). Inclusion scheme for the SIMMU
 
 _Sampling timepoints in the INCOV cohort: acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after diagnosis of SARS-CoV-2 infection via PCR._
 
-_TRP: tryptophan; KYN: kynurenine; PHE: phenylalanine; TYR: tyrosine; KYN/TRP: kynurenine/tryptophan ratio; PHE/TYR: phenylalanine/tyrosine ratio; NLR: neutrophil - leukocyte ratio; QUIN: quinolinic acid; 5-HT: serotonin; DA: dopamine; Ab: antibody; IL6: interleukin-6; IL10: interleukin-10; TNF: tumor-necrosis factor alpha; IFNG: interferon gamma._
+_TRP: tryptophan; KYN: kynurenine; PHE: phenylalanine; TYR: tyrosine; KYN/TRP: kynurenine/tryptophan ratio; PHE/TYR: phenylalanine/tyrosine ratio; NLR: neutrophil - leukocyte ratio; QUIN: quinolinic acid; DA: dopamine; Ab: antibody; IL6: interleukin-6; IL10: interleukin-10; TNF: tumor-necrosis factor alpha; IFNG: interferon gamma._
 
 
 \newpage
@@ -520,7 +523,7 @@ suppl$fit_stats$plot
 
 __Supplementary Figure S\@ref(fig:fig-fit-stats). Root mean square error and R^2^ statistics for multi-parameter linear models of readouts of the kynurenine and catecholamine pathway activity in the SIMMUN cohort.__ 
 
-_Multi-parameter linear regression models of plasma levels of tryptophan (TRP), kynurenine (KYN), kynurenine/tryptophan ratio (KYN/TRP), phenylalanine (PHE), tyrosine (TYR) and phenylalanine/tyrosine ratio (PHE/TRP) in the SIMMUN models were optimized by backwards elimination and their reproducibility was tested by cross-validation (CV, 10 folds). Values of root mean square error (RMSE, A) and R^2^ (B) in the training data set and CV are plotted._
+_Multi-parameter linear regression models of serum levels of tryptophan (TRP), kynurenine (KYN), kynurenine/tryptophan ratio (KYN/TRP), phenylalanine (PHE), tyrosine (TYR) and phenylalanine/tyrosine ratio (PHE/TRP) in the SIMMUN models were optimized by backwards elimination and their reproducibility was tested by cross-validation (CV, 10 folds). Values of root mean square error (RMSE, A) and R^2^ (B) in the training data set and CV are plotted._
 
 \newpage
 
@@ -532,9 +535,9 @@ suppl$uni_trp$plot
 
 __Supplementary Figure S\@ref(fig:fig-uni-trp). Effects of age, serum inflammatory markers neopterin and neutrophil-lymphocyte ratio, mental stress, depression and SARS-CoV-2 infection on tryptophan, kynurenine and kynurenine/tryptophan ratio in the SIMMUN cohort.__ 
 
-_Age, systemic inflammatory markers: neopterin (NEO), neutrophil/lymphocyte ratio (NLR), SARS-CoV-2 infection status, clinically relevant symptoms of depression (hospital anxiety and depression scale [HADS] > 8 points) and mental stress scoring (perceived stress scale, 4 item [PSS-4]) were identified as significant determinants of plasma levels of tryptophan (TRP), kynurenine (KYN) and kynurenine/tryptophan ratio (KYN/TRP). Their association with plasma concentrations of these metabolites was investigated by correlation analysis and statistical hypothesis testing._
+_Age, systemic inflammatory markers: neopterin (NEO), neutrophil/lymphocyte ratio (NLR), SARS-CoV-2 infection status, clinically relevant symptoms of depression (hospital anxiety and depression scale [HADS] > 8 points) and mental stress scoring (perceived stress scale, 4 item [PSS-4]) were identified as significant determinants of serum levels of tryptophan (TRP), kynurenine (KYN) and kynurenine/tryptophan ratio (KYN/TRP). Their association with serum concentrations of these metabolites was investigated by correlation analysis and statistical hypothesis testing._
 
-_(A, B) Correlation of the metabolite levels and the numeric explanatory factors of interest was assessed by Pearson's test corrected for multiple testing by the false discovery rate method. (A) Correlation coefficients are presented in a bubble plot with point size and color corresponding to values of correlation coefficients (r); points are labeled with their r values, significant effects are highlighted in bold. (B) Scatter plots of plasma concentrations of NEO, TRP, KYN and KYN/TRP. Points represent single observations, fitted linear trends with 95% confidence intervals are visualized as blue lines with gray ribbons. Correlation coefficients with 95% confidence intervals and p values are displayed in the plot captions._
+_(A, B) Correlation of the metabolite levels and the numeric explanatory factors of interest was assessed by Pearson's test corrected for multiple testing by the false discovery rate method. (A) Correlation coefficients are presented in a bubble plot with point size and color corresponding to values of correlation coefficients (r); points are labeled with their r values, significant effects are highlighted in bold. (B) Scatter plots of serum concentrations of NEO, TRP, KYN and KYN/TRP. Points represent single observations, fitted linear trends with 95% confidence intervals are visualized as blue lines with gray ribbons. Correlation coefficients with 95% confidence intervals and p values are displayed in the plot captions._
 
 _(C) Levels of the metabolite levels were compared between infected and uninfected participants, and between participants with and without clinically relevant symptoms of depression by two-tailed T test with Cohen's d effect size statistic. P values were corrected for multiple testing with the false discovery rate method. Medians with interquartile ranges (IQR) are represented by boxes, whiskers span over 150% IQR, single observations are depicted as points. Effect sizes and p values are displayed in the plot captions. Numbers of observations are indicated in the X axes._
 
@@ -548,11 +551,11 @@ suppl$uni_tyr$plot
 
 __Supplementary Figure S\@ref(fig:fig-uni-tyr). Effects of age, serum inflammatory marker neopterin and SARS-CoV-2 infection on phenylalanine, tyrosine and phenylalanine/tyrosine ratio in the SIMMUN cohort.__ 
 
-_Age, the systemic inflammatory marker neopterin (NEO), and SARS-CoV-2 infection status were identified as significant determinants of plasma levels of phenylalanine (PHE), tyrosine (TYR) and phenylalanine/tyrosine ratio (PHE/TYR). Their association with plasma concentrations of these metabolites was investigated by correlation analysis and statistical hypothesis testing._
+_Age, the systemic inflammatory marker neopterin (NEO), and SARS-CoV-2 infection status were identified as significant determinants of serum levels of phenylalanine (PHE), tyrosine (TYR) and phenylalanine/tyrosine ratio (PHE/TYR). Their association with serum concentrations of these metabolites was investigated by correlation analysis and statistical hypothesis testing._
 
 _(A, B) Correlation of the metabolite levels and the numeric explanatory factors of interest was assessed by Pearson's test corrected for multiple testing by the false discovery rate method. (A) Correlation coefficients are presented in a bubble plot with point size and color corresponding to values of correlation coefficients (r); points are labeled with their r values, significant effects are highlighted in bold. (B) Scatter plots of patient's age, PHE, TYR and PHE/TYR. Points represent single observations, fitted linear trends with 95% confidence intervals are visualized as blue lines with gray ribbons. Correlation coefficients with 95% confidence intervals and p values are displayed in the plot captions._
 
-_(C) Levels of the metabolite levels were compared between infected and uninfected participants by two-tailed T test with Cohen's d effect size statistic. P values were corrected for multiple testing with the false discovery rate method. Medians with interquartile ranges (IQR) are represented by boxes, whiskers span over 150% IQR, single observations are depicted as points. Effect sizes and p values are displayed in the plot captions. Numbers of observations are indicated in the X axes._
+_(C) Levels of the metabolites were compared between infected and uninfected participants by two-tailed T test with Cohen's d effect size statistic. P values were corrected for multiple testing with the false discovery rate method. Medians with interquartile ranges (IQR) are represented by boxes, whiskers span over 150% IQR, single observations are depicted as points. Effect sizes and p values are displayed in the plot captions. Numbers of observations are indicated in the X axes._
 
 \newpage
 
@@ -564,7 +567,7 @@ suppl$corr_incov$plot
 
 __Supplementary Figure S\@ref(fig:fig-corr-invcov). Correlation of metabolites with cytokine markers of inflammation in the INCOV cohort.__ 
 
-_Plasma levels of metabolites of the serotonin and kynurenine pathways (5-hydroxy tryptamine/serotonin [5-HT], tryptophan [TRP], kynurenine [KYN], quinolinic acid [QUIN]) and metabolites of the catecholamine pathway (phenylalanine [PHE], tyrosine [TYR], dopamine 3-O-sulfate [DA sulfate]) were correlated with plasma levels of cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) in uninfected individuals, and during acute (median 10 days), sub-acute (median 14 days) SARS-CoV-2 infection and recovery (median 64 days after SARS-CoV-2 infection diagnosis via PCR). Statistical significance was determined by Spearman's rank test corrected for multiple testing with the false discovery rate method. Correlation coefficients $\rho$ are presented in bubble plots with point size and color corresponding to values of correlation coefficients; points are labeled with their $\rho$ values, significant effects are highlighted in bold._
+_Plasma levels of serotonin and metabolites of the kynurenine (tryptophan [TRP], kynurenine [KYN], quinolinic acid [QUIN]) and catecholamine pathways (phenylalanine [PHE], tyrosine [TYR], dopamine 3-O-sulfate [DA sulfate]) were correlated with plasma levels of cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) in uninfected individuals, and during acute (median 10 days), sub-acute (median 14 days) SARS-CoV-2 infection and recovery (median 64 days after SARS-CoV-2 infection diagnosis via PCR). Statistical significance was determined by Spearman's rank test corrected for multiple testing with the false discovery rate method. Correlation coefficients $\rho$ are presented in bubble plots with point size and color corresponding to values of correlation coefficients; points are labeled with their $\rho$ values, significant effects are highlighted in bold._
 
 \newpage
 

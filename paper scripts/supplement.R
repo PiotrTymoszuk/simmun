@@ -87,8 +87,7 @@
                       legend.position = 'none') +
                 labs(subtitle = paste('Pearson correlation, n =',
                                       nrow(stigma$analysis_tbl)),
-                     title = paste0(tst_trp$correlation$correlogram$labels$title,
-                                    ', SIMMUN')),
+                     title = 'Kynurenine pathway, SIMMUN'),
               get_legend(tst_trp$correlation$correlogram),
               ncol = 2,
               rel_widths = c(0.65, 0.35),
@@ -151,8 +150,7 @@
                       legend.position = 'none') +
                 labs(subtitle = paste('Pearson correlation, n =',
                                       nrow(stigma$analysis_tbl)),
-                     title = paste0(tst_tyr$correlation$correlogram$labels$title,
-                                    ', SIMMUN')),
+                     title = 'Catecholamine pathway, SIMMUN'),
               get_legend(tst_tyr$correlation$correlogram),
               ncol = 2,
               rel_widths = c(0.55, 0.45),

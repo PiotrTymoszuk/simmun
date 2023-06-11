@@ -137,10 +137,8 @@
                                 'Explained variance, INCOV')) %>%
     map(~.x +
           scale_y_discrete(limits = rev(names(incov_neuro$caret_models)),
-                           labels = exchange(names(incov_neuro$caret_models),
-                                             dict = incov_neuro$response_lexicon,
-                                             key = 'variable',
-                                             value = 'label')))
+                           labels = c(serotonin = 'serotonin',
+                                      dopamine = 'DA sulfate')))
 
 # Inference --------
 
@@ -160,8 +158,8 @@
 
   incov_neuro$forest_plots <-
     list(x = incov_neuro$inference,
-         plot_title = c('5-HT', 'DA sulfate'),
-         x_lab = paste0(c('5-HT', 'DA sulfate'),
+         plot_title = c('Serotonin', 'DA sulfate'),
+         x_lab = paste0(c('Serotonin', 'DA sulfate'),
                         ', Z-score')) %>%
     pmap(plot_forest,
          variable = 'var_lab',

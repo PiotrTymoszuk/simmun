@@ -52,7 +52,7 @@
                                'phenylalanine' = 'PHE';
                                'tyrosine' = 'TYR';
                                'dopamine 3-O-sulfate' = 'DA sulfate';
-                               'serotonin' = '5-HT';
+                               'serotonin' = 'serotonin';
                                'quinolinate' = 'QUIN'"),
            unit = 'Z-score of log\u2082 concentration',
            axis_lab = paste(label, unit, sep = ', '))

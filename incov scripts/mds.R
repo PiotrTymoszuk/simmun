@@ -157,7 +157,10 @@
 
   incov_mds$network_plots <-
     list(graph = incov_mds$graph_obj,
-         plot_title =  paste0(c('Uninfected', 'Acute Cov', 'Sub-acute CoV', 'Recovery'),
+         plot_title =  paste0(c('Uninfected',
+                                'Acute SARS-CoV-2 infection',
+                                'Sub-acute SARS-CoV-2 infection',
+                                'Recovery'),
                               ', INCOV') %>%
            rep(2),
          plot_subtitle = paste('n =', map_dbl(incov_mds$analysis_tbl, ncol))) %>%

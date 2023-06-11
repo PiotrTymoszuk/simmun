@@ -16,7 +16,7 @@
     c('sex' = 'Sex',
       'age' = 'Age, years',
       'bmi_class' = 'Body mass',
-      'cov' = 'SARS-CoV-2',
+      'cov' = 'SARS-CoV-2 infection',
       'severity' = 'SARS-CoV-2 hospitalization') %>%
     compress(names_to = 'variable',
              values_to = 'label')

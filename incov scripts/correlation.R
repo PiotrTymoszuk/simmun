@@ -122,7 +122,7 @@
            map(mutate,
                variable1 = variable2,
                variable2 = timepoint),
-         plot_title = c('5-HT, INCOV', 'DA sulfate, INCOV')) %>%
+         plot_title = c('Serotonin, INCOV', 'DA sulfate, INCOV')) %>%
     pmap(corr_buble,
          signif_only = FALSE) %>%
     map(~.x +

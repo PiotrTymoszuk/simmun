@@ -1,0 +1,188 @@
+---
+title: "The effect of inflammation, SARS-CoV-2 infection, age and mental health on serotonin, and kynurenine and catecholamine pathway metabolites"
+subtitle: "Issues 10.06.2023"
+author: "PSY Team"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+
+output: 
+  bookdown::word_document2:   
+    reference_docx: ms_template.docx
+    
+bibliography: infl_biblio.bib
+csl: frontiers-in-immunology.csl
+header-includes:
+  \usepackage{longtable}
+  \usepackage{tabu}
+  \usepackage{caption}
+  \usepackage{makecell}
+  \usepackage{pdflscape}
+  \usepackage{array}
+  \usepackage{booktabs}
+  \usepackage{threeparttable}
+  \usepackage{threeparttablex}
+  \usepackage{wrapfig}
+  \usepackage{multirow}
+  \usepackage[normalem]{ulem}
+  \usepackage{colortbl}
+  \usepackage{xcolor}
+  \usepackage{float} \floatplacement{figure}{H} \floatplacement{table}{H}
+  \newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\thetable}{S\arabic{table}}       \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
+---
+
+```{r, setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, 
+                      dev = "png", dpi = 600, 
+                      tab.cap.pre = 'Supplementary Table ', tab.cap.sep = " ", 
+                      tab.cap.style = 'Table Heading')
+
+set_flextable_defaults(font.family = 'Cambria', font.size = 10)
+
+
+```
+
+\newpage
+
+# General
+
+* I really like the title, thanks!
+
+* Following your suggestion, I've replaced '5-HT' with 'serotonin' in Figures, Tables and Supplementary Material.
+
+# Rebuttal Letter
+
+* A minor language issue: I'd propose to use 'Discussion', 'Introduction' or 'Results' instead of 'the Discussion', 'the Introduction' and 'the Results', because we're referring to parts of the text, which are named so. I used to work together with US companies during my lab time at the University, this was a kind of rule in papers and reports for them.
+
+* Issue 11. I'm not a big fan of presenting test stats in tables or figures. An example: we have two variables: one with mean of 0, the other with mean of 0.1, both have SD = 1. This difference is not significant if each variable has n = 100 observations (t = 1.4) but highly significant for n = 10000 observations (t = 6.8). The effect size of this difference is weak as determined by Cohen's d:
+
+$$d = \frac{Mean(x1) - Mean(x2)}{SD} = \frac{0.1 - 0}{1} = 0.1$$ 
+So the test stat like t or $\chi^2$ tells us only, if the effect is significant (i.e. obtained not by chance), but does not allow us to interpret its relevance! Yes, there are test stats like correlation coefficients, which provide information on effect sizes as well, but these are only special cases.
+
+# Supplementary Material
+
+* I prefer keeping details on methods in Supplementary Material event if they are provided in the main manuscript as well. The reason for that is pragmatic: I don't have to look up for technical details in the main manuscript, while I'm reading Supplementary Material and vice versa. If you wish, you can delete them, at the moment I'm leaving them as they are.
+
+* Section __Supplementary Methods/INCOV cohort dataset__: I'm fine with the rewritten sentence on analysis timepoints.
+
+* References are now in the right format.
+
+* Variable 'Clinically relevant symptoms of depression or anxiety (HADS ≥ 8)' codes for depression or anxiety symptoms, I think we used it in previous analyses. I've removed it from the final version of Supplementary Material and Manuscript, because we don't discuss it anymore.
+
+* Issues with Supplementary Table S2 were cleared ('healthy' -> 'uninfected')
+
+* Supplementary Table S4, the heading is fine for me, thanks!
+
+* Supplementary Table S5: 'SARS-CoV-2 infection', as suggested.
+
+* Supplementary Figure S1: corrected as suggested.
+
+# Main manuscript
+
+## Abstract
+
+* The Background paragraph: I've made it shorter and tried to point out, why the kynurenine and catecholamine pathways are postulated to be important for mental health. I feel this is quite important for somebody from outside the field.
+
+* I've re-phrased slightly the conclusion paragraph, to underline direction of changes in kynurenine and catecholamine pathway activity. I think wording 'which may reduce serotonin availability' is anyway quite weak. 'associated' would suggest that we could show only a coincidence. Yes we did that, but combining our findings with literature, we can speculate that - its also about marketing:). 
+I also avoided  repeating the information from the Background paragraph ('link between physical disorders and mental health').
+
+## Introduction
+
+* Thanks for edits in Introduction, I accepted almost all of them. And for staying far below 1000 words:) Just few issues below.
+
+* I know I'm stubborn, but the opening sentence 'The immune system and the brain interact at multiple levels with influences on one system having consequences on the other' can be simply reduced to 'The immune system and the brain interact at multiple levels'. 'Interact' means that one thing influences another and vice versa, please find the [definition here](https://www.merriam-webster.com/dictionary/interaction). You may of course keep it as it is, but there are 10 words extra without additional information. 
+
+* 'Hence, the kynurenine pathway, whose activity can be assessed by the ratio of blood KYN to TRP (KYN/TRP) is an activation marker of IDO and TDO activity and thereby reflects inflammatory and hypothalamic–pituitary–adrenal axis signals' - there was too many 'activation' and 'activity' in one sentence, I had to re-write it. I would no say that KYN pathway activity or IDO activity reflects inflammatory signals - some say, it pertains to immunosuppression, e.g. in tumors. Anyway, it may sound that KYN pathway activity is a kind of inflammatory marker.
+
+* 'The synthesis of __catecholamine__ neurotransmitters such has dopamine via the catecholamine pathway involves the conversion of phenylalanine (PHE) to tyrosine (TYR) catalyzed by phenylalanine hydroxylase (PAH) followed by hydroxylation of TYR by tyrosine 5-hydroxylase (TH)'. I've added 'catecholamine' to stress that is concerns to one particular family of neurotransmitters.
+
+## Methods
+
+* INCOV cohort: of course we don't have the ratios, thanks for pointing out! This was a copy-paste error.
+
+* Analysis endpoints. Thanks for the edits. I've reworded 'inflammatory cytokines' to 'cytokine markers or inflammation', because IL10 is actually an anti-inflammatory cytokine (but strongly induced by NF-kappa-B signals and hence an inflammatory marker).
+
+* Statistical analysis. The sentence 'Responses and explanatory variables were normalized prior to modeling' does not refer to representation of variables. It means, that I transform numeric variables to Z scores (normalization): 
+
+$$Zscore = \frac{Mean(x)}{SD(x)}$$
+
+This is actually a vary important statement, because it tells me, how to interpret the models. When I model normalized explanatory variables, I can compare $\beta$ coefficients for e.g. age ($\beta$ = `my_beta(mod_eli$inference$kyn, 'age')`) and NEO ($\beta$ = `r my_beta(mod_eli$inference$kyn, 'log_neo')`) and say that NEO is a stronger predictor of KYN levels. I'm allowed to state tat because Z scores of age and NEO are in the same scale:) Since the responses are also expressed as Z-scores, I can also say that e.g. difference of 1 $\times$ SD in age causes 0.25 $\times$ difference in KYN.
+
+## Results
+
+* Characteristic of the study cohort. I find your proposal interesting - I tend to provide extremely short characteristics of the cohorts e.g. in onco-papers. Generally, I'd keep the information on physical and mental disorders, since its important for discussion of bias of our cohorts (enrichment of mental disorders in the SIMMUN). We can remove the sentence on anti-RBD IgG (already done as suggested). 
+
+* I agree on references in Results and removed almost all of them, you're right, have anyway an extensive Introduction and Discussion.
+
+* R^2^: thanks I've forgotten to delete the % mark. Values of 0.1 and 0.3 are correct.
+
+* Some remarks to the sentence (subsection: 'Inflammatory cytokines, SARS-CoV-2 infection course, age and availability of biosynthesis precursors regulate systemic serotonin and dopamine levels'): 'Next, we investigated factors affecting plasma levels of serotonin and a major circulating catabolite of dopamine, DA sulfate,  as direct markers of systemic serotonin and dopamine availability, respectively.'. Because we don't employ the wording 'serotonin pathway' anymore, plasma serotonin is simply a marker of systemic serotonin availability and not a marker of 'associated kynurenine pathway'. Markers of the kynurenine pathway are explanatory variables, we have to be really strict here and follow the Analysis endpoints', because the mixing up explanatory and dependent variables was an issue of a reviewer. The same refers to the catecholamine pathway: we're using its metabolites PHE and TYR as explanatory variables.
+
+* The sentence: 'This analysis was done in the INCOV cohort [@Su2022] with age, sex, BMI, markers of inflammation (IL6, IL10, TNF, IFNG), status and timepoint of SARS-CoV-2 infection, concentrations of kynurenine (TRP KYN, QUIN) and catecholamine pathway metabolites (TRP, PHE, TYR) as candidate explanatory variables (__Supplementary Table S3__)'. I'd propose skipping 'affecting also serotonin', since we introduce the pathway and its role in serotonin availability in Introduction and elaborate on it in Discussion. Somehow, we also assume that the kynurenine pathway affects serotonin, because we include its metabolites among explanatory variables. 
+
+## Discussion
+
+* Thanks for the edits and feedback and staying well within the word limit:)
+
+### Result summary
+
+* 'neurotransmitter metabolism': I'd propose to write more precisely 'serotonin and catecholamine metabolism'.
+
+* The sentence: 'This observation and the significant association of serotonin with TRP levels in the INCOV cohort suggest collectively that depletion of TRP via highly active kynurenine pathway can limit systemic serotonin availability during SARS-CoV-2 infection [@Badawy2017].' You may remove it if you wish. I put it here for marketing reasons. Indeed, there are many papers that show that inflammation increases KYN pathway metabolite levels, but very few that show that, that this phenomenon has something to do with serotonin.
+
+* 'male sex' removed, I agree!
+
+* I'd remove the sub-heading 'General discussion', we're still elaborating on our data without a broader literature context, so for me, we're still in 'Result summary'. The edits to the paragraph are really fine! I agree, 'discrepancies' is not a fortunate word:)
+
+### Effects of inflammation and infection on the kynurenine pathways and systemic levels of serotonin
+
+* The wording 'metabolite levels of the kynurenine pathway' is not precise (do metabolites or levels refer to the kynurenine pathway?), I've replaced it by 'levels of kynurenine pathway metabolites'
+
+
+### Effects of inflammation and infection on the catecholamine pathway and systemic dopamine availability
+
+* The sentence 'However, during inflammation, BH4 availability for catecholamine and serotonin synthesis enzymes is limited due to oxidation and depleted by nitric oxide synthesis'. It implies that availability of something is depleted. What about: 'However, during inflammation, BH4 availability for catecholamine and serotonin synthesis enzymes is reduced by oxidation and nitric oxide synthesis'?
+
+* The sentence 'We also found an inverse association of parameters of catecholamine pathway activity such as PHE and PHE/TYR (increased), and TYR and DA sulfate levels  (decreased) with inflammatory markers NEO, IL6, TNF and IFNG'. The wording 'parameter' was criticized by a reviewer (he/she's right, 'parameter' refers to a model term), changing to 'readouts'.
+
+### Interaction of mental health with activity of the kynurenine and catecholamine pathways, and systemic serotonin and dopamine availability
+
+* I've added Kim 2017 and your Brain Sci as evidence for the link of mental stress and inflammation.
+
+* The sentence 'Additionally, kynurenine pathway metabolites can contribute to the sickness behavior and depression via interference with neuronal signaling, e.g. with glutamatergic receptors': I'm trying to be more precise here and spell out the sickness behavior and depression.
+
+* 'Inflammatory markers were also associated with elevated PHE/TYR indicative of reduced dopamine availability and proposed to contribute to depression in cancer (Hüfner et al., 2015) and trauma (Hüfner et al., 2019).' I think this indeed fits to our data: NEO -> low TYR (SIMMUN), IFNG -> low DA sulfate (INCOV, modeling and correlation) and IL6, TNF, IL10 -> high PHE (INCOV correlation), does it? I reworded it a bit for the sake of clarity. 
+
+* 'The potential role of __persistent__ inflammation and TRP depletion in persistent somatic symptoms and mental disorders in COVID-19 convalescents was proposed in recent hypothesis papers'. I've removed the first 'persistent', the word was repeated in twice in the sentence.
+
+* The sentence 'In the SIMMUN cohort, clinically relevant symptoms of depression (HADS) and mental stress (PSS-4) along with the inflammatory marker NEO could were associated with lower TRP values and a higher KYN/TRP ratio, respectively' is not precise enough: depression symptoms were formally associated with TRP and mental stress was a predictor of KYN/TRP. I'd say 'formally', because this two psychometric variables were extremely inter-correlated and somehow 'competed' to be a significant predictor in the models. I've split the sentence in two ones. 
+
+### Limitations
+
+* Thanks!
+
+### Conclusions
+
+* As in Abstract, I've added information on direction of changes in activity of the kynurenine and catecholamine pathway, and availability of serotonin and dopamine.
+
+* 'parameters' removed, sorry:) 
+
+
+
+
+
+
+
+
+## Tables
+
+* Tables 1 and 2 versus Table S2: there's indeed a difference in format. In Tables 1 and 2 I don't have to provide extra number of complete cases for each analyzed variable, because the analyzed cohorts contain only complete cases. In Supplementary Table S2, I'm comparing the analyzed SIMMUN cohort with excluded participants. The excluded ones have per definition missing data, so I need to provide the number for each variable here.
+
+* Tables 1 and 2: I'd stay with the 'Uninfected' and 'SARS-CoV-2 infection' header, if we introduce 'SARS-CoV-2-negative' and 'SARS-CoV-2-positive', we have to change it in all figures and tables.
+
+* As discussed per telephone, I'd keep for the moment Table 1 and Table 2, because one of the reviewers criticized that we mix results from the cohorts. I think merging the tables is worth considering, if the editor tells us to move Supplementary Figure S1 to the main text.
+
+## Figures
+
+* Changes in the figures and figure legends following your suggestions and classification of TRP as a kynurenine pathway metabolite
+
+# References

@@ -53,7 +53,7 @@
          sex = c('sex', NA, NA),
          psych_comorb = c('mental disorder', NA, NA),
          somatic_comorb = c('physical disorder', NA, NA),
-         infection = c('SARS-CoV2', NA, NA),
+         infection = c('SARS-CoV-2', NA, NA),
          bmi_class = c('body mass index', NA, NA),
          smoking = c('smoking', NA, NA),
          alcohol = c('alcohol', NA, NA),
