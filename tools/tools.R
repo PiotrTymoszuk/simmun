@@ -1002,14 +1002,14 @@
       beta_dat <-  beta_dat %>%
         mutate(txt_lab = paste0(signif(estimate, signif_digits),
                                 ' [95% CI: ', signif(lower_ci, signif_digits),
-                                '-', signif(upper_ci, signif_digits), ']'))
+                                ' to ', signif(upper_ci, signif_digits), ']'))
 
     } else {
 
       beta_dat <-  beta_dat %>%
         mutate(txt_lab = paste0(signif(estimate, signif_digits),
                                 ' [', signif(lower_ci, signif_digits),
-                                '-', signif(upper_ci, signif_digits), ']'))
+                                ' to ', signif(upper_ci, signif_digits), ']'))
 
     }
 

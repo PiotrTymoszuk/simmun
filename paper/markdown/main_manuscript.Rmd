@@ -106,7 +106,8 @@ Blood serotonin and markers of the kynurenine (kynurenine/tryptophan ratio), and
 __Results:__ In the SIMMUN cohort, the inflammatory marker 
 neopterin ($\beta$ = `r my_beta(mod_eli$inference$kyn_trp, 'log_neo')`), 
 SARS-CoV-2-positivity (`r my_beta(mod_eli$inference$kyn_trp, 'infection', show_ci_txt = FALSE)`), 
-mental stress (`r my_beta(mod_eli$inference$kyn_trp, 'pss_stress_score', show_ci_txt = FALSE)`) and age were positively associated with elevated kynurenine/tryptophan ratio. 
+mental stress (`r my_beta(mod_eli$inference$kyn_trp, 'pss_stress_score', show_ci_txt = FALSE)`) and 
+age (`r my_beta(mod_eli$inference$kyn_trp, 'age', show_ci_txt = FALSE)`) were positively associated with elevated kynurenine/tryptophan ratio. 
 Phenylalanine/tyrosine ratio was lower in 
 SARS-CoV-2-positive than SARS-CoV-2-negative participants (`r my_beta(mod_eli$inference$phe_tyr, 'infection', show_ci_txt = FALSE)`). 
 In the INCOV cohort, inflammation markers were associated with decreased serotonin 
@@ -303,10 +304,11 @@ than SARS-CoV-2-negative participants
 Nearly all 
 (`r cohort$analysis_tbl$incov %>% filter(cov == 'SARS-CoV-2') %>% my_percent('severity') %>% .[c('moderate', 'severe', 'critical')] %>% sum`%) of SARS-CoV-2-positive participants of the INCOV study experienced moderate-to-critically severe infections and were hospitalized during COVID-19 (__Table \@ref(tab:tab-incov-cohort)__). 
 
-As compared with the SIMMUN cohort, the INCOV cohort had a significantly higher percentage of males (`r comp$test %>% filter(variable == 'sex') %>% .$significance`, 
+As compared with the SIMMUN cohort, the INCOV cohort had a significantly higher percentage of 
+males (`r comp$test %>% filter(variable == 'sex') %>% .$significance`, 
 effect size: `r comp$test %>% filter(variable == 'sex') %>% .$eff_size`), 
 higher age (`r comp$test %>% filter(variable == 'age') %>% .$significance`, 
-effect size: `r comp$test %>% filter(variable == 'age') %>% .$significance`), 
+effect size: `r comp$test %>% filter(variable == 'age') %>% .$eff_size`), 
 higher rates of overweight or obese participants (`r comp$test %>% filter(variable == 'bmi_class') %>% .$significance`, 
 effect size: `r comp$test %>% filter(variable == 'bmi_class') %>% .$eff_size`), 
 more frequent SARS-CoV-2 infections (`r comp$test %>% filter(variable == 'cov') %>% .$significance`, 
@@ -523,7 +525,7 @@ It remains to be investigated, if and how this mechanism may contribute to menta
 
 \newpage
 
-# Acknowledgements
+# Acknowledgments
 
 We thank all participants and patients for the participation in the study.
 
@@ -619,7 +621,7 @@ figs$incov_neuro$plot
 
 __Figure \@ref(fig:fig-incov-neuro). Results of multi-parameter robust linear modeling of plasma levels of serotonin and dopamine 3-O-sulfate in the INCOV cohort.__ 
 
-_Effects of age, timepoint of SARS-CoV-2 infection (acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after SARS-CoV-2 infection diagnosis via PCR), plasma levels of metabolites of the kynurenine (tryptophan [TRP], kynurenine [KYN], quinolinic acid [QUIN]) and catecholamine pathways (phenylalanine [PHE], tyrosine [TYR]), and plasma concentrations of cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) on plasma concentrations of serotonin and dopamine 3-O-sulfate (DA sulfate) were modeled by multi-parameter robust linear regression._
+_Effects of age, sex, body mass index (BMI), timepoint of SARS-CoV-2 infection (acute: median 10 days, sub-acute: median 14 days, recovery: median 64 days after SARS-CoV-2 infection diagnosis via PCR), plasma levels of metabolites of the kynurenine (tryptophan [TRP], kynurenine [KYN], quinolinic acid [QUIN]) and catecholamine pathways (phenylalanine [PHE], tyrosine [TYR]), and plasma concentrations of cytokine markers of inflammation (interleukin-6 [IL6], interleukin-10 [IL10], tumor necrosis factor-alpha [TNF] and interferon-gamma [IFNG]) on plasma concentrations of serotonin and dopamine 3-O-sulfate (DA sulfate) were modeled by multi-parameter robust linear regression._
 
 _(A) Model fit error (root mean square error [RMSE]) and fraction of explained variance (R^2^) of the robust linear models assessed in the training dataset and infection timepoint-stratified 10-fold cross-validation (CV)._
 
